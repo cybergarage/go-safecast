@@ -16,14 +16,16 @@ package safecast
 
 import "math"
 
-////////////////////////////////////////////////////////////
-// int
-////////////////////////////////////////////////////////////
-
-func FromInt(from int, to any) error {
+func FromInt64(from int64, to any) error {
 	switch to := to.(type) {
 	case *int:
-		*to = from
+		if math.MaxInt < from {
+			return newErrorOverflow(from, to)
+		}
+		if from < math.MinInt {
+			return newErrorUnderflow(from, to)
+		}
+		*to = int(from)
 	case *int8:
 		if math.MaxInt8 < from {
 			return newErrorOverflow(from, to)
@@ -49,7 +51,7 @@ func FromInt(from int, to any) error {
 		}
 		*to = int32(from)
 	case *int64:
-		*to = int64(from)
+		*to = from
 	case *uint:
 		if from < 0 {
 			return newErrorUnderflow(from, to)
@@ -81,49 +83,14 @@ func FromInt(from int, to any) error {
 	return nil
 }
 
-////////////////////////////////////////////////////////////
-// int8
-////////////////////////////////////////////////////////////
-
 func FromInt8(from int8, to any) error {
-	switch to := to.(type) {
-	case *int:
-		*to = int(from)
-	case *int8:
-		*to = from
-	case *int16:
-		*to = int16(from)
-	case *int32:
-		*to = int32(from)
-	case *int64:
-		*to = int64(from)
-	case *uint:
-		if from < 0 {
-			return newErrorUnderflow(from, to)
-		}
-		*to = uint(from)
-	case *uint8:
-		if from < 0 {
-			return newErrorUnderflow(from, to)
-		}
-		*to = uint8(from)
-	case *uint16:
-		if from < 0 {
-			return newErrorUnderflow(from, to)
-		}
-		*to = uint16(from)
-	case *uint32:
-		if from < 0 {
-			return newErrorUnderflow(from, to)
-		}
-		*to = uint32(from)
-	case *uint64:
-		if from < 0 {
-			return newErrorUnderflow(from, to)
-		}
-		*to = uint64(from)
-	default:
-		return newErrorCast(from, to)
-	}
-	return nil
+	return FromInt64(int64(from), to)
+}
+
+func FromInt16(from int16, to any) error {
+	return FromInt64(int64(from), to)
+}
+
+func FromInt(from int, to any) error {
+	return FromInt64(int64(from), to)
 }
