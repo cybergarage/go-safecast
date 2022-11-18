@@ -23,7 +23,7 @@ var ErrCast = errors.New("cast error")
 
 const (
 	errorCastType  = "%w : %v (%T) => %T"
-	errorOverflow  = "%w : overflow %v (%T)  => %T"
+	errorOverflow  = "%w : overflow %v (%T) => %T"
 	errorUnderflow = "%w : underflow %v (%T) => %T"
 )
 
