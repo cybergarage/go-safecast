@@ -100,3 +100,23 @@ func ExampleFromInt32() {
 	// 2147483647
 	// cast error : underflow -2147483648 => *uint32
 }
+
+func ExampleFromInt64() {
+	var v int
+	if err := safecast.FromInt64(math.MaxInt64, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	var uv uint64
+	if err := safecast.FromInt64(math.MinInt64, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	// Output:
+	// 9223372036854775807
+	// cast error : underflow -9223372036854775808 => *uint64
+}
