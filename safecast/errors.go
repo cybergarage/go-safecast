@@ -22,19 +22,19 @@ import (
 var ErrCast = errors.New("cast error")
 
 const (
-	errorCastType  = "%w : %v (%T) => %T"
-	errorOverflow  = "%w : overflow %v (%T) => %T"
-	errorUnderflow = "%w : underflow %v (%T) => %T"
+	errorCastType  = "%w : %T => %T"
+	errorOverflow  = "%w : overflow %v => %T"
+	errorUnderflow = "%w : underflow %v => %T"
 )
 
 func newErrorCast(fromItem any, toItem any) error {
-	return fmt.Errorf(errorCastType, ErrCast, fromItem, fromItem, toItem)
+	return fmt.Errorf(errorCastType, ErrCast, fromItem, toItem)
 }
 
 func newErrorOverflow(fromItem any, toItem any) error {
-	return fmt.Errorf(errorOverflow, ErrCast, fromItem, fromItem, toItem)
+	return fmt.Errorf(errorOverflow, ErrCast, fromItem, toItem)
 }
 
 func newErrorUnderflow(fromItem any, toItem any) error {
-	return fmt.Errorf(errorUnderflow, ErrCast, fromItem, fromItem, toItem)
+	return fmt.Errorf(errorUnderflow, ErrCast, fromItem, toItem)
 }

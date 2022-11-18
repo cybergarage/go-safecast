@@ -33,7 +33,7 @@ func TestCast(t *testing.T) {
 	var uvi32 uint32
 	var uvi64 uint64
 
-	t.Run("FromInt", func(t *testing.T) {
+	t.Run("FromInt64", func(t *testing.T) {
 		froms := []int{
 			math.MinInt,
 			math.MaxInt,
@@ -96,52 +96,6 @@ func TestCast(t *testing.T) {
 			})
 		}
 	})
-
-	t.Run("FromInt8", func(t *testing.T) {
-		froms := []int8{
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-			math.MaxInt8,
-		}
-		tos := []any{
-			&vi,
-			&vi,
-			&vi8,
-			&vi8,
-			&vi16,
-			&vi16,
-			&vi32,
-			&vi32,
-			&vi64,
-			&vi64,
-			&uvi,
-			&uvi8,
-			&uvi16,
-			&uvi32,
-			&uvi64,
-		}
-		for n, from := range froms {
-			to := tos[n]
-			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromInt8(from, to); err != nil {
-					t.Error(err)
-					return
-				}
-			})
-		}
-	})
 }
 
 func TestError(t *testing.T) {
@@ -154,7 +108,7 @@ func TestError(t *testing.T) {
 	var uvi32 uint32
 	var uvi64 uint64
 
-	t.Run("FromInt", func(t *testing.T) {
+	t.Run("FromInt64", func(t *testing.T) {
 		froms := []int{
 			math.MaxInt8 + 1,
 			math.MinInt8 - 1,
@@ -185,32 +139,6 @@ func TestError(t *testing.T) {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
 				if err := FromInt(from, to); err == nil {
-					t.Errorf("%v=>%T", from, to)
-					return
-				}
-			})
-		}
-	})
-
-	t.Run("FromInt8", func(t *testing.T) {
-		froms := []int8{
-			-1,
-			-1,
-			-1,
-			-1,
-			-1,
-		}
-		tos := []any{
-			&uvi,
-			&uvi8,
-			&uvi16,
-			&uvi32,
-			&uvi64,
-		}
-		for n, from := range froms {
-			to := tos[n]
-			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromInt8(from, to); err == nil {
 					t.Errorf("%v=>%T", from, to)
 					return
 				}
