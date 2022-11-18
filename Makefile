@@ -30,7 +30,7 @@ COVER_PROF=coverage.out
 
 all: test
 
-format: version
+format:
 	gofmt -s -w ${PKG_SRC_DIR}
 
 vet: format
