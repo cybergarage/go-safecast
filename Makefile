@@ -26,7 +26,7 @@ PKGS=\
 
 COVER_PROF=coverage.out
 
-.PHONY: version format vet lint cover clean
+.PHONY: format vet lint cover clean
 
 all: test
 
@@ -40,7 +40,7 @@ lint: vet
 	golangci-lint run ${PKG_SRCS} 
 
 test: lint
-	go test -v -cover -coverpkg=${PKG_ID} -coverprofile=${COVER_PROF} -timeout 60s ${PKGS} ${TEST_PKGS}
+	go test -v -cover -coverpkg=${PKG_ID} -coverprofile=${COVER_PROF} -timeout 60s ${PKGS}
 
 cover: test
 	go tool cover -html=${COVER_PROF} -o coverage.html
