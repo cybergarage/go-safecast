@@ -50,3 +50,19 @@ func FuzzFromInt8(f *testing.F) {
 		}
 	})
 }
+
+func FuzzFromInt16(f *testing.F) {
+	f.Add(int16(0))
+	f.Add(int16(math.MinInt16))
+	f.Add(int16(math.MaxInt16))
+	f.Fuzz(func(t *testing.T, from int16) {
+		var to int16
+		if err := FromInt16(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
