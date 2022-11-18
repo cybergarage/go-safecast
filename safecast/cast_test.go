@@ -34,7 +34,7 @@ func TestCast(t *testing.T) {
 	var uvi64 uint64
 
 	t.Run("FromInt64", func(t *testing.T) {
-		froms := []int{
+		froms := []int64{
 			math.MinInt,
 			math.MaxInt,
 			math.MinInt8,
@@ -89,7 +89,71 @@ func TestCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromInt(from, to); err != nil {
+				if err := FromInt64(from, to); err != nil {
+					t.Error(err)
+					return
+				}
+			})
+		}
+	})
+
+	t.Run("FromUint64", func(t *testing.T) {
+		froms := []uint64{
+			0,
+			math.MaxInt,
+			0,
+			math.MaxInt8,
+			0,
+			math.MaxInt16,
+			0,
+			math.MaxInt32,
+			0,
+			math.MaxInt,
+			0,
+			math.MaxInt64,
+			0,
+			math.MaxUint,
+			0,
+			math.MaxUint8,
+			0,
+			math.MaxUint16,
+			0,
+			math.MaxUint32,
+			0,
+			math.MaxUint,
+			0,
+			math.MaxUint64,
+		}
+		tos := []any{
+			&vi,
+			&vi,
+			&vi8,
+			&vi8,
+			&vi16,
+			&vi16,
+			&vi32,
+			&vi32,
+			&vi64,
+			&vi64,
+			&vi64,
+			&vi64,
+			&uvi,
+			&uvi,
+			&uvi8,
+			&uvi8,
+			&uvi16,
+			&uvi16,
+			&uvi32,
+			&uvi32,
+			&uvi64,
+			&uvi64,
+			&uvi64,
+			&uvi64,
+		}
+		for n, from := range froms {
+			to := tos[n]
+			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
+				if err := FromUint64(from, to); err != nil {
 					t.Error(err)
 					return
 				}
@@ -99,9 +163,11 @@ func TestCast(t *testing.T) {
 }
 
 func TestError(t *testing.T) {
+	var vi int
 	var vi8 int8
 	var vi16 int16
 	var vi32 int32
+	var vi64 int64
 	var uvi uint
 	var uvi8 uint8
 	var uvi16 uint16
@@ -109,7 +175,7 @@ func TestError(t *testing.T) {
 	var uvi64 uint64
 
 	t.Run("FromInt64", func(t *testing.T) {
-		froms := []int{
+		froms := []int64{
 			math.MaxInt8 + 1,
 			math.MinInt8 - 1,
 			math.MaxInt16 + 1,
@@ -138,7 +204,39 @@ func TestError(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromInt(from, to); err == nil {
+				if err := FromInt64(from, to); err == nil {
+					t.Errorf("%v=>%T", from, to)
+					return
+				}
+			})
+		}
+	})
+
+	t.Run("FromUint64", func(t *testing.T) {
+		froms := []uint64{
+			math.MaxInt64 + 1,
+			math.MaxInt8 + 1,
+			math.MaxInt16 + 1,
+			math.MaxInt32 + 1,
+			math.MaxInt64 + 1,
+			math.MaxInt8 + 1,
+			math.MaxInt16 + 1,
+			math.MaxInt32 + 1,
+		}
+		tos := []any{
+			&vi,
+			&vi8,
+			&vi16,
+			&vi32,
+			&vi64,
+			&vi8,
+			&vi16,
+			&vi32,
+		}
+		for n, from := range froms {
+			to := tos[n]
+			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
+				if err := FromUint64(from, to); err == nil {
 					t.Errorf("%v=>%T", from, to)
 					return
 				}
