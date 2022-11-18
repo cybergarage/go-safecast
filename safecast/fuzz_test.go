@@ -19,13 +19,29 @@ import (
 	"testing"
 )
 
-func FuzzIntData(f *testing.F) {
+func FuzzFromInt(f *testing.F) {
 	f.Add(int(0))
 	f.Add(int(math.MinInt))
 	f.Add(int(math.MaxInt))
 	f.Fuzz(func(t *testing.T, from int) {
 		var to int
 		if err := FromInt(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
+
+func FuzzFromInt8(f *testing.F) {
+	f.Add(int8(0))
+	f.Add(int8(math.MinInt8))
+	f.Add(int8(math.MaxInt8))
+	f.Fuzz(func(t *testing.T, from int8) {
+		var to int8
+		if err := FromInt8(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
