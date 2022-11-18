@@ -91,6 +91,10 @@ func FromInt16(from int16, to any) error {
 	return FromInt64(int64(from), to)
 }
 
+func FromInt32(from int32, to any) error {
+	return FromInt64(int64(from), to)
+}
+
 func FromInt(from int, to any) error {
 	return FromInt64(int64(from), to)
 }
