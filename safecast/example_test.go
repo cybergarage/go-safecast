@@ -22,18 +22,18 @@ import (
 )
 
 func ExampleFromInt() {
-	var vi int
-	if err := safecast.FromInt(math.MaxInt, &vi); err != nil {
+	var v int
+	if err := safecast.FromInt(math.MaxInt, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
-		fmt.Printf("%v\n", vi)
+		fmt.Printf("%v\n", v)
 	}
 
-	var vi8 int8
-	if err := safecast.FromInt(math.MaxInt, &vi8); err != nil {
+	var uv int8
+	if err := safecast.FromInt(math.MaxInt, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
-		fmt.Printf("%v\n", vi8)
+		fmt.Printf("%v\n", uv)
 	}
 
 	// Output:
@@ -42,21 +42,41 @@ func ExampleFromInt() {
 }
 
 func ExampleFromInt8() {
-	var vi int
-	if err := safecast.FromInt8(math.MaxInt8, &vi); err != nil {
+	var v int
+	if err := safecast.FromInt8(math.MaxInt8, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
-		fmt.Printf("%v\n", vi)
+		fmt.Printf("%v\n", v)
 	}
 
-	var uvi8 uint8
-	if err := safecast.FromInt8(math.MinInt8, &uvi8); err != nil {
+	var uv uint8
+	if err := safecast.FromInt8(math.MinInt8, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
-		fmt.Printf("%v\n", uvi8)
+		fmt.Printf("%v\n", uv)
 	}
 
 	// Output:
 	// 127
 	// cast error : underflow -128 => *uint8
+}
+
+func ExampleFromInt16() {
+	var v int
+	if err := safecast.FromInt16(math.MaxInt16, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	var uv uint16
+	if err := safecast.FromInt16(math.MinInt16, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	// Output:
+	// 32767
+	// cast error : underflow -32768 => *uint16
 }
