@@ -21,6 +21,10 @@ import (
 	"github.com/cybergarage/go-safecast/safecast"
 )
 
+////////////////////////////////////////////////////////////
+// int
+////////////////////////////////////////////////////////////
+
 func ExampleFromInt() {
 	var vi int
 	if err := safecast.FromInt(math.MaxInt, &vi); err != nil {
@@ -39,4 +43,28 @@ func ExampleFromInt() {
 	// Output:
 	// 9223372036854775807
 	// cast error : overflow 9223372036854775807 (int) => *int8
+}
+
+////////////////////////////////////////////////////////////
+// int8
+////////////////////////////////////////////////////////////
+
+func ExampleFromInt8() {
+	var vi int
+	if err := safecast.FromInt8(math.MaxInt8, &vi); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", vi)
+	}
+
+	var uvi8 uint8
+	if err := safecast.FromInt8(math.MinInt8, &uvi8); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uvi8)
+	}
+
+	// Output:
+	// 127
+	// cast error : underflow -128 (int8) => *uint8
 }
