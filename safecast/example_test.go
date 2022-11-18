@@ -120,3 +120,103 @@ func ExampleFromInt64() {
 	// 9223372036854775807
 	// cast error : underflow -9223372036854775808 => *uint64
 }
+
+func ExampleFromUint() {
+	var uv uint
+	if err := safecast.FromUint(math.MaxUint, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int
+	if err := safecast.FromUint(math.MaxUint, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 18446744073709551615
+	// cast error : overflow 18446744073709551615 => *int
+}
+
+func ExampleFromUint8() {
+	var uv uint
+	if err := safecast.FromUint8(math.MaxUint8, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int8
+	if err := safecast.FromUint8(math.MaxUint8, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 255
+	// cast error : overflow 255 => *int8
+}
+
+func ExampleFromUint16() {
+	var uv uint
+	if err := safecast.FromUint16(math.MaxUint16, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int16
+	if err := safecast.FromUint16(math.MaxUint16, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 65535
+	// cast error : overflow 65535 => *int16
+}
+
+func ExampleFromUint32() {
+	var uv uint
+	if err := safecast.FromUint32(math.MaxUint32, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int32
+	if err := safecast.FromUint32(math.MaxUint32, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 4294967295
+	// cast error : overflow 4294967295 => *int32
+}
+
+func ExampleFromUint64() {
+	var uv uint
+	if err := safecast.FromUint64(math.MaxUint64, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int64
+	if err := safecast.FromUint64(math.MaxUint64, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 18446744073709551615
+	// cast error : overflow 18446744073709551615 => *int64
+}
