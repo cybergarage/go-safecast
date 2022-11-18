@@ -66,3 +66,19 @@ func FuzzFromInt16(f *testing.F) {
 		}
 	})
 }
+
+func FuzzFromInt32(f *testing.F) {
+	f.Add(int32(0))
+	f.Add(int32(math.MinInt32))
+	f.Add(int32(math.MaxInt32))
+	f.Fuzz(func(t *testing.T, from int32) {
+		var to int32
+		if err := FromInt32(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
