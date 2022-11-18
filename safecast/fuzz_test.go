@@ -98,3 +98,78 @@ func FuzzFromInt64(f *testing.F) {
 		}
 	})
 }
+
+func FuzzFromUint(f *testing.F) {
+	f.Add(uint(0))
+	f.Add(uint(math.MaxUint))
+	f.Fuzz(func(t *testing.T, from uint) {
+		var to uint
+		if err := FromUint(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
+
+func FuzzFromUint8(f *testing.F) {
+	f.Add(uint8(0))
+	f.Add(uint8(math.MaxUint8))
+	f.Fuzz(func(t *testing.T, from uint8) {
+		var to uint8
+		if err := FromUint8(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
+
+func FuzzFromUint16(f *testing.F) {
+	f.Add(uint16(0))
+	f.Add(uint16(math.MaxUint16))
+	f.Fuzz(func(t *testing.T, from uint16) {
+		var to uint16
+		if err := FromUint16(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
+
+func FuzzFromUint32(f *testing.F) {
+	f.Add(uint32(0))
+	f.Add(uint32(math.MaxUint32))
+	f.Fuzz(func(t *testing.T, from uint32) {
+		var to uint32
+		if err := FromUint32(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
+
+func FuzzFromUint64(f *testing.F) {
+	f.Add(uint64(0))
+	f.Add(uint64(math.MaxUint64))
+	f.Fuzz(func(t *testing.T, from uint64) {
+		var to uint64
+		if err := FromUint64(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
