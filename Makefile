@@ -45,5 +45,8 @@ test: lint
 cover: test
 	go tool cover -html=${COVER_PROF} -o coverage.html
 
+fuzz: test
+	pushd ${PKG_SRC_DIR} && ./fuzz && popd
+
 clean:
 	go clean -i ${PKGS}
