@@ -82,3 +82,19 @@ func FuzzFromInt32(f *testing.F) {
 		}
 	})
 }
+
+func FuzzFromInt64(f *testing.F) {
+	f.Add(int64(0))
+	f.Add(int64(math.MinInt64))
+	f.Add(int64(math.MaxInt64))
+	f.Fuzz(func(t *testing.T, from int64) {
+		var to int64
+		if err := FromInt64(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
