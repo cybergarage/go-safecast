@@ -80,3 +80,50 @@ func FromInt(from int, to any) error {
 	}
 	return nil
 }
+
+////////////////////////////////////////////////////////////
+// int8
+////////////////////////////////////////////////////////////
+
+func FromInt8(from int8, to any) error {
+	switch to := to.(type) {
+	case *int:
+		*to = int(from)
+	case *int8:
+		*to = from
+	case *int16:
+		*to = int16(from)
+	case *int32:
+		*to = int32(from)
+	case *int64:
+		*to = int64(from)
+	case *uint:
+		if from < 0 {
+			return newErrorUnderflow(from, to)
+		}
+		*to = uint(from)
+	case *uint8:
+		if from < 0 {
+			return newErrorUnderflow(from, to)
+		}
+		*to = uint8(from)
+	case *uint16:
+		if from < 0 {
+			return newErrorUnderflow(from, to)
+		}
+		*to = uint16(from)
+	case *uint32:
+		if from < 0 {
+			return newErrorUnderflow(from, to)
+		}
+		*to = uint32(from)
+	case *uint64:
+		if from < 0 {
+			return newErrorUnderflow(from, to)
+		}
+		*to = uint64(from)
+	default:
+		return newErrorCast(from, to)
+	}
+	return nil
+}
