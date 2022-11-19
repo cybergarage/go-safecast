@@ -189,3 +189,19 @@ func FuzzFromFloat64(f *testing.F) {
 		}
 	})
 }
+
+func FuzzFromFloat32(f *testing.F) {
+	f.Add(float32(-math.MaxFloat32))
+	f.Add(float32(0))
+	f.Add(float32(math.MaxFloat32))
+	f.Fuzz(func(t *testing.T, from float32) {
+		var to float32
+		if err := FromFloat32(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
