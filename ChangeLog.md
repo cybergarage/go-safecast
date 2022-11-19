@@ -2,7 +2,7 @@
 
 ## v1.1.0 (2022-11-xx)
 - Update FromInt64() and FromUint64() to support float32, float64, and string
-- Add FromFloat64(), FromFloat32(), and FromString()
+- Add FromFloat64(), FromFloat32(), FromString(), and FromBool()
 
 ## v1.0.0 (2022-11-19)
 - Initial release  
