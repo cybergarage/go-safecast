@@ -92,6 +92,8 @@ func FromString(from string, to any) error {
 		*to = v
 	case *string:
 		*to = from
+	case *[]byte:
+		*to = []byte(from)
 	case *bool:
 		v, err := strconv.ParseBool(from)
 		if err != nil {
