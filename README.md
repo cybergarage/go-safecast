@@ -50,18 +50,19 @@ Currently, `go-safecast` provides the following safe casting functions.
 
 |Function                                    |To                                                                             |
 |--------------------------------------------|-------------------------------------------------------------------------------|
-|func FromInt(from int64, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromInt8(from int8, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromInt16(from int16, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromInt32(from int32, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromInt64(from int64, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromUint(from uint, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromUint8(from uint8, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromUint16(from uint16, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromUint32(from uint32, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromUint64(from uint64, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromFloat32(from float32, to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromFloat64(from float64, to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32 |
-|func FromString(from string, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *bool |
+|func FromInt(from int64, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromInt8(from int8, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromInt16(from int16, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromInt32(from int32, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromInt64(from int64, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromUint(from uint, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromUint8(from uint8, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromUint16(from uint16, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromUint32(from uint32, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromUint64(from uint64, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromFloat32(from float32, to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string |
+|func FromFloat64(from float64, to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string |
+|func FromString(from string, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *bool, *string |
+|func FromBool(from bool, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *bool, *string |
 
 Please see [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast) to know the functions and examples in more detail.
