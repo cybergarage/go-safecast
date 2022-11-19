@@ -1,5 +1,9 @@
 # go-safecast
 
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/cybergarage/go-safecast)
+[![test](https://github.com/cybergarage/go-safecast/actions/workflows/make.yml/badge.svg)](https://github.com/cybergarage/go-safecast/actions/workflows/make.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast)
+
 `go-safecast` is a utility function package for safe casting between primitive data types of Go. The following shows an unsafe cast example that causes cast overflow problems, but the unsafe casting is not detected at runtime and compile time.
 
 ```
