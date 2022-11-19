@@ -45,3 +45,7 @@ func FromFloat64(from float64, to any) error {
 	}
 	return nil
 }
+
+func FromFloat32(from float32, to any) error {
+	return FromFloat64(float64(from), to)
+}
