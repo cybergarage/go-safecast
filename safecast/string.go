@@ -90,6 +90,8 @@ func FromString(from string, to any) error {
 			return newErrorWithError(err)
 		}
 		*to = v
+	case *string:
+		*to = from
 	case *bool:
 		v, err := strconv.ParseBool(from)
 		if err != nil {
