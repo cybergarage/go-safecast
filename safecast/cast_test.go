@@ -275,6 +275,8 @@ func TestError(t *testing.T) {
 	var uvi16 uint16
 	var uvi32 uint32
 	var uvi64 uint64
+	var vf32 float32
+	var vf64 float64
 
 	t.Run("FromInt64", func(t *testing.T) {
 		froms := []int64{
@@ -345,6 +347,46 @@ func TestError(t *testing.T) {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
 				if err := FromUint64(from, to); err == nil {
+					t.Errorf("%v=>%T", from, to)
+					return
+				}
+			})
+		}
+	})
+
+	t.Run("FromString", func(t *testing.T) {
+		froms := []string{
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+			"abc",
+		}
+		tos := []any{
+			&vi,
+			&vi8,
+			&vi16,
+			&vi32,
+			&vi64,
+			&uvi,
+			&uvi8,
+			&uvi16,
+			&uvi32,
+			&uvi64,
+			&vf32,
+			&vf64,
+		}
+		for n, from := range froms {
+			to := tos[n]
+			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
+				if err := FromString(from, to); err == nil {
 					t.Errorf("%v=>%T", from, to)
 					return
 				}
