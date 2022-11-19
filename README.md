@@ -46,7 +46,7 @@ func main() {
 }
 ```
 
-Currently, `go-safecast` provides the following safe casting functions.
+Currently, `go-safecast` provides the following safe casting functions.Please see [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast) to know the functions and examples in more detail.
 
 |Function                                    |To                                                                             |
 |--------------------------------------------|-------------------------------------------------------------------------------|
@@ -65,4 +65,3 @@ Currently, `go-safecast` provides the following safe casting functions.
 |func FromString(from string, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *bool, *string |
 |func FromBool(from bool, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *bool, *string |
 
-Please see [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast) to know the functions and examples in more detail.
