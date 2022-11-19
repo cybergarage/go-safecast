@@ -22,9 +22,10 @@ import (
 var ErrCast = errors.New("cast error")
 
 const (
-	errorCastType  = "%w : %T => %T"
-	errorOverflow  = "%w : overflow %v => %T"
-	errorUnderflow = "%w : underflow %v => %T"
+	errorCastType   = "%w : %T => %T"
+	errorOverflow   = "%w : overflow %v => %T"
+	errorUnderflow  = "%w : underflow %v => %T"
+	errorOutOfRange = "%w : %s"
 )
 
 func newErrorCast(fromItem any, toItem any) error {
@@ -37,4 +38,8 @@ func newErrorOverflow(fromItem any, toItem any) error {
 
 func newErrorUnderflow(fromItem any, toItem any) error {
 	return fmt.Errorf(errorUnderflow, ErrCast, fromItem, toItem)
+}
+
+func newErrorWithError(err error) error {
+	return fmt.Errorf(errorOutOfRange, ErrCast, err.Error())
 }

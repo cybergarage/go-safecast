@@ -279,5 +279,5 @@ func ExampleFromString() {
 
 	// Output:
 	// 9223372036854775807
-	// strconv.ParseInt: parsing "9223372036854775807": value out of range
+	// cast error : strconv.ParseInt: parsing "9223372036854775807": value out of range
 }
