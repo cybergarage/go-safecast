@@ -281,3 +281,23 @@ func ExampleFromString() {
 	// 9223372036854775807
 	// cast error : strconv.ParseInt: parsing "9223372036854775807": value out of range
 }
+
+func ExampleFromBool() {
+	var v bool
+	if err := safecast.FromBool(true, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	var iv int
+	if err := safecast.FromBool(true, &iv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", iv)
+	}
+
+	// Output:
+	// true
+	// 1
+}
