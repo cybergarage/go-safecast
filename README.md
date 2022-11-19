@@ -62,6 +62,6 @@ Currently, `go-safecast` provides the following safe casting functions.Please se
 |func FromUint64(from uint64, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
 |func FromFloat32(from float32, to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string |
 |func FromFloat64(from float64, to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string |
-|func FromString(from string, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *bool, *string |
+|func FromString(from string, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *bool, *string *[]byte |
 |func FromBool(from bool, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *bool, *string |
 
