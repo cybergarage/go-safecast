@@ -14,6 +14,8 @@
 
 package safecast
 
+import "fmt"
+
 func FromFloat64(from float64, to any) error {
 	switch to := to.(type) {
 	case *int:
@@ -40,6 +42,8 @@ func FromFloat64(from float64, to any) error {
 		*to = float32(from)
 	case *float64:
 		*to = from
+	case *string:
+		*to = fmt.Sprintf("%v", from)
 	default:
 		return newErrorCast(from, to)
 	}
