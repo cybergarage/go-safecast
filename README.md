@@ -6,17 +6,17 @@
 package main
 
 import (
-	"fmt"
-	"math"
+    "fmt"
+    "math"
 )
 
 func main() {
-	from := math.MaxInt8 + 1
-	to := int8(from)
-	fmt.Printf("%v != %v", to, from)
+    from := math.MaxInt8 + 1
+    to := int8(from)
+    fmt.Printf("%v != %v", to, from)
 
-	// Output
-	// -128 != 128
+    // Output
+    // -128 != 128
 }
 ```
 
@@ -30,15 +30,15 @@ import (
 )
 
 func main() {
-	from := math.MaxInt8 + 1
+    from := math.MaxInt8 + 1
     var to int8
     err := safecast.FromInt(from, &to)
     if err := nil {
         fmt.Println(err.Error())
     }
 
-	// Output
-	// cast error : underflow 128 => *int8
+    // Output
+    // cast error : underflow 128 => *int8
 }
 ```
 
