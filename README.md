@@ -19,7 +19,7 @@ func main() {
     to := int8(from)
     fmt.Printf("%v != %v", to, from)
 
-    // Output
+    // Output:
     // -128 != 128
 }
 ```
@@ -41,7 +41,7 @@ func main() {
         fmt.Println(err.Error())
     }
 
-    // Output
+    // Output:
     // cast error : out of range 128 > *int8
 }
 ```
