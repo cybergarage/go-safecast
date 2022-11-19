@@ -66,6 +66,8 @@ func TestCast(t *testing.T) {
 			math.MaxInt64,
 			math.MaxInt64,
 			math.MaxInt64,
+			1,
+			0,
 		}
 		tos := []any{
 			&vi,
@@ -95,6 +97,8 @@ func TestCast(t *testing.T) {
 			&vf32,
 			&vf64,
 			&vs,
+			&vb,
+			&vb,
 		}
 		for n, from := range froms {
 			to := tos[n]
