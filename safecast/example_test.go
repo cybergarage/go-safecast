@@ -220,3 +220,23 @@ func ExampleFromUint64() {
 	// 18446744073709551615
 	// cast error : overflow 18446744073709551615 => *int64
 }
+
+func ExampleFromFloat64() {
+	var uv uint
+	if err := safecast.FromFloat64(math.MaxFloat64, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int64
+	if err := safecast.FromFloat64(-math.MaxFloat64, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 9223372036854775808
+	// -9223372036854775808
+}
