@@ -17,6 +17,7 @@ package safecast_test
 import (
 	"fmt"
 	"math"
+	"strconv"
 
 	"github.com/cybergarage/go-safecast/safecast"
 )
@@ -259,4 +260,24 @@ func ExampleFromFloat32() {
 	// Output:
 	// 9223372036854775808
 	// -9223372036854775808
+}
+
+func ExampleFromString() {
+	var uv uint
+	if err := safecast.FromString(strconv.Itoa(math.MaxInt64), &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int8
+	if err := safecast.FromString(strconv.Itoa(math.MaxInt64), &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 9223372036854775807
+	// strconv.ParseInt: parsing "9223372036854775807": value out of range
 }
