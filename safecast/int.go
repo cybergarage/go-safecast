@@ -77,6 +77,10 @@ func FromInt64(from int64, to any) error {
 			return newErrorUnderflow(from, to)
 		}
 		*to = uint64(from)
+	case *float32:
+		*to = float32(from)
+	case *float64:
+		*to = float64(from)
 	default:
 		return newErrorCast(from, to)
 	}
