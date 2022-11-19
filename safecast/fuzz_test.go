@@ -205,3 +205,19 @@ func FuzzFromFloat32(f *testing.F) {
 		}
 	})
 }
+
+func FuzzFromString(f *testing.F) {
+	f.Add("a")
+	f.Add("ab")
+	f.Add("abc")
+	f.Fuzz(func(t *testing.T, from string) {
+		var to string
+		if err := FromString(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
