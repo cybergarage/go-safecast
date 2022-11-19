@@ -42,7 +42,7 @@ func main() {
     }
 
     // Output
-    // cast error : underflow 128 => *int8
+    // cast error : out of range 128 > *int8
 }
 ```
 
