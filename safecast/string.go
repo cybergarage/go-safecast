@@ -21,79 +21,79 @@ func FromString(from string, to any) error {
 	case *int:
 		v, err := strconv.ParseInt(from, 10, 64)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = int(v)
 	case *int8:
 		v, err := strconv.ParseInt(from, 10, 8)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = int8(v)
 	case *int16:
 		v, err := strconv.ParseInt(from, 10, 16)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = int16(v)
 	case *int32:
 		v, err := strconv.ParseInt(from, 10, 32)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = int32(v)
 	case *int64:
 		v, err := strconv.ParseInt(from, 10, 64)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = v
 	case *uint:
 		v, err := strconv.ParseUint(from, 10, 64)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = uint(v)
 	case *uint8:
 		v, err := strconv.ParseUint(from, 10, 8)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = uint8(v)
 	case *uint16:
 		v, err := strconv.ParseUint(from, 10, 16)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = uint16(v)
 	case *uint32:
 		v, err := strconv.ParseUint(from, 10, 32)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = uint32(v)
 	case *uint64:
 		v, err := strconv.ParseUint(from, 10, 64)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = v
 	case *float32:
 		v, err := strconv.ParseFloat(from, 32)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = float32(v)
 	case *float64:
 		v, err := strconv.ParseFloat(from, 64)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = v
 	case *bool:
 		v, err := strconv.ParseBool(from)
 		if err != nil {
-			return err
+			return newErrorWithError(err)
 		}
 		*to = v
 	default:
