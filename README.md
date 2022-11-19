@@ -24,7 +24,7 @@ func main() {
 }
 ```
 
-`go-safecast` provides utility functions for safe casting, and raises an error if the casting is unsafe as the following. Please see [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast) to know the functions and examples in more detail. 
+`go-safecast` provides utility functions for safe casting, and raises an error if the casting is unsafe as the following.
 
 ```
 package main
@@ -60,3 +60,5 @@ Currently, `go-safecast` provides the following safe casting functions.
 |func FromUint16(from uint16 to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64 |
 |func FromUint32(from uint32 to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64 |
 |func FromUint64(from uint64 to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64 |
+
+Please see [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast) to know the functions and examples in more detail. 
