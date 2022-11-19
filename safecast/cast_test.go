@@ -32,6 +32,8 @@ func TestCast(t *testing.T) {
 	var uvi16 uint16
 	var uvi32 uint32
 	var uvi64 uint64
+	var f32 float32
+	var f64 float64
 
 	t.Run("FromInt64", func(t *testing.T) {
 		froms := []int64{
@@ -59,6 +61,7 @@ func TestCast(t *testing.T) {
 			math.MaxInt,
 			0,
 			math.MaxInt64,
+			math.MaxInt64,
 		}
 		tos := []any{
 			&vi,
@@ -85,6 +88,8 @@ func TestCast(t *testing.T) {
 			&uvi64,
 			&uvi64,
 			&uvi64,
+			&f32,
+			&f64,
 		}
 		for n, from := range froms {
 			to := tos[n]
