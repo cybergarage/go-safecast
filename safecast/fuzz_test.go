@@ -221,3 +221,18 @@ func FuzzFromString(f *testing.F) {
 		}
 	})
 }
+
+func FuzzFromBool(f *testing.F) {
+	f.Add(true)
+	f.Add(false)
+	f.Fuzz(func(t *testing.T, from bool) {
+		var to bool
+		if err := FromBool(from, &to); err != nil {
+			t.Error(err)
+			return
+		}
+		if to != from {
+			t.Errorf("%v != %v", to, from)
+		}
+	})
+}
