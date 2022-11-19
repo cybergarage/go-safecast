@@ -212,7 +212,7 @@ func TestCast(t *testing.T) {
 		}
 	})
 
-	t.Run("FromFloat64", func(t *testing.T) {
+	t.Run("FromString", func(t *testing.T) {
 		froms := []string{
 			strconv.Itoa(1),
 			strconv.Itoa(1),
