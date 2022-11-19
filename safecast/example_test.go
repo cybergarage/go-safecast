@@ -240,3 +240,23 @@ func ExampleFromFloat64() {
 	// 9223372036854775808
 	// -9223372036854775808
 }
+
+func ExampleFromFloat32() {
+	var uv uint
+	if err := safecast.FromFloat32(math.MaxFloat32, &uv); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", uv)
+	}
+
+	var v int64
+	if err := safecast.FromFloat32(-math.MaxFloat32, &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// 9223372036854775808
+	// -9223372036854775808
+}
