@@ -69,6 +69,12 @@ func FromUint64(from uint64, to any) error {
 		*to = float32(from)
 	case *float64:
 		*to = float64(from)
+	case *bool:
+		if from == 1 {
+			*to = true
+		} else {
+			*to = false
+		}
 	case *string:
 		*to = fmt.Sprintf("%v", from)
 	default:
