@@ -14,7 +14,10 @@
 
 package safecast
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func FromInt64(from int64, to any) error {
 	switch to := to.(type) {
@@ -81,6 +84,8 @@ func FromInt64(from int64, to any) error {
 		*to = float32(from)
 	case *float64:
 		*to = float64(from)
+	case *string:
+		*to = fmt.Sprintf("%v", from)
 	default:
 		return newErrorCast(from, to)
 	}
