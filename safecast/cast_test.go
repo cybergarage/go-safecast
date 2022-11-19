@@ -324,6 +324,9 @@ func TestError(t *testing.T) {
 			math.MaxInt8 + 1,
 			math.MaxInt16 + 1,
 			math.MaxInt32 + 1,
+			math.MaxUint8 + 1,
+			math.MaxUint16 + 1,
+			math.MaxUint32 + 1,
 		}
 		tos := []any{
 			&vi,
@@ -334,6 +337,9 @@ func TestError(t *testing.T) {
 			&vi8,
 			&vi16,
 			&vi32,
+			&uvi8,
+			&uvi16,
+			&uvi32,
 		}
 		for n, from := range froms {
 			to := tos[n]
