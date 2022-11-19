@@ -62,6 +62,10 @@ func FromUint64(from uint64, to any) error {
 		*to = uint32(from)
 	case *uint64:
 		*to = from
+	case *float32:
+		*to = float32(from)
+	case *float64:
+		*to = float64(from)
 	default:
 		return newErrorCast(from, to)
 	}
