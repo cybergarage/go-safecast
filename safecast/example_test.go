@@ -39,7 +39,7 @@ func ExampleFromInt() {
 
 	// Output:
 	// 9223372036854775807
-	// cast error : overflow 9223372036854775807 => *int8
+	// cast error : out of range 9223372036854775807 > *int8
 }
 
 func ExampleFromInt8() {
@@ -59,7 +59,7 @@ func ExampleFromInt8() {
 
 	// Output:
 	// 127
-	// cast error : underflow -128 => *uint8
+	// cast error : out of range -128 < *uint8
 }
 
 func ExampleFromInt16() {
@@ -79,7 +79,7 @@ func ExampleFromInt16() {
 
 	// Output:
 	// 32767
-	// cast error : underflow -32768 => *uint16
+	// cast error : out of range -32768 < *uint16
 }
 
 func ExampleFromInt32() {
@@ -99,7 +99,7 @@ func ExampleFromInt32() {
 
 	// Output:
 	// 2147483647
-	// cast error : underflow -2147483648 => *uint32
+	// cast error : out of range -2147483648 < *uint32
 }
 
 func ExampleFromInt64() {
@@ -119,7 +119,7 @@ func ExampleFromInt64() {
 
 	// Output:
 	// 9223372036854775807
-	// cast error : underflow -9223372036854775808 => *uint64
+	// cast error : out of range -9223372036854775808 < *uint64
 }
 
 func ExampleFromUint() {
@@ -139,7 +139,7 @@ func ExampleFromUint() {
 
 	// Output:
 	// 18446744073709551615
-	// cast error : overflow 18446744073709551615 => *int
+	// cast error : out of range 18446744073709551615 > *int
 }
 
 func ExampleFromUint8() {
@@ -159,7 +159,7 @@ func ExampleFromUint8() {
 
 	// Output:
 	// 255
-	// cast error : overflow 255 => *int8
+	// cast error : out of range 255 > *int8
 }
 
 func ExampleFromUint16() {
@@ -179,7 +179,7 @@ func ExampleFromUint16() {
 
 	// Output:
 	// 65535
-	// cast error : overflow 65535 => *int16
+	// cast error : out of range 65535 > *int16
 }
 
 func ExampleFromUint32() {
@@ -199,7 +199,7 @@ func ExampleFromUint32() {
 
 	// Output:
 	// 4294967295
-	// cast error : overflow 4294967295 => *int32
+	// cast error : out of range 4294967295 > *int32
 }
 
 func ExampleFromUint64() {
@@ -219,7 +219,7 @@ func ExampleFromUint64() {
 
 	// Output:
 	// 18446744073709551615
-	// cast error : overflow 18446744073709551615 => *int64
+	// cast error : out of range 18446744073709551615 > *int64
 }
 
 func ExampleFromFloat64() {

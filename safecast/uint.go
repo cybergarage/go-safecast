@@ -23,44 +23,44 @@ func FromUint64(from uint64, to any) error {
 	switch to := to.(type) {
 	case *int:
 		if math.MaxInt < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = int(from)
 	case *int8:
 		if math.MaxInt8 < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = int8(from)
 	case *int16:
 		if math.MaxInt16 < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = int16(from)
 	case *int32:
 		if math.MaxInt32 < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = int32(from)
 	case *int64:
 		if math.MaxInt64 < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = int64(from)
 	case *uint:
 		*to = uint(from)
 	case *uint8:
 		if math.MaxUint8 < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = uint8(from)
 	case *uint16:
 		if math.MaxUint16 < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = uint16(from)
 	case *uint32:
 		if math.MaxUint32 < from {
-			return newErrorOverflow(from, to)
+			return newErrorOverRange(from, to)
 		}
 		*to = uint32(from)
 	case *uint64:
