@@ -169,6 +169,46 @@ func TestCast(t *testing.T) {
 			})
 		}
 	})
+
+	t.Run("FromFloat64", func(t *testing.T) {
+		froms := []float64{
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+			math.MaxFloat64,
+		}
+		tos := []any{
+			&vi,
+			&vi8,
+			&vi16,
+			&vi32,
+			&vi64,
+			&uvi,
+			&uvi8,
+			&uvi16,
+			&uvi32,
+			&uvi64,
+			&f32,
+			&f64,
+		}
+		for n, from := range froms {
+			to := tos[n]
+			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
+				if err := FromFloat64(from, to); err != nil {
+					t.Error(err)
+					return
+				}
+			})
+		}
+	})
 }
 
 func TestError(t *testing.T) {
