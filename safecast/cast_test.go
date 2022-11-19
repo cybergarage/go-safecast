@@ -35,6 +35,7 @@ func TestCast(t *testing.T) {
 	var uvi64 uint64
 	var vf32 float32
 	var vf64 float64
+	var vs string
 	var vb bool
 
 	t.Run("FromInt64", func(t *testing.T) {
@@ -227,6 +228,7 @@ func TestCast(t *testing.T) {
 			strconv.Itoa(1),
 			strconv.Itoa(1),
 			strconv.Itoa(1),
+			strconv.Itoa(1),
 		}
 		tos := []any{
 			&vi,
@@ -241,6 +243,7 @@ func TestCast(t *testing.T) {
 			&uvi64,
 			&vf32,
 			&vf64,
+			&vs,
 			&vb,
 		}
 		for n, from := range froms {
