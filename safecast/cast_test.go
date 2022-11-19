@@ -262,6 +262,46 @@ func TestCast(t *testing.T) {
 			})
 		}
 	})
+
+	t.Run("FromBool", func(t *testing.T) {
+		froms := []bool{
+			true,
+			true,
+			true,
+			true,
+			true,
+			true,
+			true,
+			true,
+			true,
+			true,
+			true,
+			true,
+		}
+		tos := []any{
+			&vi,
+			&vi8,
+			&vi16,
+			&vi32,
+			&vi64,
+			&uvi,
+			&uvi8,
+			&uvi16,
+			&uvi32,
+			&uvi64,
+			&vs,
+			&vb,
+		}
+		for n, from := range froms {
+			to := tos[n]
+			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
+				if err := FromBool(from, to); err != nil {
+					t.Error(err)
+					return
+				}
+			})
+		}
+	})
 }
 
 func TestError(t *testing.T) {
