@@ -14,8 +14,12 @@
 
 package safecast
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
+// FromBool casts an interface to a bool type.
 func FromBool(from bool, to any) error {
 	toint := func(v bool) int {
 		if v {
@@ -49,6 +53,57 @@ func FromBool(from bool, to any) error {
 		*to = from
 	case *string:
 		*to = fmt.Sprintf("%v", from)
+	default:
+		return newErrorCast(from, to)
+	}
+	return nil
+}
+
+// ToBool casts an interface to a bool type.
+func ToBool(from any, to *bool) error {
+	tobool := func(v any) bool {
+		switch v := v.(type) {
+		case int:
+			if 0 < v {
+				return true
+			}
+		case uint:
+			if 0 < v {
+				return true
+			}
+		}
+		return false
+	}
+
+	switch from := from.(type) {
+	case int:
+		*to = tobool(from)
+	case int8:
+		*to = tobool(int(from))
+	case int16:
+		*to = tobool(int(from))
+	case int32:
+		*to = tobool(int(from))
+	case int64:
+		*to = tobool(int(from))
+	case uint:
+		*to = tobool(from)
+	case uint8:
+		*to = tobool(uint(from))
+	case uint16:
+		*to = tobool(uint(from))
+	case uint32:
+		*to = tobool(uint(from))
+	case uint64:
+		*to = tobool(uint(from))
+	case bool:
+		*to = from
+	case string:
+		b, err := strconv.ParseBool(from)
+		if err != nil {
+			return newErrorCast(from, to)
+		}
+		*to = b
 	default:
 		return newErrorCast(from, to)
 	}
