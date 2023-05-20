@@ -14,8 +14,12 @@
 
 package safecast
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
+// FromString casts an interface to a string type.
 func FromString(from string, to any) error {
 	switch to := to.(type) {
 	case *int:
@@ -103,5 +107,11 @@ func FromString(from string, to any) error {
 	default:
 		return newErrorCast(from, to)
 	}
+	return nil
+}
+
+// ToString casts an interface to a string type.
+func ToString(from any, to *string) error {
+	*to = fmt.Sprintf("%v", from)
 	return nil
 }
