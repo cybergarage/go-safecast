@@ -97,3 +97,42 @@ func ToFloat64(from any, to *float64) error {
 	}
 	return nil
 }
+
+// ToFloat32 casts an interface to an float64 type.
+func ToFloat32(from any, to *float32) error {
+	switch from := from.(type) {
+	case int:
+		*to = float32(from)
+	case int8:
+		*to = float32(from)
+	case int16:
+		*to = float32(from)
+	case int32:
+		*to = float32(from)
+	case int64:
+		*to = float32(from)
+	case uint:
+		*to = float32(from)
+	case uint8:
+		*to = float32(from)
+	case uint16:
+		*to = float32(from)
+	case uint32:
+		*to = float32(from)
+	case uint64:
+		*to = float32(from)
+	case float32:
+		*to = from
+	case float64:
+		*to = float32(from)
+	case string:
+		f, err := strconv.ParseFloat(from, 32)
+		if err != nil {
+			return newErrorCast(from, to)
+		}
+		*to = float32(f)
+	default:
+		return newErrorCast(from, to)
+	}
+	return nil
+}
