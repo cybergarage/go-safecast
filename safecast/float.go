@@ -14,8 +14,12 @@
 
 package safecast
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
+// FromFloat64 casts an interface to an float64 type.
 func FromFloat64(from float64, to any) error {
 	switch to := to.(type) {
 	case *int:
@@ -50,6 +54,46 @@ func FromFloat64(from float64, to any) error {
 	return nil
 }
 
+// FromFloat32 casts an interface to an float32 type.
 func FromFloat32(from float32, to any) error {
 	return FromFloat64(float64(from), to)
+}
+
+// ToFloat64 casts an interface to an float64 type.
+func ToFloat64(from any, to *float64) error {
+	switch from := from.(type) {
+	case int:
+		*to = float64(from)
+	case int8:
+		*to = float64(from)
+	case int16:
+		*to = float64(from)
+	case int32:
+		*to = float64(from)
+	case int64:
+		*to = float64(from)
+	case uint:
+		*to = float64(from)
+	case uint8:
+		*to = float64(from)
+	case uint16:
+		*to = float64(from)
+	case uint32:
+		*to = float64(from)
+	case uint64:
+		*to = float64(from)
+	case float32:
+		*to = float64(from)
+	case float64:
+		*to = from
+	case string:
+		f, err := strconv.ParseFloat(from, 64)
+		if err != nil {
+			return newErrorCast(from, to)
+		}
+		*to = f
+	default:
+		return newErrorCast(from, to)
+	}
+	return nil
 }
