@@ -48,9 +48,10 @@ func main() {
 
 Currently, `go-safecast` provides the following safe casting functions.Please see [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast) to know the functions and examples in more detail.
 
+# From functions
 |Function                                    |To                                                                             |
 |--------------------------------------------|-------------------------------------------------------------------------------|
-|func FromInt(from int64, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
+|func FromInt(from int, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
 |func FromInt8(from int8, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
 |func FromInt16(from int16, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
 |func FromInt32(from int32, to any) error    | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
@@ -64,4 +65,23 @@ Currently, `go-safecast` provides the following safe casting functions.Please se
 |func FromFloat64(from float64, to any) error| *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string |
 |func FromString(from string, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *bool, *string *[]byte |
 |func FromBool(from bool, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *bool, *string |
+
+# To functions
+
+|Function                                    |From                                                                            |
+|--------------------------------------------|-------------------------------------------------------------------------------|
+|func ToInt(from any, to *int) error        | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToInt8(from any, to *int8) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToInt16(from any, to *int16) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToInt32(from any, to *int32) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToInt64(from any, to *int64) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToUint(from any, to *uint) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToUint8(from any, to *uint8) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToUint16(from any, to *uint16) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToUint32(from any, to *uint32) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToUint64(from any, to *uint64) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToFloat32(from any, to *float32) error| int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string |
+|func ToFloat64(from any, to *float64) error| int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string |
+|func ToString(from any, to *string) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, bool, string []byte |
+|func ToBool(from any, to *bool) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, bool, string |
 
