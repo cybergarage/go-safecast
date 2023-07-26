@@ -22,7 +22,7 @@ import (
 )
 
 // nolint: gocyclo, maintidx
-func TestCast(t *testing.T) {
+func TestFromCast(t *testing.T) {
 	var vi int
 	var vi8 int8
 	var vi16 int16
@@ -312,7 +312,7 @@ func TestCast(t *testing.T) {
 	})
 }
 
-func TestError(t *testing.T) {
+func TestFromErrorCast(t *testing.T) {
 	var vi int
 	var vi8 int8
 	var vi16 int16
