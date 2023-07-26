@@ -22,14 +22,14 @@ import (
 var ErrCast = errors.New("cast error")
 
 const (
-	errorCastType   = "%w : %T => %T"
+	errorCastType   = "%w : %T (%v) => %T"
 	errorOverRange  = "%w : out of range %v > %T"
 	errorUnderRange = "%w : out of range %v < %T"
 	errorSimple     = "%w : %s"
 )
 
 func newErrorCast(fromItem any, toItem any) error {
-	return fmt.Errorf(errorCastType, ErrCast, fromItem, toItem)
+	return fmt.Errorf(errorCastType, ErrCast, fromItem, fromItem, toItem)
 }
 
 func newErrorOverRange(fromItem any, toItem any) error {
