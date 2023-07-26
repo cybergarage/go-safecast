@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.2.0 (2023-xx-xx)
+- Add ToTime()
+
 ## v1.2.0 (2023-05-20)
 - Add ToInt(), ToInt64(), ToInt32(), ToInt16() and ToInt8()
 - Add ToUint(), ToUint64(), ToUint32(), ToUint16() and ToUint8()
