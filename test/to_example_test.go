@@ -568,3 +568,41 @@ func ExampleToFloat64() {
 	// 5e-324
 	// 123
 }
+
+func ExampleToFloat32() {
+	var from float32
+	var to float32
+
+	from = 1.0
+	if err := safecast.ToFloat32(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxFloat32
+	if err := safecast.ToFloat32(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.SmallestNonzeroFloat32
+	if err := safecast.ToFloat32(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	if err := safecast.ToFloat32("123.0", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 1
+	// 3.4028235e+38
+	// 1e-45
+	// 123
+}
