@@ -19,8 +19,9 @@ import (
 )
 
 const (
-	ISO8601DateLayout = "2006-01-02"
-	ISO8601TimeLayout = "15:04:05"
+	ISO8601DateLayout     = "2006-01-02"
+	ISO8601TimeLayout     = "15:04:05"
+	ISO860TimestampLayout = "2006-01-02T15:04:05"
 )
 
 // ToInt64 casts an interface to an int64 type.
