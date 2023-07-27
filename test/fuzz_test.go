@@ -17,6 +17,8 @@ package safecast
 import (
 	"math"
 	"testing"
+
+	"github.com/cybergarage/go-safecast/safecast"
 )
 
 func FuzzFromInt(f *testing.F) {
@@ -25,7 +27,7 @@ func FuzzFromInt(f *testing.F) {
 	f.Add(int(math.MaxInt))
 	f.Fuzz(func(t *testing.T, from int) {
 		var to int
-		if err := FromInt(from, &to); err != nil {
+		if err := safecast.FromInt(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -41,7 +43,7 @@ func FuzzFromInt8(f *testing.F) {
 	f.Add(int8(math.MaxInt8))
 	f.Fuzz(func(t *testing.T, from int8) {
 		var to int8
-		if err := FromInt8(from, &to); err != nil {
+		if err := safecast.FromInt8(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -57,7 +59,7 @@ func FuzzFromInt16(f *testing.F) {
 	f.Add(int16(math.MaxInt16))
 	f.Fuzz(func(t *testing.T, from int16) {
 		var to int16
-		if err := FromInt16(from, &to); err != nil {
+		if err := safecast.FromInt16(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -73,7 +75,7 @@ func FuzzFromInt32(f *testing.F) {
 	f.Add(int32(math.MaxInt32))
 	f.Fuzz(func(t *testing.T, from int32) {
 		var to int32
-		if err := FromInt32(from, &to); err != nil {
+		if err := safecast.FromInt32(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -89,7 +91,7 @@ func FuzzFromInt64(f *testing.F) {
 	f.Add(int64(math.MaxInt64))
 	f.Fuzz(func(t *testing.T, from int64) {
 		var to int64
-		if err := FromInt64(from, &to); err != nil {
+		if err := safecast.FromInt64(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -104,7 +106,7 @@ func FuzzFromUint(f *testing.F) {
 	f.Add(uint(math.MaxUint))
 	f.Fuzz(func(t *testing.T, from uint) {
 		var to uint
-		if err := FromUint(from, &to); err != nil {
+		if err := safecast.FromUint(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -119,7 +121,7 @@ func FuzzFromUint8(f *testing.F) {
 	f.Add(uint8(math.MaxUint8))
 	f.Fuzz(func(t *testing.T, from uint8) {
 		var to uint8
-		if err := FromUint8(from, &to); err != nil {
+		if err := safecast.FromUint8(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -134,7 +136,7 @@ func FuzzFromUint16(f *testing.F) {
 	f.Add(uint16(math.MaxUint16))
 	f.Fuzz(func(t *testing.T, from uint16) {
 		var to uint16
-		if err := FromUint16(from, &to); err != nil {
+		if err := safecast.FromUint16(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -149,7 +151,7 @@ func FuzzFromUint32(f *testing.F) {
 	f.Add(uint32(math.MaxUint32))
 	f.Fuzz(func(t *testing.T, from uint32) {
 		var to uint32
-		if err := FromUint32(from, &to); err != nil {
+		if err := safecast.FromUint32(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -164,7 +166,7 @@ func FuzzFromUint64(f *testing.F) {
 	f.Add(uint64(math.MaxUint64))
 	f.Fuzz(func(t *testing.T, from uint64) {
 		var to uint64
-		if err := FromUint64(from, &to); err != nil {
+		if err := safecast.FromUint64(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -180,7 +182,7 @@ func FuzzFromFloat64(f *testing.F) {
 	f.Add(float64(math.MaxFloat64))
 	f.Fuzz(func(t *testing.T, from float64) {
 		var to float64
-		if err := FromFloat64(from, &to); err != nil {
+		if err := safecast.FromFloat64(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -196,7 +198,7 @@ func FuzzFromFloat32(f *testing.F) {
 	f.Add(float32(math.MaxFloat32))
 	f.Fuzz(func(t *testing.T, from float32) {
 		var to float32
-		if err := FromFloat32(from, &to); err != nil {
+		if err := safecast.FromFloat32(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -212,7 +214,7 @@ func FuzzFromString(f *testing.F) {
 	f.Add("abc")
 	f.Fuzz(func(t *testing.T, from string) {
 		var to string
-		if err := FromString(from, &to); err != nil {
+		if err := safecast.FromString(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
@@ -227,7 +229,7 @@ func FuzzFromBool(f *testing.F) {
 	f.Add(false)
 	f.Fuzz(func(t *testing.T, from bool) {
 		var to bool
-		if err := FromBool(from, &to); err != nil {
+		if err := safecast.FromBool(from, &to); err != nil {
 			t.Error(err)
 			return
 		}
