@@ -2,6 +2,8 @@
 
 ## v1.2.1 (2023-xx-xx)
 - Add ToTime()
+- Fix string conversion bugs in ToInt*() and ToUint*()
+- Add examples for To*()
 
 ## v1.2.0 (2023-05-20)
 - Add ToInt(), ToInt64(), ToInt32(), ToInt16() and ToInt8()
