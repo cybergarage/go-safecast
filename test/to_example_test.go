@@ -298,3 +298,43 @@ func ExampleToUint8() {
 	// 0
 	// cast error : out of range 18446744073709551615 > *uint8
 }
+
+func ExampleToUint16() {
+	var from uint16
+	var to uint16
+
+	from = 1
+	if err := safecast.ToUint16(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxUint16
+	if err := safecast.ToUint16(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = 0
+	if err := safecast.ToUint16(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	var from64 uint
+	from64 = math.MaxUint
+	if err := safecast.ToUint16(from64, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 1
+	// 65535
+	// 0
+	// cast error : out of range 18446744073709551615 > *uint16
+}
