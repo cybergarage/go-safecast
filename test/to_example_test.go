@@ -46,6 +46,12 @@ func ExampleToInt8() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToInt8("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	var from64 int
 	from64 = math.MaxInt
 	if err := safecast.ToInt8(from64, &to); err != nil {
@@ -65,6 +71,7 @@ func ExampleToInt8() {
 	// 1
 	// 127
 	// -128
+	// 123
 	// cast error : out of range 9223372036854775807 > *int8
 	// cast error : out of range -9223372036854775808 > *int8
 }
