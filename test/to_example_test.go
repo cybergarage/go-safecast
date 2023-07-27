@@ -211,3 +211,50 @@ func ExampleToInt64() {
 	// 9223372036854775807
 	// -9223372036854775808
 }
+
+func ExampleToInt() {
+	var from int
+	var to int
+
+	from = 1
+	if err := safecast.ToInt(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxInt
+	if err := safecast.ToInt(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MinInt
+	if err := safecast.ToInt(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxInt64
+	if err := safecast.ToInt(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MinInt64
+	if err := safecast.ToInt(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 1
+	// 9223372036854775807
+	// -9223372036854775808
+	// 9223372036854775807
+	// -9223372036854775808
+}
