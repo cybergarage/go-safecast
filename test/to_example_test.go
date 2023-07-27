@@ -418,3 +418,43 @@ func ExampleToUint64() {
 	// 0
 	// 4294967295
 }
+
+func ExampleToUint() {
+	var from uint
+	var to uint
+
+	from = 1
+	if err := safecast.ToUint(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxUint
+	if err := safecast.ToUint(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = 0
+	if err := safecast.ToUint(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	var from64 uint64
+	from64 = math.MaxUint64
+	if err := safecast.ToUint(from64, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 1
+	// 18446744073709551615
+	// 0
+	// 18446744073709551615
+}
