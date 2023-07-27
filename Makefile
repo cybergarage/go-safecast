@@ -17,12 +17,15 @@ SHELL := bash
 MODULE_ROOT=github.com/cybergarage/go-safecast
 
 PKG_NAME=safecast
+
 PKG_ID=${MODULE_ROOT}/${PKG_NAME}
-PKG_SRC_DIR=${PKG_NAME}
-PKG_SRCS=\
-        ${PKG_SRC_DIR}
-PKGS=\
-	${PKG_ID}
+PKG_DIR=${PKG_NAME}
+PKG=${PKG_ID}
+
+TEST_PKG_NAME=test
+TEST_PKG_ID=${MODULE_ROOT}/${TEST_PKG_NAME}
+TEST_PKG_DIR=${TEST_PKG_NAME}
+TEST_PKG=${TEST_PKG_ID}
 
 COVER_PROF=coverage.out
 
@@ -31,22 +34,22 @@ COVER_PROF=coverage.out
 all: test
 
 format:
-	gofmt -s -w ${PKG_SRC_DIR}
+	gofmt -s -w ${PKG_DIR} ${TEST_PKG_DIR}
 
 vet: format
-	go vet ${PKG_ID}
+	go vet ${PKG_ID} ${TEST_PKG_ID}
 
 lint: vet
-	golangci-lint run ${PKG_SRCS} 
+	golangci-lint run ${PKG_DIR}/... ${TEST_PKG_DIR}/...
 
 test: lint
-	go test -v -cover -coverpkg=${PKG_ID} -coverprofile=${COVER_PROF} -timeout 60s ${PKGS}
+	go test -v -cover -coverpkg=${PKG_ID} -coverprofile=${COVER_PROF} -timeout 60s ${PKG}/... ${TEST_PKG}/...
 
 cover: test
 	go tool cover -html=${COVER_PROF} -o coverage.html
 
 fuzz: test
-	pushd ${PKG_SRC_DIR} && ./fuzz && popd
+	pushd ${TEST_PKG_DIR} && ./fuzz && popd
 
 clean:
-	go clean -i ${PKGS}
+	go clean -i ${PKG}
