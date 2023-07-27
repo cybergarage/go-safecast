@@ -34,3 +34,4 @@ linters:
     - nosnakecase
     - gocyclo
     - dupl
+    - gosimple
