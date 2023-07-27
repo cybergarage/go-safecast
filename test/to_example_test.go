@@ -530,3 +530,41 @@ func ExampleToBool() {
 	// true
 	// true
 }
+
+func ExampleToFloat64() {
+	var from float64
+	var to float64
+
+	from = 1.0
+	if err := safecast.ToFloat64(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxFloat64
+	if err := safecast.ToFloat64(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.SmallestNonzeroFloat64
+	if err := safecast.ToFloat64(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	if err := safecast.ToFloat64("123.0", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 1
+	// 1.7976931348623157e+308
+	// 5e-324
+	// 123
+}
