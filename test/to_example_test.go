@@ -101,6 +101,12 @@ func ExampleToInt16() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToInt16("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	var from64 int
 	from64 = math.MaxInt
 	if err := safecast.ToInt16(from64, &to); err != nil {
@@ -120,6 +126,7 @@ func ExampleToInt16() {
 	// 1
 	// 32767
 	// -32768
+	// 123
 	// cast error : out of range 9223372036854775807 > *int16
 	// cast error : out of range -9223372036854775808 > *int16
 }
@@ -149,6 +156,12 @@ func ExampleToInt32() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToInt32("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	var from64 int
 	from64 = math.MaxInt
 	if err := safecast.ToInt32(from64, &to); err != nil {
@@ -168,6 +181,7 @@ func ExampleToInt32() {
 	// 1
 	// 2147483647
 	// -2147483648
+	// 123
 	// cast error : out of range 9223372036854775807 > *int32
 	// cast error : out of range -9223372036854775808 > *int32
 }
@@ -211,12 +225,19 @@ func ExampleToInt64() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToInt64("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	// Output:
 	// 1
 	// 9223372036854775807
 	// -9223372036854775808
 	// 9223372036854775807
 	// -9223372036854775808
+	// 123
 }
 
 func ExampleToInt() {
@@ -258,12 +279,19 @@ func ExampleToInt() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToInt("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	// Output:
 	// 1
 	// 9223372036854775807
 	// -9223372036854775808
 	// 9223372036854775807
 	// -9223372036854775808
+	// 123
 }
 
 func ExampleToUint8() {
@@ -291,6 +319,12 @@ func ExampleToUint8() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToUint8("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	var from64 uint
 	from64 = math.MaxUint
 	if err := safecast.ToUint8(from64, &to); err != nil {
@@ -303,6 +337,7 @@ func ExampleToUint8() {
 	// 1
 	// 255
 	// 0
+	// 123
 	// cast error : out of range 18446744073709551615 > *uint8
 }
 
@@ -331,6 +366,12 @@ func ExampleToUint16() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToUint16("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	var from64 uint
 	from64 = math.MaxUint
 	if err := safecast.ToUint16(from64, &to); err != nil {
@@ -343,6 +384,7 @@ func ExampleToUint16() {
 	// 1
 	// 65535
 	// 0
+	// 123
 	// cast error : out of range 18446744073709551615 > *uint16
 }
 
@@ -371,6 +413,12 @@ func ExampleToUint32() {
 		fmt.Println(to)
 	}
 
+	if err := safecast.ToUint32("123", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
 	var from64 uint
 	from64 = math.MaxUint
 	if err := safecast.ToUint32(from64, &to); err != nil {
@@ -383,6 +431,7 @@ func ExampleToUint32() {
 	// 1
 	// 4294967295
 	// 0
+	// 123
 	// cast error : out of range 18446744073709551615 > *uint32
 }
 
@@ -411,9 +460,7 @@ func ExampleToUint64() {
 		fmt.Println(to)
 	}
 
-	var from32 uint
-	from32 = math.MaxUint32
-	if err := safecast.ToUint64(from32, &to); err != nil {
+	if err := safecast.ToUint64("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -423,7 +470,7 @@ func ExampleToUint64() {
 	// 1
 	// 18446744073709551615
 	// 0
-	// 4294967295
+	// 123
 }
 
 func ExampleToUint() {
@@ -451,9 +498,7 @@ func ExampleToUint() {
 		fmt.Println(to)
 	}
 
-	var from64 uint64
-	from64 = math.MaxUint64
-	if err := safecast.ToUint(from64, &to); err != nil {
+	if err := safecast.ToUint("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -463,7 +508,7 @@ func ExampleToUint() {
 	// 1
 	// 18446744073709551615
 	// 0
-	// 18446744073709551615
+	// 123
 }
 
 func ExampleToBool() {
