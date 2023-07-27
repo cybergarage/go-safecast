@@ -18,6 +18,8 @@ import (
 	"fmt"
 	"testing"
 	"time"
+
+	"github.com/cybergarage/go-safecast/safecast"
 )
 
 func TestToCast(t *testing.T) {
@@ -28,18 +30,18 @@ func TestToCast(t *testing.T) {
 		}{
 			{
 				from:   "2022-01-01",
-				layout: ISO8601DateLayout,
+				layout: safecast.ISO8601DateLayout,
 			},
 			{
 				from:   "00:00:00",
-				layout: ISO8601TimeLayout,
+				layout: safecast.ISO8601TimeLayout,
 			},
 		}
 
 		for _, test := range tests {
 			t.Run(fmt.Sprintf("%s (%s)", test.from, test.layout), func(t *testing.T) {
 				var to time.Time
-				if err := ToTime(test.from, test.layout, &to); err != nil {
+				if err := safecast.ToTime(test.from, test.layout, &to); err != nil {
 					t.Error(err)
 					return
 				}

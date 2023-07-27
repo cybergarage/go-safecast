@@ -19,6 +19,8 @@ import (
 	"math"
 	"strconv"
 	"testing"
+
+	"github.com/cybergarage/go-safecast/safecast"
 )
 
 // nolint: gocyclo, maintidx
@@ -38,7 +40,7 @@ func TestFromCast(t *testing.T) {
 	var vs string
 	var vb bool
 
-	t.Run("FromInt64", func(t *testing.T) {
+	t.Run("safecast.FromInt64", func(t *testing.T) {
 		froms := []int64{
 			math.MinInt,
 			math.MaxInt,
@@ -103,7 +105,7 @@ func TestFromCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromInt64(from, to); err != nil {
+				if err := safecast.FromInt64(from, to); err != nil {
 					t.Error(err)
 					return
 				}
@@ -111,7 +113,7 @@ func TestFromCast(t *testing.T) {
 		}
 	})
 
-	t.Run("FromUint64", func(t *testing.T) {
+	t.Run("safecast.FromUint64", func(t *testing.T) {
 		froms := []uint64{
 			0,
 			math.MaxInt,
@@ -177,7 +179,7 @@ func TestFromCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromUint64(from, to); err != nil {
+				if err := safecast.FromUint64(from, to); err != nil {
 					t.Error(err)
 					return
 				}
@@ -219,7 +221,7 @@ func TestFromCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromFloat64(from, to); err != nil {
+				if err := safecast.FromFloat64(from, to); err != nil {
 					t.Error(err)
 					return
 				}
@@ -263,7 +265,7 @@ func TestFromCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromString(from, to); err != nil {
+				if err := safecast.FromString(from, to); err != nil {
 					t.Error(err)
 					return
 				}
@@ -303,7 +305,7 @@ func TestFromCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromBool(from, to); err != nil {
+				if err := safecast.FromBool(from, to); err != nil {
 					t.Error(err)
 					return
 				}
@@ -326,7 +328,7 @@ func TestFromErrorCast(t *testing.T) {
 	var vf32 float32
 	var vf64 float64
 
-	t.Run("FromInt64", func(t *testing.T) {
+	t.Run("safecast.FromInt64", func(t *testing.T) {
 		froms := []int64{
 			math.MaxInt8 + 1,
 			math.MinInt8 - 1,
@@ -356,7 +358,7 @@ func TestFromErrorCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromInt64(from, to); err == nil {
+				if err := safecast.FromInt64(from, to); err == nil {
 					t.Errorf("%v=>%T", from, to)
 					return
 				}
@@ -364,7 +366,7 @@ func TestFromErrorCast(t *testing.T) {
 		}
 	})
 
-	t.Run("FromUint64", func(t *testing.T) {
+	t.Run("safecast.FromUint64", func(t *testing.T) {
 		froms := []uint64{
 			math.MaxInt64 + 1,
 			math.MaxInt8 + 1,
@@ -394,7 +396,7 @@ func TestFromErrorCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromUint64(from, to); err == nil {
+				if err := safecast.FromUint64(from, to); err == nil {
 					t.Errorf("%v=>%T", from, to)
 					return
 				}
@@ -434,7 +436,7 @@ func TestFromErrorCast(t *testing.T) {
 		for n, from := range froms {
 			to := tos[n]
 			t.Run(fmt.Sprintf("%v=>%T", from, to), func(t *testing.T) {
-				if err := FromString(from, to); err == nil {
+				if err := safecast.FromString(from, to); err == nil {
 					t.Errorf("%v=>%T", from, to)
 					return
 				}
