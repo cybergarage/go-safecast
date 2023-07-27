@@ -117,6 +117,54 @@ func ExampleToInt16() {
 	// cast error : out of range -9223372036854775808 > *int16
 }
 
+func ExampleToInt32() {
+	var from int32
+	var to int32
+
+	from = 1
+	if err := safecast.ToInt32(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxInt32
+	if err := safecast.ToInt32(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MinInt32
+	if err := safecast.ToInt32(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	var from64 int
+	from64 = math.MaxInt
+	if err := safecast.ToInt32(from64, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from64 = math.MinInt
+	if err := safecast.ToInt32(from64, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 1
+	// 2147483647
+	// -2147483648
+	// cast error : out of range 9223372036854775807 > *int32
+	// cast error : out of range -9223372036854775808 > *int32
+}
+
 func ExampleToInt64() {
 	var from int64
 	var to int64
