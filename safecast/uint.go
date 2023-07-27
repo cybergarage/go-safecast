@@ -163,7 +163,7 @@ func ToUint8(from any, to *uint8) error {
 		}
 	case string:
 		s, err := strconv.Atoi(from)
-		if err == nil {
+		if err != nil {
 			return newErrorCast(from, to)
 		}
 		if s < 0 || math.MaxUint8 < s {
@@ -231,7 +231,7 @@ func ToUint16(from any, to *uint16) error {
 		}
 	case string:
 		s, err := strconv.Atoi(from)
-		if err == nil {
+		if err != nil {
 			return newErrorCast(from, to)
 		}
 		if s < 0 || math.MaxUint16 < s {
@@ -296,7 +296,7 @@ func ToUint32(from any, to *uint32) error {
 		}
 	case string:
 		s, err := strconv.Atoi(from)
-		if err == nil {
+		if err != nil {
 			return newErrorCast(from, to)
 		}
 		if s < 0 || math.MaxUint32 < s {
@@ -355,7 +355,7 @@ func ToUint64(from any, to *uint64) error {
 		}
 	case string:
 		s, err := strconv.Atoi(from)
-		if err == nil {
+		if err != nil {
 			return newErrorCast(from, to)
 		}
 		if s < 0 {
@@ -420,7 +420,7 @@ func ToUint(from any, to *uint) error {
 		}
 	case string:
 		s, err := strconv.Atoi(from)
-		if err == nil {
+		if err != nil {
 			return newErrorCast(from, to)
 		}
 		if s < 0 {
