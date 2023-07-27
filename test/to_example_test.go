@@ -258,3 +258,43 @@ func ExampleToInt() {
 	// 9223372036854775807
 	// -9223372036854775808
 }
+
+func ExampleToUint8() {
+	var from uint8
+	var to uint8
+
+	from = 1
+	if err := safecast.ToUint8(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = math.MaxUint8
+	if err := safecast.ToUint8(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	from = 0
+	if err := safecast.ToUint8(from, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	var from64 uint
+	from64 = math.MaxUint
+	if err := safecast.ToUint8(from64, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 1
+	// 255
+	// 0
+	// cast error : out of range 18446744073709551615 > *uint8
+}
