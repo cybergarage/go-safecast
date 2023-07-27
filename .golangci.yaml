@@ -36,3 +36,4 @@ linters:
     - dupl
     - gosimple
     - dupword
+    - depguard
