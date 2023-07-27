@@ -17,6 +17,7 @@ package safecast_test
 import (
 	"fmt"
 	"math"
+	"time"
 
 	"github.com/cybergarage/go-safecast/safecast"
 )
@@ -632,4 +633,17 @@ func ExampleToString() {
 	// 123
 	// 123
 	// true
+}
+
+func ExampleToTime() {
+	var to time.Time
+
+	if err := safecast.ToTime("2022-01-01T00:00:00", safecast.ISO860TimestampLayout, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 2022-01-01 00:00:00 +0000 UTC
 }
