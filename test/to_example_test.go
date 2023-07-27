@@ -458,3 +458,23 @@ func ExampleToUint() {
 	// 0
 	// 18446744073709551615
 }
+
+func ExampleToBool() {
+	var to bool
+
+	if err := safecast.ToBool(1, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	if err := safecast.ToBool("TRUE", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// true
+	// true
+}
