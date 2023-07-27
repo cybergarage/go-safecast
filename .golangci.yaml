@@ -33,3 +33,4 @@ linters:
     - ifshort
     - nosnakecase
     - gocyclo
+    - dupl
