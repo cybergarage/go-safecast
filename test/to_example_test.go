@@ -606,3 +606,30 @@ func ExampleToFloat32() {
 	// 1e-45
 	// 123
 }
+
+func ExampleToString() {
+	var to string
+
+	if err := safecast.ToString(123, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	if err := safecast.ToString(123.0, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	if err := safecast.ToString(true, &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(to)
+	}
+
+	// Output:
+	// 123
+	// 123
+	// true
+}
