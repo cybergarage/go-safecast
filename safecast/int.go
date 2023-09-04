@@ -170,6 +170,10 @@ func ToInt8(from any, to *int8) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = int8(from)
+	case float32:
+		return ToInt8(int64(from), to)
+	case float64:
+		return ToInt8(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
@@ -235,6 +239,10 @@ func ToInt16(from any, to *int16) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = int16(from)
+	case float32:
+		return ToInt16(int64(from), to)
+	case float64:
+		return ToInt16(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
@@ -294,6 +302,10 @@ func ToInt32(from any, to *int32) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = int32(from)
+	case float32:
+		return ToInt32(int64(from), to)
+	case float64:
+		return ToInt32(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
@@ -344,6 +356,10 @@ func ToInt64(from any, to *int64) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = int64(from)
+	case float32:
+		*to = int64(from)
+	case float64:
+		*to = int64(from)
 	case bool:
 		if from {
 			*to = 1
@@ -390,6 +406,10 @@ func ToInt(from any, to *int) error {
 		if math.MaxInt64 < from {
 			return newErrorOverRange(from, to)
 		}
+		*to = int(from)
+	case float32:
+		*to = int(from)
+	case float64:
 		*to = int(from)
 	case bool:
 		if from {
