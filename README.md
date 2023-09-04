@@ -70,16 +70,16 @@ Currently, `go-safecast` provides the following safe casting functions.Please se
 
 |Function                                    |From                                                                            |
 |--------------------------------------------|-------------------------------------------------------------------------------|
-|func ToInt(from any, to *int) error        | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToInt8(from any, to *int8) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToInt16(from any, to *int16) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToInt32(from any, to *int32) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToInt64(from any, to *int64) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToUint(from any, to *uint) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToUint8(from any, to *uint8) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToUint16(from any, to *uint16) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToUint32(from any, to *uint32) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
-|func ToUint64(from any, to *uint64) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, string, bool |
+|func ToInt(from any, to *int) error        | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToInt8(from any, to *int8) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToInt16(from any, to *int16) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToInt32(from any, to *int32) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToInt64(from any, to *int64) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToUint(from any, to *uint) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToUint8(from any, to *uint8) error    | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToUint16(from any, to *uint16) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToUint32(from any, to *uint32) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
+|func ToUint64(from any, to *uint64) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string, bool |
 |func ToFloat32(from any, to *float32) error| int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string |
 |func ToFloat64(from any, to *float64) error| int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, string |
 |func ToString(from any, to *string) error  | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float64, float32, bool, string []byte |
