@@ -155,6 +155,10 @@ func ToUint8(from any, to *uint8) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = uint8(from)
+	case float32:
+		return ToUint8(int64(from), to)
+	case float64:
+		return ToUint8(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
@@ -223,6 +227,10 @@ func ToUint16(from any, to *uint16) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = uint16(from)
+	case float32:
+		return ToUint16(int64(from), to)
+	case float64:
+		return ToUint16(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
@@ -288,6 +296,10 @@ func ToUint32(from any, to *uint32) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = uint32(from)
+	case float32:
+		return ToUint32(int64(from), to)
+	case float64:
+		return ToUint32(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
@@ -347,6 +359,10 @@ func ToUint64(from any, to *uint64) error {
 		*to = uint64(from)
 	case uint64:
 		*to = from
+	case float32:
+		return ToUint64(int64(from), to)
+	case float64:
+		return ToUint64(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
@@ -412,6 +428,10 @@ func ToUint(from any, to *uint) error {
 			return newErrorOverRange(from, to)
 		}
 		*to = uint(from)
+	case float32:
+		return ToUint(int64(from), to)
+	case float64:
+		return ToUint(int64(from), to)
 	case bool:
 		if from {
 			*to = 1
