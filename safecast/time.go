@@ -24,19 +24,30 @@ const (
 	ISO860TimestampLayout = "2006-01-02T15:04:05"
 )
 
-// ToInt64 casts an interface to an int64 type.
-func ToTime(from any, layout string, to *time.Time) error {
+// SupportedTimeLayouts is a list of supported time layouts.
+var SupportedTimeLayouts = []string{
+	ISO860TimestampLayout,
+	time.DateTime,
+}
+
+// ToTime casts an interface to a time.Time.
+func ToTime(from any, to *time.Time, layouts ...string) error {
 	switch from := from.(type) {
 	case time.Time:
 		*to = from
 		return nil
 	case string:
 		var err error
-		*to, err = time.Parse(layout, from)
-		if err != nil {
-			return err
+		if len(layouts) == 0 {
+			layouts = SupportedTimeLayouts
 		}
-		return nil
+		for _, layout := range layouts {
+			*to, err = time.Parse(layout, from)
+			if err == nil {
+				return nil
+			}
+		}
+		return err
 	}
 	return newErrorCast(from, to)
 }

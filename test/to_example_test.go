@@ -638,7 +638,7 @@ func ExampleToString() {
 func ExampleToTime() {
 	var to time.Time
 
-	if err := safecast.ToTime("2022-01-01T00:00:00", safecast.ISO860TimestampLayout, &to); err != nil {
+	if err := safecast.ToTime("2022-01-01T00:00:00", &to, safecast.ISO860TimestampLayout); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
