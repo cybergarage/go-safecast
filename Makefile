@@ -51,3 +51,9 @@ fuzz: test
 
 clean:
 	go clean -i ${PKG}
+
+watchtest:
+	fswatch -o . -e ".*" -i "\\.go$$" | xargs -n1 -I{} make test
+
+watchlint:
+	fswatch -o . -e ".*" -i "\\.go$$" | xargs -n1 -I{} make lint
