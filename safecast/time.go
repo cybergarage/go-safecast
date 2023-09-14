@@ -22,12 +22,21 @@ const (
 	ISO8601DateLayout     = "2006-01-02"
 	ISO8601TimeLayout     = "15:04:05"
 	ISO860TimestampLayout = "2006-01-02T15:04:05"
+	DateTime              = "2006-01-02 15:04:05"
+	DateTimeZ             = "2006-01-02 15:04:05 MST"
+	DateTimeNZ            = "2006-01-02 15:04:05 -0700"
 )
 
 // SupportedTimeLayouts is a list of supported time layouts.
 var SupportedTimeLayouts = []string{
+	DateTime,
+	DateTimeZ,
+	DateTimeNZ,
 	ISO860TimestampLayout,
-	time.DateTime,
+	time.RFC3339,
+	time.RFC3339Nano,
+	time.RFC1123,
+	time.RFC1123Z,
 }
 
 // ToTime casts an interface to a time.Time.
