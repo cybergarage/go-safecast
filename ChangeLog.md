@@ -1,7 +1,10 @@
 # Changelog
 
 ## v1.2.3 (2023-09-14)
-- Updated ToTime() to enable setting multiple layouts
+- Updated 
+  - ToTime()
+    - Enabled to set multiple timestamp layouts
+    - Added major timestamp layouts as default
 
 ## v1.2.2 (2023-09-04)
 - Updated ToUint*() and ToInt*() functions to support conversion from float32 and float64 values
