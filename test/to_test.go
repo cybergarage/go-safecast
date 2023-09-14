@@ -41,7 +41,7 @@ func TestToCast(t *testing.T) {
 		for _, test := range tests {
 			t.Run(fmt.Sprintf("%s (%s)", test.from, test.layout), func(t *testing.T) {
 				var to time.Time
-				if err := safecast.ToTime(test.from, test.layout, &to); err != nil {
+				if err := safecast.ToTime(test.from, &to, test.layout); err != nil {
 					t.Error(err)
 					return
 				}
