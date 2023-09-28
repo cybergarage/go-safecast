@@ -7,12 +7,14 @@
     - Added major timestamp layouts as default
 
 ## v1.2.2 (2023-09-04)
-- Updated ToUint*() and ToInt*() functions to support conversion from float32 and float64 values
+- Updated
+  - ToUint*() and ToInt*()
+    - Supported conversion from float32 and float64 values
  
 ## v1.2.1 (2023-07-27)
 - Added
   - ToTime()
-  - Examples for To*() and From*() functions
+  - Examples for To*() and From*() functions for godoc
 - Fixed
   -  string conversion bugs in ToInt*() and ToUint*()
 
