@@ -326,8 +326,7 @@ func ExampleToUint8() {
 		fmt.Println(to)
 	}
 
-	var from64 uint
-	from64 = math.MaxUint
+	from64 := uint(math.MaxUint)
 	if err := safecast.ToUint8(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
@@ -373,8 +372,7 @@ func ExampleToUint16() {
 		fmt.Println(to)
 	}
 
-	var from64 uint
-	from64 = math.MaxUint
+	from64 := uint(math.MaxUint)
 	if err := safecast.ToUint16(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
@@ -420,8 +418,7 @@ func ExampleToUint32() {
 		fmt.Println(to)
 	}
 
-	var from64 uint
-	from64 = math.MaxUint
+	from64 := uint(math.MaxUint)
 	if err := safecast.ToUint32(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
