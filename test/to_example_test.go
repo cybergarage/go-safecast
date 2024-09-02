@@ -644,3 +644,16 @@ func ExampleToTime() {
 	// Output:
 	// 2022-01-01 00:00:00 +0000 UTC
 }
+
+func ExampleToBytes() {
+	var to []byte
+
+	if err := safecast.ToBytes("abc", &to); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(string(to))
+	}
+
+	// Output:
+	// abc
+}
