@@ -238,7 +238,7 @@ func ExampleFromFloat64() {
 	}
 
 	// Output:
-	// 9223372036854775808
+	// 18446744073709551615
 	// -9223372036854775808
 }
 
@@ -258,7 +258,7 @@ func ExampleFromFloat32() {
 	}
 
 	// Output:
-	// 9223372036854775808
+	// 18446744073709551615
 	// -9223372036854775808
 }
 
@@ -300,4 +300,16 @@ func ExampleFromBool() {
 	// Output:
 	// true
 	// 1
+}
+
+func ExampleFromBytes() {
+	var v string
+	if err := safecast.FromBytes([]byte("abc"), &v); err != nil {
+		fmt.Printf("%s\n", err.Error())
+	} else {
+		fmt.Printf("%v\n", v)
+	}
+
+	// Output:
+	// abc
 }
