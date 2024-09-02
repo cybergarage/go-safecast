@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.4 (2023-09-02)
+- Added
+  - ToBytes() and FromBytes()
+
 ## v1.2.3 (2023-09-14)
 - Updated 
   - ToTime()
