@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.5 (2023-09-06)
+- Added
+  - To() and From()
+
 ## v1.2.4 (2023-09-02)
 - Added
   - ToBytes() and FromBytes()
