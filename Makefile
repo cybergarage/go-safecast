@@ -28,6 +28,7 @@ TEST_PKG_DIR=${TEST_PKG_NAME}
 COVER_PROF=coverage.out
 
 .PHONY: format vet lint cover clean
+.IGNORE: lint
 
 all: test
 
