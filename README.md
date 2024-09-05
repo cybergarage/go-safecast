@@ -66,6 +66,7 @@ Currently, `go-safecast` provides the following safe casting functions.Please se
 |func FromString(from string, to any) error  | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *bool, *string *[]byte |
 |func FromBool(from bool, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *bool, *string |
 |func FromByte(from []byte, to any) error    | *string, *[]byte |
+|func From(from any, to any) error    | any |
 
 # To functions
 
@@ -87,3 +88,4 @@ Currently, `go-safecast` provides the following safe casting functions.Please se
 |func ToBool(from any, to *bool) error      | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, bool, string |
 |func ToTime(from any, layout string, to *time.Time) error      | string |
 |func ToBytes(from any, to *[]byte) error   | string, []byte |
+|func To(from any, to any) error   | any |
