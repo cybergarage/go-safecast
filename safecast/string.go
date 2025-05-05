@@ -112,6 +112,43 @@ func FromString(from string, to any) error {
 
 // ToString casts an interface to a string type.
 func ToString(from any, to *string) error {
-	*to = fmt.Sprintf("%v", from)
+	switch from := from.(type) {
+	case int:
+		*to = strconv.Itoa(from)
+	case int8:
+		*to = strconv.Itoa(int(from))
+	case int16:
+		*to = strconv.Itoa(int(from))
+	case int32:
+		*to = strconv.Itoa(int(from))
+	case int64:
+		*to = strconv.FormatInt(from, 10)
+	case uint:
+		*to = strconv.FormatUint(uint64(from), 10)
+	case uint8:
+		*to = strconv.Itoa(int(from))
+	case uint16:
+		*to = strconv.Itoa(int(from))
+	case uint32:
+		*to = strconv.Itoa(int(from))
+	case uint64:
+		*to = strconv.FormatUint(from, 10)
+	case float32:
+		*to = strconv.FormatFloat(float64(from), 'f', -1, 32)
+	case float64:
+		*to = strconv.FormatFloat(from, 'f', -1, 64)
+	case bool:
+		*to = strconv.FormatBool(from)
+	case []byte:
+		*to = string(from)
+	case string:
+		*to = from
+	case fmt.Stringer:
+		*to = from.String()
+	case nil:
+		*to = ""
+	default:
+		*to = fmt.Sprintf("%v", from)
+	}
 	return nil
 }
