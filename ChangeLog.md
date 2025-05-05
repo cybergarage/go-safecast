@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.6 (2025-05-05)
+- Improved
+  - ToString()
+    - Added support for converting to string with a specific format
+
 ## v1.2.5 (2023-09-06)
 - Added
   - To() and From()
