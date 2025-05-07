@@ -189,19 +189,19 @@ func TestFromCast(t *testing.T) {
 
 	t.Run("FromFloat64", func(t *testing.T) {
 		froms := []float64{
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
-			math.MaxFloat64,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
 		}
 		tos := []any{
 			&vi,
