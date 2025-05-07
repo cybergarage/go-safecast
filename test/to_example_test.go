@@ -74,7 +74,7 @@ func ExampleToInt8() {
 	// -128
 	// 123
 	// cast error : out of range 9223372036854775807 > *int8
-	// cast error : out of range -9223372036854775808 > *int8
+	// cast error : out of range -9223372036854775808 < *int8
 }
 
 func ExampleToInt16() {
@@ -129,7 +129,7 @@ func ExampleToInt16() {
 	// -32768
 	// 123
 	// cast error : out of range 9223372036854775807 > *int16
-	// cast error : out of range -9223372036854775808 > *int16
+	// cast error : out of range -9223372036854775808 < *int16
 }
 
 func ExampleToInt32() {
@@ -184,7 +184,7 @@ func ExampleToInt32() {
 	// -2147483648
 	// 123
 	// cast error : out of range 9223372036854775807 > *int32
-	// cast error : out of range -9223372036854775808 > *int32
+	// cast error : out of range -9223372036854775808 < *int32
 }
 
 func ExampleToInt64() {
