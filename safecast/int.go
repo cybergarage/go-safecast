@@ -183,7 +183,11 @@ func ToInt8(from any, to *int8) error {
 	case string:
 		s, err := strconv.Atoi(from)
 		if err != nil {
-			return newErrorCast(from, to)
+			f, err := strconv.ParseFloat(from, 64)
+			if err != nil {
+				return newErrorCast(from, to)
+			}
+			s = int(f)
 		}
 		if s < math.MinInt8 || math.MaxInt8 < s {
 			return newErrorOverRange(s, to)
@@ -252,7 +256,11 @@ func ToInt16(from any, to *int16) error {
 	case string:
 		s, err := strconv.Atoi(from)
 		if err != nil {
-			return newErrorCast(from, to)
+			f, err := strconv.ParseFloat(from, 64)
+			if err != nil {
+				return newErrorCast(from, to)
+			}
+			s = int(f)
 		}
 		if s < math.MinInt16 || math.MaxInt16 < s {
 			return newErrorOverRange(s, to)
@@ -315,7 +323,11 @@ func ToInt32(from any, to *int32) error {
 	case string:
 		s, err := strconv.Atoi(from)
 		if err != nil {
-			return newErrorCast(from, to)
+			f, err := strconv.ParseFloat(from, 64)
+			if err != nil {
+				return newErrorCast(from, to)
+			}
+			s = int(f)
 		}
 		if s < math.MinInt32 || math.MaxInt32 < s {
 			return newErrorOverRange(s, to)
@@ -369,7 +381,11 @@ func ToInt64(from any, to *int64) error {
 	case string:
 		s, err := strconv.Atoi(from)
 		if err != nil {
-			return newErrorCast(from, to)
+			f, err := strconv.ParseFloat(from, 64)
+			if err != nil {
+				return newErrorCast(from, to)
+			}
+			s = int(f)
 		}
 		*to = int64(s)
 	default:
@@ -420,7 +436,11 @@ func ToInt(from any, to *int) error {
 	case string:
 		s, err := strconv.Atoi(from)
 		if err != nil {
-			return newErrorCast(from, to)
+			f, err := strconv.ParseFloat(from, 64)
+			if err != nil {
+				return newErrorCast(from, to)
+			}
+			s = int(f)
 		}
 		*to = s
 	default:
