@@ -1,13 +1,18 @@
 # Changelog
 
+## v1.2.7 (2025-05-07)
+- Improved
+  - ToInt8(), ToInt16(), ToInt32(), ToInt64(), and ToInt()
+    - Enhanced string-to-integer conversion by adding support for parsing float strings
+
 ## v1.2.6 (2025-05-05)
 - Improved
   - ToString()
-    - Added support for converting to string with a specific format
+    - Enhanced conversion to string with specific source types
 
 ## v1.2.5 (2023-09-06)
 - Added
-  - To() and From()
+  - To() and From() for generic conversion
 
 ## v1.2.4 (2023-09-02)
 - Added
