@@ -20,6 +20,12 @@ import (
 	"strconv"
 )
 
+const MaxUint8 = ^uint8(0)   // 255
+const MaxUint16 = ^uint16(0) // 65535
+const MaxUint32 = ^uint32(0) // 4294967295
+const MaxUint64 = ^uint64(0) // 18446744073709551615
+const MaxUint = ^uint(0)     // 18446744073709551615
+
 // FromInt64 casts an interface to an int64 type.
 func FromInt64(from int64, to any) error {
 	switch to := to.(type) {
