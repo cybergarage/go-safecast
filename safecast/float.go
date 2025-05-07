@@ -16,6 +16,7 @@ package safecast
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -23,24 +24,84 @@ import (
 func FromFloat64(from float64, to any) error {
 	switch to := to.(type) {
 	case *int:
+		if float64(math.MaxInt) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < float64(math.MinInt) {
+			return newErrorUnderRange(from, to)
+		}
 		*to = int(from)
 	case *int8:
+		if float64(math.MaxInt8) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < float64(math.MinInt8) {
+			return newErrorUnderRange(from, to)
+		}
 		*to = int8(from)
 	case *int16:
+		if float64(math.MaxInt16) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < float64(math.MinInt16) {
+			return newErrorUnderRange(from, to)
+		}
 		*to = int16(from)
 	case *int32:
+		if float64(math.MaxInt32) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < float64(math.MinInt32) {
+			return newErrorUnderRange(from, to)
+		}
 		*to = int32(from)
 	case *int64:
+		if float64(math.MaxInt64) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < float64(math.MinInt64) {
+			return newErrorUnderRange(from, to)
+		}
 		*to = int64(from)
 	case *uint:
+		if float64(math.MaxUint) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
+		}
 		*to = uint(from)
 	case *uint8:
+		if float64(math.MaxUint8) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
+		}
 		*to = uint8(from)
 	case *uint16:
+		if float64(math.MaxUint16) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
+		}
 		*to = uint16(from)
 	case *uint32:
+		if float64(math.MaxUint32) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
+		}
 		*to = uint32(from)
 	case *uint64:
+		if float64(math.MaxUint64) < from {
+			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
+		}
 		*to = uint64(from)
 	case *float32:
 		*to = float32(from)
