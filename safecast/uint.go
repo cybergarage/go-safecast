@@ -109,28 +109,40 @@ func FromUint(from uint, to any) error {
 func ToUint8(from any, to *uint8) error {
 	switch from := from.(type) {
 	case int:
-		if from < 0 || math.MaxUint8 < from {
+		if math.MaxUint8 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint8(from)
 	case int8:
 		if from < 0 {
-			return newErrorOverRange(from, to)
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint8(from)
 	case int16:
-		if from < 0 || math.MaxUint8 < from {
+		if math.MaxUint8 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint8(from)
 	case int32:
-		if from < 0 || math.MaxUint8 < from {
+		if math.MaxUint8 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint8(from)
 	case int64:
-		if from < 0 || math.MaxUint8 < from {
+		if math.MaxUint8 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint8(from)
 	case uint:
@@ -166,14 +178,15 @@ func ToUint8(from any, to *uint8) error {
 			*to = 0
 		}
 	case string:
-		s, err := strconv.Atoi(from)
-		if err != nil {
-			return newErrorCast(from, to)
+		iv, err := strconv.Atoi(from)
+		if err == nil {
+			return ToUint8(iv, to)
 		}
-		if s < 0 || math.MaxUint8 < s {
-			return newErrorOverRange(s, to)
+		fv, err := strconv.ParseFloat(from, 64)
+		if err == nil {
+			return ToUint8(fv, to)
 		}
-		*to = uint8(s)
+		return newErrorCast(from, to)
 	default:
 		return newErrorCast(from, to)
 	}
@@ -184,8 +197,11 @@ func ToUint8(from any, to *uint8) error {
 func ToUint16(from any, to *uint16) error {
 	switch from := from.(type) {
 	case int:
-		if from < 0 || math.MaxUint16 < from {
+		if math.MaxUint16 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint16(from)
 	case int8:
@@ -199,13 +215,19 @@ func ToUint16(from any, to *uint16) error {
 		}
 		*to = uint16(from)
 	case int32:
-		if from < 0 || math.MaxUint16 < from {
+		if math.MaxUint16 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint16(from)
 	case int64:
-		if from < 0 || math.MaxUint16 < from {
+		if math.MaxUint16 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint16(from)
 	case uint:
@@ -238,14 +260,15 @@ func ToUint16(from any, to *uint16) error {
 			*to = 0
 		}
 	case string:
-		s, err := strconv.Atoi(from)
-		if err != nil {
-			return newErrorCast(from, to)
+		iv, err := strconv.Atoi(from)
+		if err == nil {
+			return ToUint16(iv, to)
 		}
-		if s < 0 || math.MaxUint16 < s {
-			return newErrorOverRange(s, to)
+		fv, err := strconv.ParseFloat(from, 64)
+		if err == nil {
+			return ToUint16(fv, to)
 		}
-		*to = uint16(s)
+		return newErrorCast(from, to)
 	default:
 		return newErrorCast(from, to)
 	}
@@ -256,8 +279,11 @@ func ToUint16(from any, to *uint16) error {
 func ToUint32(from any, to *uint32) error {
 	switch from := from.(type) {
 	case int:
-		if from < 0 || math.MaxUint32 < from {
+		if math.MaxUint32 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint32(from)
 	case int8:
@@ -276,8 +302,11 @@ func ToUint32(from any, to *uint32) error {
 		}
 		*to = uint32(from)
 	case int64:
-		if from < 0 || math.MaxUint32 < from {
+		if math.MaxUint32 < from {
 			return newErrorOverRange(from, to)
+		}
+		if from < 0 {
+			return newErrorUnderRange(from, to)
 		}
 		*to = uint32(from)
 	case uint:
@@ -307,14 +336,15 @@ func ToUint32(from any, to *uint32) error {
 			*to = 0
 		}
 	case string:
-		s, err := strconv.Atoi(from)
-		if err != nil {
-			return newErrorCast(from, to)
+		iv, err := strconv.Atoi(from)
+		if err == nil {
+			return ToUint32(iv, to)
 		}
-		if s < 0 || math.MaxUint32 < s {
-			return newErrorOverRange(s, to)
+		fv, err := strconv.ParseFloat(from, 64)
+		if err == nil {
+			return ToUint32(fv, to)
 		}
-		*to = uint32(s)
+		return newErrorCast(from, to)
 	default:
 		return newErrorCast(from, to)
 	}
@@ -370,14 +400,15 @@ func ToUint64(from any, to *uint64) error {
 			*to = 0
 		}
 	case string:
-		s, err := strconv.Atoi(from)
-		if err != nil {
-			return newErrorCast(from, to)
+		iv, err := strconv.Atoi(from)
+		if err == nil {
+			return ToUint64(iv, to)
 		}
-		if s < 0 {
-			return newErrorOverRange(s, to)
+		fv, err := strconv.ParseFloat(from, 64)
+		if err == nil {
+			return ToUint64(fv, to)
 		}
-		*to = uint64(s)
+		return newErrorCast(from, to)
 	default:
 		return newErrorCast(from, to)
 	}
@@ -439,14 +470,15 @@ func ToUint(from any, to *uint) error {
 			*to = 0
 		}
 	case string:
-		s, err := strconv.Atoi(from)
-		if err != nil {
-			return newErrorCast(from, to)
+		iv, err := strconv.Atoi(from)
+		if err == nil {
+			return ToUint(iv, to)
 		}
-		if s < 0 {
-			return newErrorOverRange(s, to)
+		fv, err := strconv.ParseFloat(from, 64)
+		if err == nil {
+			return ToUint(fv, to)
 		}
-		*to = uint(s)
+		return newErrorCast(from, to)
 	default:
 		return newErrorCast(from, to)
 	}
