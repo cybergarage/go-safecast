@@ -69,16 +69,25 @@ func FromInt64(from int64, to any) error {
 		}
 		*to = uint(from)
 	case *uint8:
+		if int64(MaxUint8) < from {
+			return newErrorOverRange(from, to)
+		}
 		if from < 0 {
 			return newErrorUnderRange(from, to)
 		}
 		*to = uint8(from)
 	case *uint16:
+		if int64(MaxUint16) < from {
+			return newErrorOverRange(from, to)
+		}
 		if from < 0 {
 			return newErrorUnderRange(from, to)
 		}
 		*to = uint16(from)
 	case *uint32:
+		if int64(MaxUint32) < from {
+			return newErrorOverRange(from, to)
+		}
 		if from < 0 {
 			return newErrorUnderRange(from, to)
 		}
