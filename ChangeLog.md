@@ -4,6 +4,10 @@
 - Improved
   - ToInt8(), ToInt16(), ToInt32(), ToInt64(), and ToInt()
     - Enhanced string-to-integer conversion by adding support for parsing float strings
+  - FromInt8(), FromInt16(), FromInt32(), and FromInt64()
+    - Enhanced conversion to check unsigned integer ranges
+  - FromFloat64(), FromFloat32()
+    - Added proper range checks for integer conversions
 
 ## v1.2.6 (2025-05-05)
 - Improved
