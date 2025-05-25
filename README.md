@@ -5,7 +5,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast)
 [![codecov](https://codecov.io/gh/cybergarage/go-safecast/graph/badge.svg?token=HPPOKEJHM6)](https://codecov.io/gh/cybergarage/go-safecast)
 
-`go-safecast` is a utility function package for safe casting between primitive data types of Go. The following shows an unsafe cast example that causes cast overflow problems, but the unsafe casting is not detected at runtime and compile time.
+`go-safecast` is a utility function package for safe casting between primitive data types of Go. The following shows an unsafe cast example that causes cast overflow problems, but the unsafe casting is not detected at runtime and compile time. 
 
 ```
 package main
@@ -98,7 +98,7 @@ The `To` functions allow you to convert from various types to a specific type, e
 
 # Conversion Functions
 
-The conversion functions allow you to convert between different types safely and efficiently. 
+The conversion functions allow you to convert between different types safely and efficiently. The `Equal` function checks if two values are equal, and the `To` and `From` functions provide generic conversion capabilities.
 
 |Function                                    |From                                                                            |
 |--------------------------------------------|-------------------------------------------------------------------------------|
