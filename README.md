@@ -100,6 +100,6 @@ The `To` functions allow you to convert from various types to a specific type, e
 
 The conversion functions allow you to convert between different types safely and efficiently. The `Equal` function checks if two values are equal, and the `To` and `From` functions provide generic conversion capabilities.
 
-|Function                                    |From                                                                            |
-|--------------------------------------------|-------------------------------------------------------------------------------|
-|func Equal(v1 any, v2 any) bool   | any |
+|Function                                    |
+|--------------------------------------------|
+|func Equal(v1 any, v2 any) bool             |
