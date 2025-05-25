@@ -50,6 +50,9 @@ func main() {
 Currently, `go-safecast` provides the following safe casting functions.Please see [![Go Reference](https://pkg.go.dev/badge/github.com/cybergarage/go-safecast.svg)](https://pkg.go.dev/github.com/cybergarage/go-safecast) to know the functions and examples in more detail.
 
 # From functions
+
+The `From` functions allow you to convert from various types to a specific type, ensuring that the conversion is safe and within the bounds of the target type. If the conversion is not safe, an error is returned.
+
 |Function                                    |To                                                                             |
 |--------------------------------------------|-------------------------------------------------------------------------------|
 |func FromInt(from int, to any) error      | *int, *int8, *int16, *int32, *int64, *uint, *uint8, *uint16, *uint32, *uint64, *float64, *float32, *string, *bool |
@@ -71,6 +74,8 @@ Currently, `go-safecast` provides the following safe casting functions.Please se
 
 # To functions
 
+The `To` functions allow you to convert from various types to a specific type, ensuring that the conversion is safe and within the bounds of the target type.
+
 |Function                                    |From                                                                            |
 |--------------------------------------------|-------------------------------------------------------------------------------|
 |func ToInt(from any, to *int) error        | int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float32, float64, string, bool |
@@ -90,3 +95,11 @@ Currently, `go-safecast` provides the following safe casting functions.Please se
 |func ToTime(from any, layout string, to *time.Time) error      | string |
 |func ToBytes(from any, to *[]byte) error   | string, []byte |
 |func To(from any, to any) error   | any |
+
+# Conversion Functions
+
+The conversion functions allow you to convert between different types safely and efficiently. 
+
+|Function                                    |From                                                                            |
+|--------------------------------------------|-------------------------------------------------------------------------------|
+|func Equal(v1 any, v2 any) bool   | any |
