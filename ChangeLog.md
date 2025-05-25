@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.0 (2025-05-25)
+- Added conversion functions
+  - Equal() function to compare two values for equality
+
 ## v1.2.7 (2025-05-07)
 - Improved
   - ToInt8(), ToInt16(), ToInt32(), ToInt64(), and ToInt()
