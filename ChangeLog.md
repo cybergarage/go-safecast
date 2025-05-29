@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.1 (2025-05-29)
+- Improved
+  - Update Equal() to support time.Time comparison and allow symmetric comparison by swapping variables.
+
 ## v1.3.0 (2025-05-25)
 - Added conversion functions
   - Equal() function to compare two values for equality
