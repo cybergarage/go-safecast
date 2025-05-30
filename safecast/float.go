@@ -122,37 +122,76 @@ func FromFloat32(from float32, to any) error {
 
 // ToFloat64 casts an interface to an float64 type.
 func ToFloat64(from any, to *float64) error {
+	parseFloat := func(v string) (float64, error) {
+		f, err := strconv.ParseFloat(v, 64)
+		if err != nil {
+			return 0, newErrorCast(v, to)
+		}
+		return f, nil
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		*to = float64(from)
+	case *int:
+		*to = float64(*from)
 	case int8:
 		*to = float64(from)
+	case *int8:
+		*to = float64(*from)
 	case int16:
 		*to = float64(from)
+	case *int16:
+		*to = float64(*from)
 	case int32:
 		*to = float64(from)
+	case *int32:
+		*to = float64(*from)
 	case int64:
 		*to = float64(from)
+	case *int64:
+		*to = float64(*from)
 	case uint:
 		*to = float64(from)
+	case *uint:
+		*to = float64(*from)
 	case uint8:
 		*to = float64(from)
+	case *uint8:
+		*to = float64(*from)
 	case uint16:
 		*to = float64(from)
+	case *uint16:
+		*to = float64(*from)
 	case uint32:
 		*to = float64(from)
+	case *uint32:
+		*to = float64(*from)
 	case uint64:
 		*to = float64(from)
+	case *uint64:
+		*to = float64(*from)
 	case float32:
 		*to = float64(from)
+	case *float32:
+		*to = float64(*from)
 	case float64:
 		*to = from
+	case *float64:
+		*to = *from
 	case string:
-		f, err := strconv.ParseFloat(from, 64)
-		if err != nil {
-			return newErrorCast(from, to)
+		if *to, err = parseFloat(from); err != nil {
+			return err
 		}
-		*to = f
+	case *string:
+		if *to, err = parseFloat(*from); err != nil {
+			return err
+		}
+	case []byte:
+		if *to, err = parseFloat(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}
@@ -161,37 +200,76 @@ func ToFloat64(from any, to *float64) error {
 
 // ToFloat32 casts an interface to an float64 type.
 func ToFloat32(from any, to *float32) error {
+	parseFloat := func(v string) (float32, error) {
+		f, err := strconv.ParseFloat(v, 32)
+		if err != nil {
+			return 0, newErrorCast(from, to)
+		}
+		return float32(f), nil
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		*to = float32(from)
+	case *int:
+		*to = float32(*from)
 	case int8:
 		*to = float32(from)
+	case *int8:
+		*to = float32(*from)
 	case int16:
 		*to = float32(from)
+	case *int16:
+		*to = float32(*from)
 	case int32:
 		*to = float32(from)
+	case *int32:
+		*to = float32(*from)
 	case int64:
 		*to = float32(from)
+	case *int64:
+		*to = float32(*from)
 	case uint:
 		*to = float32(from)
+	case *uint:
+		*to = float32(*from)
 	case uint8:
 		*to = float32(from)
+	case *uint8:
+		*to = float32(*from)
 	case uint16:
 		*to = float32(from)
+	case *uint16:
+		*to = float32(*from)
 	case uint32:
 		*to = float32(from)
+	case *uint32:
+		*to = float32(*from)
 	case uint64:
 		*to = float32(from)
+	case *uint64:
+		*to = float32(*from)
 	case float32:
 		*to = from
+	case *float32:
+		*to = *from
 	case float64:
 		*to = float32(from)
+	case *float64:
+		*to = float32(*from)
 	case string:
-		f, err := strconv.ParseFloat(from, 32)
-		if err != nil {
-			return newErrorCast(from, to)
+		if *to, err = parseFloat(from); err != nil {
+			return err
 		}
-		*to = float32(f)
+	case *string:
+		if *to, err = parseFloat(*from); err != nil {
+			return err
+		}
+	case []byte:
+		if *to, err = parseFloat(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}

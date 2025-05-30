@@ -139,10 +139,12 @@ func ToString(from any, to *string) error {
 		*to = strconv.FormatFloat(from, 'f', -1, 64)
 	case bool:
 		*to = strconv.FormatBool(from)
-	case []byte:
-		*to = string(from)
 	case string:
 		*to = from
+	case *string:
+		*to = *from
+	case []byte:
+		*to = string(from)
 	case fmt.Stringer:
 		*to = from.String()
 	case nil:

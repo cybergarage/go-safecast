@@ -32,6 +32,8 @@ func ToBytes(from any, to *[]byte) error {
 	switch from := from.(type) {
 	case string:
 		*to = []byte(from)
+	case *string:
+		*to = []byte(*from)
 	case []byte:
 		*to = from
 	default:

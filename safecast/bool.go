@@ -75,35 +75,72 @@ func ToBool(from any, to *bool) error {
 		return false
 	}
 
+	parseBool := func(s string) (bool, error) {
+		b, err := strconv.ParseBool(s)
+		if err != nil {
+			return false, newErrorCast(from, to)
+		}
+		return b, nil
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		*to = tobool(from)
+	case *int:
+		*to = tobool(*from)
 	case int8:
 		*to = tobool(int(from))
+	case *int8:
+		*to = tobool(int(*from))
 	case int16:
 		*to = tobool(int(from))
+	case *int16:
+		*to = tobool(int(*from))
 	case int32:
 		*to = tobool(int(from))
+	case *int32:
+		*to = tobool(int(*from))
 	case int64:
 		*to = tobool(int(from))
+	case *int64:
+		*to = tobool(int(*from))
 	case uint:
 		*to = tobool(from)
+	case *uint:
+		*to = tobool(*from)
 	case uint8:
 		*to = tobool(uint(from))
+	case *uint8:
+		*to = tobool(uint(*from))
 	case uint16:
 		*to = tobool(uint(from))
+	case *uint16:
+		*to = tobool(uint(*from))
 	case uint32:
 		*to = tobool(uint(from))
+	case *uint32:
+		*to = tobool(uint(*from))
 	case uint64:
 		*to = tobool(uint(from))
+	case *uint64:
+		*to = tobool(uint(*from))
 	case bool:
 		*to = from
+	case *bool:
+		*to = *from
 	case string:
-		b, err := strconv.ParseBool(from)
-		if err != nil {
-			return newErrorCast(from, to)
+		if *to, err = parseBool(from); err != nil {
+			return err
 		}
-		*to = b
+	case *string:
+		if *to, err = parseBool(*from); err != nil {
+			return err
+		}
+	case []byte:
+		if *to, err = parseBool(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}

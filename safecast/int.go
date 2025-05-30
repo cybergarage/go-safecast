@@ -131,6 +131,26 @@ func FromInt(from int, to any) error {
 
 // ToInt8 casts an interface to an int8 type.
 func ToInt8(from any, to *int8) error {
+	fromBool := func(v bool) int8 {
+		if v {
+			return 1
+		}
+		return 0
+	}
+
+	fromString := func(v string) (int8, error) {
+		iv, err := strconv.Atoi(v)
+		if err == nil {
+			return *to, ToInt8(iv, to)
+		}
+		fv, err := strconv.ParseFloat(v, 64)
+		if err == nil {
+			return *to, ToInt8(fv, to)
+		}
+		return 0, newErrorCast(v, to)
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		if math.MaxInt8 < from {
@@ -196,21 +216,21 @@ func ToInt8(from any, to *int8) error {
 	case float64:
 		return ToInt8(int64(from), to)
 	case bool:
-		if from {
-			*to = 1
-		} else {
-			*to = 0
-		}
+		*to = fromBool(from)
+	case *bool:
+		*to = fromBool(*from)
 	case string:
-		iv, err := strconv.Atoi(from)
-		if err == nil {
-			return ToInt8(iv, to)
+		if *to, err = fromString(from); err != nil {
+			return err
 		}
-		fv, err := strconv.ParseFloat(from, 64)
-		if err == nil {
-			return ToInt8(fv, to)
+	case *string:
+		if *to, err = fromString(*from); err != nil {
+			return err
 		}
-		return newErrorCast(from, to)
+	case []byte:
+		if *to, err = fromString(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}
@@ -219,6 +239,26 @@ func ToInt8(from any, to *int8) error {
 
 // ToInt16 casts an interface to an int16 type.
 func ToInt16(from any, to *int16) error {
+	fromBool := func(v bool) int16 {
+		if v {
+			return 1
+		}
+		return 0
+	}
+
+	fromString := func(v string) (int16, error) {
+		iv, err := strconv.Atoi(v)
+		if err == nil {
+			return *to, ToInt16(iv, to)
+		}
+		fv, err := strconv.ParseFloat(v, 64)
+		if err == nil {
+			return *to, ToInt16(fv, to)
+		}
+		return 0, newErrorCast(from, to)
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		if math.MaxInt16 < from {
@@ -275,21 +315,21 @@ func ToInt16(from any, to *int16) error {
 	case float64:
 		return ToInt16(int64(from), to)
 	case bool:
-		if from {
-			*to = 1
-		} else {
-			*to = 0
-		}
+		*to = fromBool(from)
+	case *bool:
+		*to = fromBool(*from)
 	case string:
-		iv, err := strconv.Atoi(from)
-		if err == nil {
-			return ToInt16(iv, to)
+		if *to, err = fromString(from); err != nil {
+			return err
 		}
-		fv, err := strconv.ParseFloat(from, 64)
-		if err == nil {
-			return ToInt16(fv, to)
+	case *string:
+		if *to, err = fromString(*from); err != nil {
+			return err
 		}
-		return newErrorCast(from, to)
+	case []byte:
+		if *to, err = fromString(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}
@@ -298,6 +338,26 @@ func ToInt16(from any, to *int16) error {
 
 // ToInt32 casts an interface to an int32 type.
 func ToInt32(from any, to *int32) error {
+	fromBool := func(v bool) int32 {
+		if v {
+			return 1
+		}
+		return 0
+	}
+
+	fromString := func(v string) (int32, error) {
+		iv, err := strconv.Atoi(v)
+		if err == nil {
+			return *to, ToInt32(iv, to)
+		}
+		fv, err := strconv.ParseFloat(v, 64)
+		if err == nil {
+			return *to, ToInt32(fv, to)
+		}
+		return 0, newErrorCast(from, to)
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		if math.MaxInt32 < from {
@@ -345,21 +405,21 @@ func ToInt32(from any, to *int32) error {
 	case float64:
 		return ToInt32(int64(from), to)
 	case bool:
-		if from {
-			*to = 1
-		} else {
-			*to = 0
-		}
+		*to = fromBool(from)
+	case *bool:
+		*to = fromBool(*from)
 	case string:
-		iv, err := strconv.Atoi(from)
-		if err == nil {
-			return ToInt32(iv, to)
+		if *to, err = fromString(from); err != nil {
+			return err
 		}
-		fv, err := strconv.ParseFloat(from, 64)
-		if err == nil {
-			return ToInt32(fv, to)
+	case *string:
+		if *to, err = fromString(*from); err != nil {
+			return err
 		}
-		return newErrorCast(from, to)
+	case []byte:
+		if *to, err = fromString(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}
@@ -368,53 +428,113 @@ func ToInt32(from any, to *int32) error {
 
 // ToInt64 casts an interface to an int64 type.
 func ToInt64(from any, to *int64) error {
+	fromUint := func(v uint) (int64, error) {
+		if math.MaxInt < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int64(v), nil
+	}
+
+	fromUint64 := func(v uint64) (int64, error) {
+		if math.MaxInt < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int64(v), nil
+	}
+
+	fromBool := func(v bool) int64 {
+		if v {
+			return 1
+		}
+		return 0
+	}
+
+	fromString := func(v string) (int64, error) {
+		iv, err := strconv.Atoi(v)
+		if err == nil {
+			return *to, ToInt64(iv, to)
+		}
+		fv, err := strconv.ParseFloat(v, 64)
+		if err == nil {
+			return *to, ToInt64(fv, to)
+		}
+		return 0, newErrorCast(from, to)
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		*to = int64(from)
+	case *int:
+		*to = int64(*from)
 	case int8:
 		*to = int64(from)
+	case *int8:
+		*to = int64(*from)
 	case int16:
 		*to = int64(from)
+	case *int16:
+		*to = int64(*from)
 	case int32:
 		*to = int64(from)
+	case *int32:
+		*to = int64(*from)
 	case int64:
 		*to = from
+	case *int64:
+		*to = *from
 	case uint:
-		if math.MaxInt64 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint(from); err != nil {
+			return err
 		}
-		*to = int64(from)
+	case *uint:
+		if *to, err = fromUint(*from); err != nil {
+			return err
+		}
 	case uint8:
 		*to = int64(from)
+	case *uint8:
+		*to = int64(*from)
 	case uint16:
 		*to = int64(from)
+	case *uint16:
+		*to = int64(*from)
 	case uint32:
 		*to = int64(from)
+	case *uint32:
+		*to = int64(*from)
 	case uint64:
-		if math.MaxInt64 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint64(from); err != nil {
+			return err
 		}
-		*to = int64(from)
+	case *uint64:
+		if *to, err = fromUint64(*from); err != nil {
+			return err
+		}
 	case float32:
 		*to = int64(from)
+	case *float32:
+		*to = int64(*from)
 	case float64:
 		*to = int64(from)
+	case *float64:
+		*to = int64(*from)
 	case bool:
-		if from {
-			*to = 1
-		} else {
-			*to = 0
-		}
+		*to = fromBool(from)
+	case *bool:
+		*to = fromBool(*from)
 	case string:
-		iv, err := strconv.Atoi(from)
-		if err == nil {
-			return ToInt64(iv, to)
+		if *to, err = fromString(from); err != nil {
+			return err
 		}
-		fv, err := strconv.ParseFloat(from, 64)
-		if err == nil {
-			return ToInt64(fv, to)
+	case *string:
+		if *to, err = fromString(*from); err != nil {
+			return err
 		}
-		return newErrorCast(from, to)
+	case []byte:
+		if *to, err = fromString(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}
@@ -423,53 +543,113 @@ func ToInt64(from any, to *int64) error {
 
 // ToInt casts an interface to an int type.
 func ToInt(from any, to *int) error {
+	fromUint := func(v uint) (int, error) {
+		if math.MaxInt < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int(v), nil
+	}
+
+	fromUint64 := func(v uint64) (int, error) {
+		if math.MaxInt < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int(v), nil
+	}
+
+	fromBool := func(v bool) int {
+		if v {
+			return 1
+		}
+		return 0
+	}
+
+	fromString := func(v string) (int, error) {
+		iv, err := strconv.Atoi(v)
+		if err == nil {
+			return iv, nil
+		}
+		fv, err := strconv.ParseFloat(v, 64)
+		if err == nil {
+			return int(fv), nil
+		}
+		return 0, newErrorCast(v, to)
+	}
+
+	var err error
 	switch from := from.(type) {
 	case int:
 		*to = from
+	case *int:
+		*to = *from
 	case int8:
 		*to = int(from)
+	case *int8:
+		*to = int(*from)
 	case int16:
 		*to = int(from)
+	case *int16:
+		*to = int(*from)
 	case int32:
 		*to = int(from)
+	case *int32:
+		*to = int(*from)
 	case int64:
 		*to = int(from)
+	case *int64:
+		*to = int(*from)
 	case uint:
-		if math.MaxInt < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint(from); err != nil {
+			return err
 		}
-		*to = int(from)
+	case *uint:
+		if *to, err = fromUint(*from); err != nil {
+			return err
+		}
 	case uint8:
 		*to = int(from)
+	case *uint8:
+		*to = int(*from)
 	case uint16:
 		*to = int(from)
+	case *uint16:
+		*to = int(*from)
 	case uint32:
 		*to = int(from)
+	case *uint32:
+		*to = int(*from)
 	case uint64:
-		if math.MaxInt < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint64(from); err != nil {
+			return err
 		}
-		*to = int(from)
+	case *uint64:
+		if *to, err = fromUint64(*from); err != nil {
+			return err
+		}
 	case float32:
 		*to = int(from)
+	case *float32:
+		*to = int(*from)
 	case float64:
 		*to = int(from)
+	case *float64:
+		*to = int(*from)
 	case bool:
-		if from {
-			*to = 1
-		} else {
-			*to = 0
-		}
+		*to = fromBool(from)
+	case *bool:
+		*to = fromBool(*from)
 	case string:
-		iv, err := strconv.Atoi(from)
-		if err == nil {
-			return ToInt(iv, to)
+		if *to, err = fromString(from); err != nil {
+			return err
 		}
-		fv, err := strconv.ParseFloat(from, 64)
-		if err == nil {
-			return ToInt(fv, to)
+	case *string:
+		if *to, err = fromString(*from); err != nil {
+			return err
 		}
-		return newErrorCast(from, to)
+	case []byte:
+		if *to, err = fromString(string(from)); err != nil {
+			return err
+		}
 	default:
 		return newErrorCast(from, to)
 	}

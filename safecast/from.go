@@ -19,32 +19,60 @@ func From(from any, to any) error {
 	switch from := from.(type) {
 	case int:
 		return FromInt(from, to)
+	case *int:
+		return FromInt(*from, to)
 	case int8:
 		return FromInt8(from, to)
+	case *int8:
+		return FromInt8(*from, to)
 	case int16:
 		return FromInt16(from, to)
+	case *int16:
+		return FromInt16(*from, to)
 	case int32:
 		return FromInt32(from, to)
+	case *int32:
+		return FromInt32(*from, to)
 	case int64:
 		return FromInt64(from, to)
+	case *int64:
+		return FromInt64(*from, to)
 	case uint:
 		return FromUint(from, to)
+	case *uint:
+		return FromUint(*from, to)
 	case uint8:
 		return FromUint8(from, to)
+	case *uint8:
+		return FromUint8(*from, to)
 	case uint16:
 		return FromUint16(from, to)
+	case *uint16:
+		return FromUint16(*from, to)
 	case uint32:
 		return FromUint32(from, to)
+	case *uint32:
+		return FromUint32(*from, to)
 	case uint64:
 		return FromUint64(from, to)
+	case *uint64:
+		return FromUint64(*from, to)
 	case float32:
 		return FromFloat32(from, to)
+	case *float32:
+		return FromFloat32(*from, to)
 	case float64:
 		return FromFloat64(from, to)
+	case *float64:
+		return FromFloat64(*from, to)
 	case string:
 		return FromString(from, to)
+	case *string:
+		return FromString(*from, to)
 	case bool:
 		return FromBool(from, to)
+	case *bool:
+		return FromBool(*from, to)
 	case []byte:
 		return FromBytes(from, to)
 	default:
