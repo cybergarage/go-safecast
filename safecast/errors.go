@@ -19,7 +19,11 @@ import (
 	"fmt"
 )
 
+// ErrCast is returned when a value cannot be cast to the desired type.
 var ErrCast = errors.New("cast error")
+
+// ErrNil is returned when a nil value is passed to a casting function that requires a non-nil value.
+var ErrNil = errors.New("nil")
 
 const (
 	errorCastType   = "%w : %T (%v) => %T"
