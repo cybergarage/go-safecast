@@ -1,8 +1,14 @@
 # Changelog
 
+## 1.3.2 (2025-06-01)
+- Improved
+  - Support reference types such as *int and *string for To*() functions
+  - ToTime() to support *string, []byte, and *time.Time as input types
+  - To() to support *time.Time as output type
+
 ## v1.3.1 (2025-05-29)
 - Improved
-  - Update Equal() to support time.Time comparison and allow symmetric comparison by swapping variables.
+  - Equal() to support time.Time comparison and allow symmetric comparison by swapping variables.
 
 ## v1.3.0 (2025-05-25)
 - Added conversion functions
