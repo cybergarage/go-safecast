@@ -318,6 +318,61 @@ func ToUint16(from any, to *uint16) error {
 
 // ToUint32 casts an interface to an uint32 type.
 func ToUint32(from any, to *uint32) error {
+	fromInt := func(v int) (uint32, error) {
+		if math.MaxUint32 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint32(v), nil
+	}
+
+	fromInt8 := func(v int8) (uint32, error) {
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint32(v), nil
+	}
+
+	fromInt16 := func(v int16) (uint32, error) {
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint32(v), nil
+	}
+
+	fromInt32 := func(v int32) (uint32, error) {
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint32(v), nil
+	}
+
+	fromInt64 := func(v int64) (uint32, error) {
+		if math.MaxUint32 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint32(v), nil
+	}
+
+	fromUint := func(v uint) (uint32, error) {
+		if math.MaxUint32 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return uint32(v), nil
+	}
+
+	fromUint64 := func(v uint64) (uint32, error) {
+		if math.MaxUint32 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return uint32(v), nil
+	}
+
 	fromBool := func(v bool) uint32 {
 		if v {
 			return 1
@@ -340,56 +395,81 @@ func ToUint32(from any, to *uint32) error {
 	var err error
 	switch from := from.(type) {
 	case int:
-		if math.MaxUint32 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt(from); err != nil {
+			return err
 		}
-		if from < 0 {
-			return newErrorUnderRange(from, to)
+	case *int:
+		if *to, err = fromInt(*from); err != nil {
+			return err
 		}
-		*to = uint32(from)
 	case int8:
-		if from < 0 {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt8(from); err != nil {
+			return err
 		}
-		*to = uint32(from)
+	case *int8:
+		if *to, err = fromInt8(*from); err != nil {
+			return err
+		}
 	case int16:
-		if from < 0 {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt16(from); err != nil {
+			return err
 		}
-		*to = uint32(from)
+	case *int16:
+		if *to, err = fromInt16(*from); err != nil {
+			return err
+		}
 	case int32:
-		if from < 0 {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt32(from); err != nil {
+			return err
 		}
-		*to = uint32(from)
+	case *int32:
+		if *to, err = fromInt32(*from); err != nil {
+			return err
+		}
 	case int64:
-		if math.MaxUint32 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt64(from); err != nil {
+			return err
 		}
-		if from < 0 {
-			return newErrorUnderRange(from, to)
+	case *int64:
+		if *to, err = fromInt64(*from); err != nil {
+			return err
 		}
-		*to = uint32(from)
 	case uint:
-		if math.MaxUint32 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint(from); err != nil {
+			return err
 		}
-		*to = uint32(from)
+	case *uint:
+		if *to, err = fromUint(*from); err != nil {
+			return err
+		}
 	case uint8:
 		*to = uint32(from)
+	case *uint8:
+		*to = uint32(*from)
 	case uint16:
 		*to = uint32(from)
+	case *uint16:
+		*to = uint32(*from)
 	case uint32:
 		*to = from
+	case *uint32:
+		*to = *from
 	case uint64:
-		if math.MaxUint32 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint64(uint64(from)); err != nil {
+			return err
 		}
-		*to = uint32(from)
+	case *uint64:
+		if *to, err = fromUint64(*from); err != nil {
+			return err
+		}
 	case float32:
 		return ToUint32(int64(from), to)
+	case *float32:
+		return ToUint32(int64(*from), to)
 	case float64:
 		return ToUint32(int64(from), to)
+	case *float64:
+		return ToUint32(int64(*from), to)
 	case bool:
 		*to = fromBool(from)
 	case *bool:
