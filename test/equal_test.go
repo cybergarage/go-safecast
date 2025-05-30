@@ -181,6 +181,10 @@ func TestEqual(t *testing.T) {
 	})
 
 	t.Run("Nil Pointers", func(t *testing.T) {
+		if !safecast.Equal(nil, nil) {
+			t.Error("Equal failed for nil/nil")
+		}
+
 		var pi *int = nil
 		if !safecast.Equal(pi, nil) {
 			t.Error("Equal failed for *int(nil)/nil")
