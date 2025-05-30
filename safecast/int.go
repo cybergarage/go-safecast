@@ -131,6 +131,81 @@ func FromInt(from int, to any) error {
 
 // ToInt8 casts an interface to an int8 type.
 func ToInt8(from any, to *int8) error {
+	fromInt := func(v int) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < math.MinInt8 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromInt16 := func(v int16) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < math.MinInt8 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromInt32 := func(v int32) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < math.MinInt8 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromInt64 := func(v int64) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < math.MinInt8 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromUint := func(v uint) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromUint8 := func(v uint8) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromUint16 := func(v uint16) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromUint32 := func(v uint32) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int8(v), nil
+	}
+
+	fromUint64 := func(v uint64) (int8, error) {
+		if math.MaxInt8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return int8(v), nil
+	}
+
 	fromBool := func(v bool) int8 {
 		if v {
 			return 1
@@ -153,68 +228,89 @@ func ToInt8(from any, to *int8) error {
 	var err error
 	switch from := from.(type) {
 	case int:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt(from); err != nil {
+			return err
 		}
-		if from < math.MinInt8 {
-			return newErrorUnderRange(from, to)
+	case *int:
+		if *to, err = fromInt(*from); err != nil {
+			return err
 		}
-		*to = int8(from)
 	case int8:
 		*to = from
+	case *int8:
+		*to = *from
 	case int16:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt16(from); err != nil {
+			return err
 		}
-		if from < math.MinInt8 {
-			return newErrorUnderRange(from, to)
+	case *int16:
+		if *to, err = fromInt16(*from); err != nil {
+			return err
 		}
-		*to = int8(from)
 	case int32:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt32(from); err != nil {
+			return err
 		}
-		if from < math.MinInt8 {
-			return newErrorUnderRange(from, to)
+	case *int32:
+		if *to, err = fromInt32(*from); err != nil {
+			return err
 		}
-		*to = int8(from)
 	case int64:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt64(from); err != nil {
+			return err
 		}
-		if from < math.MinInt8 {
-			return newErrorUnderRange(from, to)
+	case *int64:
+		if *to, err = fromInt64(*from); err != nil {
+			return err
 		}
-		*to = int8(from)
 	case uint:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint(from); err != nil {
+			return err
 		}
-		*to = int8(from)
+	case *uint:
+		if *to, err = fromUint(*from); err != nil {
+			return err
+		}
 	case uint8:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint8(from); err != nil {
+			return err
 		}
-		*to = int8(from)
+	case *uint8:
+		if *to, err = fromUint8(*from); err != nil {
+			return err
+		}
 	case uint16:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint16(from); err != nil {
+			return err
 		}
-		*to = int8(from)
+	case *uint16:
+		if *to, err = fromUint16(*from); err != nil {
+			return err
+		}
 	case uint32:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint32(from); err != nil {
+			return err
 		}
-		*to = int8(from)
+	case *uint32:
+		if *to, err = fromUint32(*from); err != nil {
+			return err
+		}
 	case uint64:
-		if math.MaxInt8 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint64(from); err != nil {
+			return err
 		}
-		*to = int8(from)
+	case *uint64:
+		if *to, err = fromUint64(*from); err != nil {
+			return err
+		}
 	case float32:
 		return ToInt8(int64(from), to)
+	case *float32:
+		return ToInt8(int64(*from), to)
 	case float64:
 		return ToInt8(int64(from), to)
+	case *float64:
+		return ToInt8(int64(*from), to)
 	case bool:
 		*to = fromBool(from)
 	case *bool:
