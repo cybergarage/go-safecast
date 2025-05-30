@@ -14,6 +14,10 @@
 
 package safecast
 
+import (
+	"time"
+)
+
 // To casts an interface to an interface type.
 func To(from any, to any) error {
 	switch to := to.(type) {
@@ -47,6 +51,8 @@ func To(from any, to any) error {
 		return ToBool(from, to)
 	case *[]byte:
 		return ToBytes(from, to)
+	case *time.Time:
+		return ToTime(from, to)
 	default:
 		return newErrorCast(from, to)
 	}
