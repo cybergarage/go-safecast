@@ -32,6 +32,20 @@ func TestEqual(t *testing.T) {
 		if safecast.Equal(42, 43) {
 			t.Error("Equal failed for different ints")
 		}
+
+		// Pointer comparisons
+
+		i := 100
+		if !safecast.Equal(&i, 100) {
+			t.Error("Equal failed for *int/int")
+		}
+		if !safecast.Equal(100, &i) {
+			t.Error("Equal failed for int/*int")
+		}
+		j := 101
+		if safecast.Equal(&i, &j) {
+			t.Error("Equal failed for different *int/*int")
+		}
 	})
 
 	t.Run("Uints", func(t *testing.T) {
@@ -43,6 +57,20 @@ func TestEqual(t *testing.T) {
 		}
 		if safecast.Equal(uint16(10), 11) {
 			t.Error("Equal failed for different uint16/int")
+		}
+
+		// Pointer comparisons
+
+		u := uint32(20)
+		if !safecast.Equal(&u, uint32(20)) {
+			t.Error("Equal failed for *uint32/uint32")
+		}
+		if safecast.Equal(&u, uint32(21)) {
+			t.Error("Equal failed for *uint32/different uint32")
+		}
+		u2 := uint64(30)
+		if safecast.Equal(&u, &u2) {
+			t.Error("Equal failed for different *uint32/*uint64")
 		}
 	})
 
@@ -56,6 +84,16 @@ func TestEqual(t *testing.T) {
 		if safecast.Equal(float64(1.23), 1.24) {
 			t.Error("Equal failed for different float64")
 		}
+
+		// Pointer comparisons
+
+		f := 1.23
+		if !safecast.Equal(&f, 1.23) {
+			t.Error("Equal failed for *float64/float64")
+		}
+		if safecast.Equal(&f, 2.34) {
+			t.Error("Equal failed for *float64/different float64")
+		}
 	})
 
 	t.Run("Strings", func(t *testing.T) {
@@ -65,6 +103,20 @@ func TestEqual(t *testing.T) {
 		if safecast.Equal("hello", "world") {
 			t.Error("Equal failed for different strings")
 		}
+
+		// Pointer comparisons
+
+		s := "GoLang"
+		if !safecast.Equal(&s, "golang") {
+			t.Error("Equal failed for *string/string (case-insensitive)")
+		}
+		if !safecast.Equal("golang", &s) {
+			t.Error("Equal failed for string/*string (case-insensitive)")
+		}
+		s2 := "Python"
+		if safecast.Equal(&s, &s2) {
+			t.Error("Equal failed for different *string/*string")
+		}
 	})
 
 	t.Run("Booleans", func(t *testing.T) {
@@ -73,6 +125,16 @@ func TestEqual(t *testing.T) {
 		}
 		if safecast.Equal(true, false) {
 			t.Error("Equal failed for true/false")
+		}
+
+		// Pointer comparisons
+
+		b := true
+		if !safecast.Equal(&b, true) {
+			t.Error("Equal failed for *bool/bool")
+		}
+		if safecast.Equal(&b, false) {
+			t.Error("Equal failed for *bool/false")
 		}
 	})
 
@@ -106,6 +168,26 @@ func TestEqual(t *testing.T) {
 		t3 := t1.Add(1 * time.Second)
 		if safecast.Equal(t1, t3) {
 			t.Error("Equal failed for different times")
+		}
+
+		now := time.Now()
+		if !safecast.Equal(&now, now) {
+			t.Error("Equal failed for *time.Time/time.Time")
+		}
+		later := now.Add(time.Minute)
+		if safecast.Equal(&now, later) {
+			t.Error("Equal failed for *time.Time/different time.Time")
+		}
+	})
+
+	t.Run("Nil Pointers", func(t *testing.T) {
+		var pi *int = nil
+		if !safecast.Equal(pi, nil) {
+			t.Error("Equal failed for *int(nil)/nil")
+		}
+		var ps *string = nil
+		if !safecast.Equal(nil, ps) {
+			t.Error("Equal failed for nil/*string(nil)")
 		}
 	})
 }
