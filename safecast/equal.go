@@ -157,62 +157,112 @@ func Equal(v1 any, v2 any) bool {
 		case int:
 			return eqInt(v1, v2)
 		case *int:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqInt(*v1, v2)
 		case int8:
 			return eqInt8(v1, v2)
 		case *int8:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqInt8(*v1, v2)
 		case int16:
 			return eqInt16(v1, v2)
 		case *int16:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqInt16(*v1, v2)
 		case int32:
 			return eqInt32(v1, v2)
 		case *int32:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqInt32(*v1, v2)
 		case int64:
 			return eqInt64(v1, v2)
 		case *int64:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqInt64(*v1, v2)
 		case uint:
 			return eqUint(v1, v2)
 		case *uint:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqUint(*v1, v2)
 		case uint8:
 			return eqUint8(v1, v2)
 		case *uint8:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqUint8(*v1, v2)
 		case uint16:
 			return eqUint16(v1, v2)
 		case *uint16:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqUint16(*v1, v2)
 		case uint32:
 			return eqUint32(v1, v2)
 		case *uint32:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqUint32(*v1, v2)
 		case uint64:
 			return eqUint64(v1, v2)
 		case *uint64:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqUint64(*v1, v2)
 		case float32:
 			return eqFloat32(v1, v2)
 		case *float32:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqFloat32(*v1, v2)
 		case float64:
 			return eqFloat64(v1, v2)
 		case *float64:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqFloat64(*v1, v2)
 		case bool:
 			return eqBool(v1, v2)
+		case *bool:
+			if v1 == nil {
+				return v2 == nil
+			}
+			return eqBool(*v1, v2)
 		case string:
 			return eqString(v1, v2)
 		case *string:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqString(*v1, v2)
 		case []byte:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqBytes(v1, v2)
 		case time.Time:
 			return eqTime(v1, v2)
 		case *time.Time:
+			if v1 == nil {
+				return v2 == nil
+			}
 			return eqTime(*v1, v2)
 		case nil:
 			if v2 == nil {
