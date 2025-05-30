@@ -2,7 +2,7 @@
 
 ## 1.3.2 (2025-06-01)
 - Improved
-  - Support for reference types (e.g., *int, *string) in To*() and From*() functions
+  - Support for reference types (e.g., *int, *string) in To*(), From*() and Equal()
   - ToTime() to support *string, []byte, and *time.Time as input types
   - To() to support *time.Time as output type
 
