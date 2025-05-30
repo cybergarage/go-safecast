@@ -41,22 +41,32 @@ var SupportedTimeLayouts = []string{
 
 // ToTime casts an interface to a time.Time.
 func ToTime(from any, to *time.Time, layouts ...string) error {
-	switch from := from.(type) {
-	case time.Time:
-		*to = from
-		return nil
-	case string:
+	parseTimeString := func(s string, to *time.Time) error {
 		var err error
 		if len(layouts) == 0 {
 			layouts = SupportedTimeLayouts
 		}
 		for _, layout := range layouts {
-			*to, err = time.Parse(layout, from)
+			*to, err = time.Parse(layout, s)
 			if err == nil {
 				return nil
 			}
 		}
 		return err
+	}
+	switch from := from.(type) {
+	case time.Time:
+		*to = from
+		return nil
+	case *time.Time:
+		*to = *from
+		return nil
+	case string:
+		return parseTimeString(from, to)
+	case *string:
+		return parseTimeString(*from, to)
+	case []byte:
+		return parseTimeString(string(from), to)
 	}
 	return newErrorCast(from, to)
 }
