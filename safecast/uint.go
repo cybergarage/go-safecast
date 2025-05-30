@@ -216,6 +216,68 @@ func ToUint8(from any, to *uint8) error {
 
 // ToUint16 casts an interface to an uint16 type.
 func ToUint16(from any, to *uint16) error {
+	fromInt := func(v int) (uint16, error) {
+		if math.MaxUint16 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
+	fromInt8 := func(v int8) (uint16, error) {
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
+	fromInt16 := func(v int16) (uint16, error) {
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
+	fromInt32 := func(v int32) (uint16, error) {
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
+	fromInt64 := func(v int64) (uint16, error) {
+		if math.MaxUint16 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		if v < 0 {
+			return 0, newErrorUnderRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
+	fromUint := func(v uint) (uint16, error) {
+		if math.MaxUint16 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
+	fromUint32 := func(v uint32) (uint16, error) {
+		if math.MaxUint16 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
+	fromUint64 := func(v uint64) (uint16, error) {
+		if math.MaxUint16 < v {
+			return 0, newErrorOverRange(v, to)
+		}
+		return uint16(v), nil
+	}
+
 	fromBool := func(v bool) uint16 {
 		if v {
 			return 1
@@ -238,62 +300,85 @@ func ToUint16(from any, to *uint16) error {
 	var err error
 	switch from := from.(type) {
 	case int:
-		if math.MaxUint16 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt(from); err != nil {
+			return err
 		}
-		if from < 0 {
-			return newErrorUnderRange(from, to)
+	case *int:
+		if *to, err = fromInt(*from); err != nil {
+			return err
 		}
-		*to = uint16(from)
 	case int8:
-		if from < 0 {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt8(from); err != nil {
+			return err
 		}
-		*to = uint16(from)
+	case *int8:
+		if *to, err = fromInt8(*from); err != nil {
+			return err
+		}
 	case int16:
-		if from < 0 {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt16(from); err != nil {
+			return err
 		}
-		*to = uint16(from)
+	case *int16:
+		if *to, err = fromInt16(*from); err != nil {
+			return err
+		}
 	case int32:
-		if math.MaxUint16 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt32(from); err != nil {
+			return err
 		}
-		if from < 0 {
-			return newErrorUnderRange(from, to)
+	case *int32:
+		if *to, err = fromInt32(*from); err != nil {
+			return err
 		}
-		*to = uint16(from)
 	case int64:
-		if math.MaxUint16 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromInt64(from); err != nil {
+			return err
 		}
-		if from < 0 {
-			return newErrorUnderRange(from, to)
+	case *int64:
+		if *to, err = fromInt64(*from); err != nil {
+			return err
 		}
-		*to = uint16(from)
 	case uint:
-		if math.MaxUint16 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint(from); err != nil {
+			return err
 		}
-		*to = uint16(from)
+	case *uint:
+		if *to, err = fromUint(*from); err != nil {
+			return err
+		}
 	case uint8:
 		*to = uint16(from)
+	case *uint8:
+		*to = uint16(*from)
 	case uint16:
 		*to = from
+	case *uint16:
+		*to = *from
 	case uint32:
-		if math.MaxUint16 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint32(from); err != nil {
+			return err
 		}
-		*to = uint16(from)
+	case *uint32:
+		if *to, err = fromUint32(*from); err != nil {
+			return err
+		}
 	case uint64:
-		if math.MaxUint16 < from {
-			return newErrorOverRange(from, to)
+		if *to, err = fromUint64(from); err != nil {
+			return err
 		}
-		*to = uint16(from)
+	case *uint64:
+		if *to, err = fromUint64(*from); err != nil {
+			return err
+		}
 	case float32:
 		return ToUint16(int64(from), to)
+	case *float32:
+		return ToUint16(int64(*from), to)
 	case float64:
 		return ToUint16(int64(from), to)
+	case *float64:
+		return ToUint16(int64(*from), to)
 	case bool:
 		*to = fromBool(from)
 	case *bool:
