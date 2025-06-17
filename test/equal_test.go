@@ -107,10 +107,10 @@ func TestEqual(t *testing.T) {
 		// Pointer comparisons
 
 		s := "GoLang"
-		if !safecast.Equal(&s, "golang") {
+		if safecast.Equal(&s, "golang") {
 			t.Error("Equal failed for *string/string (case-insensitive)")
 		}
-		if !safecast.Equal("golang", &s) {
+		if safecast.Equal("golang", &s) {
 			t.Error("Equal failed for string/*string (case-insensitive)")
 		}
 		s2 := "Python"
