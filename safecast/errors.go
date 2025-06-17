@@ -47,3 +47,7 @@ func newErrorUnderRange(fromItem any, toItem any) error {
 func newErrorWithError(err error) error {
 	return fmt.Errorf(errorSimple, ErrCast, err.Error())
 }
+
+func newCompareError(fromItem any, toItem any) error {
+	return fmt.Errorf(errorCastType, ErrCast, fromItem, fromItem, toItem)
+}
