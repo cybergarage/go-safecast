@@ -30,6 +30,7 @@ const (
 	errorOverRange  = "%w : out of range %v > %T"
 	errorUnderRange = "%w : out of range %v < %T"
 	errorSimple     = "%w : %s"
+	errorCompare    = "%w : %T (%v) != %T (%v)"
 )
 
 func newErrorCast(fromItem any, toItem any) error {
@@ -48,6 +49,6 @@ func newErrorWithError(err error) error {
 	return fmt.Errorf(errorSimple, ErrCast, err.Error())
 }
 
-func newCompareError(fromItem any, toItem any) error {
-	return fmt.Errorf(errorCastType, ErrCast, fromItem, fromItem, toItem)
+func newCompareError(item any, otherItem any) error {
+	return fmt.Errorf(errorCompare, ErrCast, item, item, otherItem, otherItem)
 }
