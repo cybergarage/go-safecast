@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.3 (2025-XX-XX)
+- Added conversion functions
+  - Compare() function to compare two values for equality and return a integer result
+
 ## 1.3.2 (2025-05-30)
 - Improved
   - Support for reference types (e.g., *int, *string) in To*(), From*() and Equal()
