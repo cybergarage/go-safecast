@@ -33,7 +33,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 int
 			if err := ToInt(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -53,7 +53,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 int8
 			if err := ToInt8(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -73,7 +73,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 int16
 			if err := ToInt16(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -93,7 +93,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 int32
 			if err := ToInt32(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -113,7 +113,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 int64
 			if err := ToInt64(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -133,7 +133,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 uint
 			if err := ToUint(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -153,7 +153,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 uint8
 			if err := ToUint8(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -173,7 +173,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 uint16
 			if err := ToUint16(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -193,7 +193,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 uint32
 			if err := ToUint32(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -213,7 +213,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 uint64
 			if err := ToUint64(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -233,7 +233,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 float32
 			if err := ToFloat32(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -253,7 +253,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 float64
 			if err := ToFloat64(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
@@ -273,15 +273,15 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 bool
 			if err := ToBool(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
-				return -1, nil
+			if *v1 {
+				return 1, nil
 			}
-			return 1, nil
+			return -1, nil
 		}
 
 		cmpString := func(v1 *string, v2 any) (int, error) {
@@ -293,15 +293,9 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 string
 			if err := ToString(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
-			if strings.EqualFold(cv2, *v1) {
-				return 0, nil
-			}
-			if cv2 < *v1 {
-				return -1, nil
-			}
-			return 1, nil
+			return strings.Compare(*v1, cv2), nil
 		}
 
 		cmpBytes := func(v1 []byte, v2 any) (int, error) {
@@ -313,15 +307,9 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 []byte
 			if err := ToBytes(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
-			if bytes.Equal(cv2, v1) {
-				return 0, nil
-			}
-			if bytes.Compare(cv2, v1) < 0 {
-				return -1, nil
-			}
-			return 1, nil
+			return bytes.Compare(cv2, v1), nil
 		}
 
 		cmpTime := func(v1 *time.Time, v2 any) (int, error) {
@@ -333,7 +321,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			}
 			var cv2 time.Time
 			if err := ToTime(v2, &cv2); err != nil {
-				return -1, err
+				return 0, err
 			}
 			if v1.Equal(cv2) {
 				return 0, nil
