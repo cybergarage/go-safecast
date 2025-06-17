@@ -38,7 +38,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -58,7 +58,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -78,7 +78,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -98,7 +98,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -118,7 +118,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -138,7 +138,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -158,7 +158,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -178,7 +178,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -198,7 +198,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -218,7 +218,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -238,7 +238,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
@@ -258,7 +258,7 @@ func Compare(v1 any, v2 any) (int, error) {
 			if cv2 == *v1 {
 				return 0, nil
 			}
-			if cv2 < *v1 {
+			if *v1 < cv2 {
 				return -1, nil
 			}
 			return 1, nil
