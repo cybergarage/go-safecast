@@ -98,8 +98,9 @@ The `From` functions allow you to convert from various types to a specific type,
 
 # Conversion Functions
 
-The conversion functions allow you to convert between different types safely and efficiently. The `Equal` function checks if two values are equal, and the `To` and `From` functions provide generic conversion capabilities.
+The conversion functions allow you to convert between different types safely and efficiently. The `Equal` function checks if two values are equal, while the `Compare` function compares two values and returns an integer indicating their relative order.
 
 |Function                                    |
 |--------------------------------------------|
 |func Equal(v1 any, v2 any) bool             |
+|func Compare(v1 any, v2 any) (int, error)   |
