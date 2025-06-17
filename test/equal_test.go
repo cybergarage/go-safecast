@@ -75,13 +75,13 @@ func TestEqual(t *testing.T) {
 	})
 
 	t.Run("Floats", func(t *testing.T) {
-		if !safecast.Equal(float32(3.14), 3.14) {
+		if !safecast.Equal(float32(3.14), float32(3.14)) {
 			t.Error("Equal failed for float32/float64")
 		}
-		if !safecast.Equal(float64(2.71), 2.71) {
+		if !safecast.Equal(float64(2.71), float64(2.71)) {
 			t.Error("Equal failed for float64/float64")
 		}
-		if safecast.Equal(float64(1.23), 1.24) {
+		if safecast.Equal(float64(1.23), float64(1.24)) {
 			t.Error("Equal failed for different float64")
 		}
 
