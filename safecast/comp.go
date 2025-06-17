@@ -399,10 +399,15 @@ func Compare(v1 any, v2 any) (int, error) {
 			if v2 == nil {
 				return 0, nil
 			}
-			return -1, nil
+			return 0, newCompareError(v1, v2)
 		}
 
 		return 0, newCompareError(v1, v2)
+	}
+
+	r, err := cmp(v1, v2)
+	if err == nil {
+		return r, err
 	}
 
 	return cmp(v2, v1)
