@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.3.3 (2025-XX-XX)
+## v1.3.3 (2025-06-18
 - Added conversion functions
   - Compare() function to compare two values for equality and return a integer result
 
