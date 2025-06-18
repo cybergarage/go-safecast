@@ -12,19 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package test
+package safecast
 
 import (
 	"fmt"
 	"time"
-
-	"github.com/cybergarage/go-safecast/safecast"
 )
 
 func ExampleEqual_int() {
 	a := 42
 	b := 42
-	eq := safecast.Equal(a, b)
+	eq := Equal(a, b)
 	fmt.Println(eq)
 	// Output: true
 }
@@ -32,7 +30,7 @@ func ExampleEqual_int() {
 func ExampleEqual_string() {
 	a := "hello"
 	b := "world"
-	eq := safecast.Equal(a, b)
+	eq := Equal(a, b)
 	fmt.Println(eq)
 	// Output: false
 }
@@ -40,7 +38,7 @@ func ExampleEqual_string() {
 func ExampleEqual_slice() {
 	a := []int{1, 2, 3}
 	b := []int{1, 2, 3}
-	eq := safecast.Equal(a, b)
+	eq := Equal(a, b)
 	fmt.Println(eq)
 	// Output: true
 }
@@ -48,7 +46,7 @@ func ExampleEqual_slice() {
 func ExampleEqual_map() {
 	a := map[string]int{"foo": 1, "bar": 2}
 	b := map[string]int{"foo": 1, "bar": 2}
-	eq := safecast.Equal(a, b)
+	eq := Equal(a, b)
 	fmt.Println(eq)
 	// Output: true
 }
@@ -56,7 +54,7 @@ func ExampleEqual_map() {
 func ExampleEqual_time() {
 	a := time.Date(2022, 1, 1, 0, 0, 0, 0, time.UTC)
 	b := time.Date(2022, 1, 1, 0, 0, 0, 0, time.UTC)
-	eq := safecast.Equal(a, b)
+	eq := Equal(a, b)
 	fmt.Println(eq)
 	// Output: true
 }
@@ -68,7 +66,7 @@ func ExampleEqual_struct() {
 	}
 	a := Point{X: 1, Y: 2}
 	b := Point{X: 1, Y: 2}
-	eq := safecast.Equal(a, b)
+	eq := Equal(a, b)
 	fmt.Println(eq)
 	// Output: true
 }

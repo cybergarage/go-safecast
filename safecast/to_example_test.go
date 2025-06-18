@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package test
+package safecast
 
 import (
 	"fmt"
 	"math"
 	"time"
-
-	"github.com/cybergarage/go-safecast/safecast"
 )
 
 func ExampleToInt8() {
@@ -27,27 +25,27 @@ func ExampleToInt8() {
 	var to int8
 
 	from = 1
-	if err := safecast.ToInt8(from, &to); err != nil {
+	if err := ToInt8(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxInt8
-	if err := safecast.ToInt8(from, &to); err != nil {
+	if err := ToInt8(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MinInt8
-	if err := safecast.ToInt8(from, &to); err != nil {
+	if err := ToInt8(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToInt8("123", &to); err != nil {
+	if err := ToInt8("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -55,14 +53,14 @@ func ExampleToInt8() {
 
 	var from64 int
 	from64 = math.MaxInt
-	if err := safecast.ToInt8(from64, &to); err != nil {
+	if err := ToInt8(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from64 = math.MinInt
-	if err := safecast.ToInt8(from64, &to); err != nil {
+	if err := ToInt8(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -82,27 +80,27 @@ func ExampleToInt16() {
 	var to int16
 
 	from = 1
-	if err := safecast.ToInt16(from, &to); err != nil {
+	if err := ToInt16(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxInt16
-	if err := safecast.ToInt16(from, &to); err != nil {
+	if err := ToInt16(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MinInt16
-	if err := safecast.ToInt16(from, &to); err != nil {
+	if err := ToInt16(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToInt16("123", &to); err != nil {
+	if err := ToInt16("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -110,14 +108,14 @@ func ExampleToInt16() {
 
 	var from64 int
 	from64 = math.MaxInt
-	if err := safecast.ToInt16(from64, &to); err != nil {
+	if err := ToInt16(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from64 = math.MinInt
-	if err := safecast.ToInt16(from64, &to); err != nil {
+	if err := ToInt16(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -137,27 +135,27 @@ func ExampleToInt32() {
 	var to int32
 
 	from = 1
-	if err := safecast.ToInt32(from, &to); err != nil {
+	if err := ToInt32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxInt32
-	if err := safecast.ToInt32(from, &to); err != nil {
+	if err := ToInt32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MinInt32
-	if err := safecast.ToInt32(from, &to); err != nil {
+	if err := ToInt32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToInt32("123", &to); err != nil {
+	if err := ToInt32("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -165,14 +163,14 @@ func ExampleToInt32() {
 
 	var from64 int
 	from64 = math.MaxInt
-	if err := safecast.ToInt32(from64, &to); err != nil {
+	if err := ToInt32(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from64 = math.MinInt
-	if err := safecast.ToInt32(from64, &to); err != nil {
+	if err := ToInt32(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -192,41 +190,41 @@ func ExampleToInt64() {
 	var to int64
 
 	from = 1
-	if err := safecast.ToInt64(from, &to); err != nil {
+	if err := ToInt64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxInt64
-	if err := safecast.ToInt64(from, &to); err != nil {
+	if err := ToInt64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MinInt64
-	if err := safecast.ToInt64(from, &to); err != nil {
+	if err := ToInt64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxInt
-	if err := safecast.ToInt64(from, &to); err != nil {
+	if err := ToInt64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MinInt
-	if err := safecast.ToInt64(from, &to); err != nil {
+	if err := ToInt64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToInt64("123", &to); err != nil {
+	if err := ToInt64("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -246,41 +244,41 @@ func ExampleToInt() {
 	var to int
 
 	from = 1
-	if err := safecast.ToInt(from, &to); err != nil {
+	if err := ToInt(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxInt
-	if err := safecast.ToInt(from, &to); err != nil {
+	if err := ToInt(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MinInt
-	if err := safecast.ToInt(from, &to); err != nil {
+	if err := ToInt(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxInt64
-	if err := safecast.ToInt(from, &to); err != nil {
+	if err := ToInt(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MinInt64
-	if err := safecast.ToInt(from, &to); err != nil {
+	if err := ToInt(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToInt("123", &to); err != nil {
+	if err := ToInt("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -300,34 +298,34 @@ func ExampleToUint8() {
 	var to uint8
 
 	from = 1
-	if err := safecast.ToUint8(from, &to); err != nil {
+	if err := ToUint8(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxUint8
-	if err := safecast.ToUint8(from, &to); err != nil {
+	if err := ToUint8(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = 0
-	if err := safecast.ToUint8(from, &to); err != nil {
+	if err := ToUint8(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToUint8("123", &to); err != nil {
+	if err := ToUint8("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from64 := uint(math.MaxUint)
-	if err := safecast.ToUint8(from64, &to); err != nil {
+	if err := ToUint8(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -346,34 +344,34 @@ func ExampleToUint16() {
 	var to uint16
 
 	from = 1
-	if err := safecast.ToUint16(from, &to); err != nil {
+	if err := ToUint16(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxUint16
-	if err := safecast.ToUint16(from, &to); err != nil {
+	if err := ToUint16(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = 0
-	if err := safecast.ToUint16(from, &to); err != nil {
+	if err := ToUint16(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToUint16("123", &to); err != nil {
+	if err := ToUint16("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from64 := uint(math.MaxUint)
-	if err := safecast.ToUint16(from64, &to); err != nil {
+	if err := ToUint16(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -392,34 +390,34 @@ func ExampleToUint32() {
 	var to uint32
 
 	from = 1
-	if err := safecast.ToUint32(from, &to); err != nil {
+	if err := ToUint32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxUint32
-	if err := safecast.ToUint32(from, &to); err != nil {
+	if err := ToUint32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = 0
-	if err := safecast.ToUint32(from, &to); err != nil {
+	if err := ToUint32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToUint32("123", &to); err != nil {
+	if err := ToUint32("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from64 := uint(math.MaxUint)
-	if err := safecast.ToUint32(from64, &to); err != nil {
+	if err := ToUint32(from64, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -438,27 +436,27 @@ func ExampleToUint64() {
 	var to uint64
 
 	from = 1
-	if err := safecast.ToUint64(from, &to); err != nil {
+	if err := ToUint64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxUint64
-	if err := safecast.ToUint64(from, &to); err != nil {
+	if err := ToUint64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = 0
-	if err := safecast.ToUint64(from, &to); err != nil {
+	if err := ToUint64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToUint64("123", &to); err != nil {
+	if err := ToUint64("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -476,27 +474,27 @@ func ExampleToUint() {
 	var to uint
 
 	from = 1
-	if err := safecast.ToUint(from, &to); err != nil {
+	if err := ToUint(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxUint
-	if err := safecast.ToUint(from, &to); err != nil {
+	if err := ToUint(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = 0
-	if err := safecast.ToUint(from, &to); err != nil {
+	if err := ToUint(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToUint("123", &to); err != nil {
+	if err := ToUint("123", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -512,13 +510,13 @@ func ExampleToUint() {
 func ExampleToBool() {
 	var to bool
 
-	if err := safecast.ToBool(1, &to); err != nil {
+	if err := ToBool(1, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToBool("TRUE", &to); err != nil {
+	if err := ToBool("TRUE", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -534,27 +532,27 @@ func ExampleToFloat64() {
 	var to float64
 
 	from = 1.0
-	if err := safecast.ToFloat64(from, &to); err != nil {
+	if err := ToFloat64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxFloat64
-	if err := safecast.ToFloat64(from, &to); err != nil {
+	if err := ToFloat64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.SmallestNonzeroFloat64
-	if err := safecast.ToFloat64(from, &to); err != nil {
+	if err := ToFloat64(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToFloat64("123.0", &to); err != nil {
+	if err := ToFloat64("123.0", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -572,27 +570,27 @@ func ExampleToFloat32() {
 	var to float32
 
 	from = 1.0
-	if err := safecast.ToFloat32(from, &to); err != nil {
+	if err := ToFloat32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.MaxFloat32
-	if err := safecast.ToFloat32(from, &to); err != nil {
+	if err := ToFloat32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
 	from = math.SmallestNonzeroFloat32
-	if err := safecast.ToFloat32(from, &to); err != nil {
+	if err := ToFloat32(from, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToFloat32("123.0", &to); err != nil {
+	if err := ToFloat32("123.0", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -608,19 +606,19 @@ func ExampleToFloat32() {
 func ExampleToString() {
 	var to string
 
-	if err := safecast.ToString(123, &to); err != nil {
+	if err := ToString(123, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToString(123.0, &to); err != nil {
+	if err := ToString(123.0, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
 	}
 
-	if err := safecast.ToString(true, &to); err != nil {
+	if err := ToString(true, &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -635,7 +633,7 @@ func ExampleToString() {
 func ExampleToTime() {
 	var to time.Time
 
-	if err := safecast.ToTime("2022-01-01T00:00:00", &to, safecast.ISO860TimestampLayout); err != nil {
+	if err := ToTime("2022-01-01T00:00:00", &to, ISO860TimestampLayout); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(to)
@@ -648,7 +646,7 @@ func ExampleToTime() {
 func ExampleToBytes() {
 	var to []byte
 
-	if err := safecast.ToBytes("abc", &to); err != nil {
+	if err := ToBytes("abc", &to); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(string(to))

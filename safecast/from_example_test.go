@@ -12,26 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package test
+package safecast
 
 import (
 	"fmt"
 	"math"
 	"strconv"
-
-	"github.com/cybergarage/go-safecast/safecast"
 )
 
 func ExampleFromInt() {
 	var v int
-	if err := safecast.FromInt(math.MaxInt, &v); err != nil {
+	if err := FromInt(math.MaxInt, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
 	}
 
 	var uv int8
-	if err := safecast.FromInt(math.MaxInt, &uv); err != nil {
+	if err := FromInt(math.MaxInt, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
@@ -44,14 +42,14 @@ func ExampleFromInt() {
 
 func ExampleFromInt8() {
 	var v int
-	if err := safecast.FromInt8(math.MaxInt8, &v); err != nil {
+	if err := FromInt8(math.MaxInt8, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
 	}
 
 	var uv uint8
-	if err := safecast.FromInt8(math.MinInt8, &uv); err != nil {
+	if err := FromInt8(math.MinInt8, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
@@ -64,14 +62,14 @@ func ExampleFromInt8() {
 
 func ExampleFromInt16() {
 	var v int
-	if err := safecast.FromInt16(math.MaxInt16, &v); err != nil {
+	if err := FromInt16(math.MaxInt16, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
 	}
 
 	var uv uint16
-	if err := safecast.FromInt16(math.MinInt16, &uv); err != nil {
+	if err := FromInt16(math.MinInt16, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
@@ -84,14 +82,14 @@ func ExampleFromInt16() {
 
 func ExampleFromInt32() {
 	var v int
-	if err := safecast.FromInt32(math.MaxInt32, &v); err != nil {
+	if err := FromInt32(math.MaxInt32, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
 	}
 
 	var uv uint32
-	if err := safecast.FromInt32(math.MinInt32, &uv); err != nil {
+	if err := FromInt32(math.MinInt32, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
@@ -104,14 +102,14 @@ func ExampleFromInt32() {
 
 func ExampleFromInt64() {
 	var v int
-	if err := safecast.FromInt64(math.MaxInt64, &v); err != nil {
+	if err := FromInt64(math.MaxInt64, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
 	}
 
 	var uv uint64
-	if err := safecast.FromInt64(math.MinInt64, &uv); err != nil {
+	if err := FromInt64(math.MinInt64, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
@@ -124,14 +122,14 @@ func ExampleFromInt64() {
 
 func ExampleFromUint() {
 	var uv uint
-	if err := safecast.FromUint(math.MaxUint, &uv); err != nil {
+	if err := FromUint(math.MaxUint, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int
-	if err := safecast.FromUint(math.MaxUint, &v); err != nil {
+	if err := FromUint(math.MaxUint, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -144,14 +142,14 @@ func ExampleFromUint() {
 
 func ExampleFromUint8() {
 	var uv uint
-	if err := safecast.FromUint8(math.MaxUint8, &uv); err != nil {
+	if err := FromUint8(math.MaxUint8, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int8
-	if err := safecast.FromUint8(math.MaxUint8, &v); err != nil {
+	if err := FromUint8(math.MaxUint8, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -164,14 +162,14 @@ func ExampleFromUint8() {
 
 func ExampleFromUint16() {
 	var uv uint
-	if err := safecast.FromUint16(math.MaxUint16, &uv); err != nil {
+	if err := FromUint16(math.MaxUint16, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int16
-	if err := safecast.FromUint16(math.MaxUint16, &v); err != nil {
+	if err := FromUint16(math.MaxUint16, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -184,14 +182,14 @@ func ExampleFromUint16() {
 
 func ExampleFromUint32() {
 	var uv uint
-	if err := safecast.FromUint32(math.MaxUint32, &uv); err != nil {
+	if err := FromUint32(math.MaxUint32, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int32
-	if err := safecast.FromUint32(math.MaxUint32, &v); err != nil {
+	if err := FromUint32(math.MaxUint32, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -204,14 +202,14 @@ func ExampleFromUint32() {
 
 func ExampleFromUint64() {
 	var uv uint
-	if err := safecast.FromUint64(math.MaxUint64, &uv); err != nil {
+	if err := FromUint64(math.MaxUint64, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int64
-	if err := safecast.FromUint64(math.MaxUint64, &v); err != nil {
+	if err := FromUint64(math.MaxUint64, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -224,14 +222,14 @@ func ExampleFromUint64() {
 
 func ExampleFromFloat64() {
 	var uv uint
-	if err := safecast.FromFloat64(1.0, &uv); err != nil {
+	if err := FromFloat64(1.0, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int64
-	if err := safecast.FromFloat64(-1.0, &v); err != nil {
+	if err := FromFloat64(-1.0, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -244,14 +242,14 @@ func ExampleFromFloat64() {
 
 func ExampleFromFloat32() {
 	var uv uint
-	if err := safecast.FromFloat32(1, &uv); err != nil {
+	if err := FromFloat32(1, &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int64
-	if err := safecast.FromFloat32(-1, &v); err != nil {
+	if err := FromFloat32(-1, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -264,14 +262,14 @@ func ExampleFromFloat32() {
 
 func ExampleFromString() {
 	var uv uint
-	if err := safecast.FromString(strconv.Itoa(math.MaxInt64), &uv); err != nil {
+	if err := FromString(strconv.Itoa(math.MaxInt64), &uv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", uv)
 	}
 
 	var v int8
-	if err := safecast.FromString(strconv.Itoa(math.MaxInt64), &v); err != nil {
+	if err := FromString(strconv.Itoa(math.MaxInt64), &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
@@ -284,14 +282,14 @@ func ExampleFromString() {
 
 func ExampleFromBool() {
 	var v bool
-	if err := safecast.FromBool(true, &v); err != nil {
+	if err := FromBool(true, &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
 	}
 
 	var iv int
-	if err := safecast.FromBool(true, &iv); err != nil {
+	if err := FromBool(true, &iv); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", iv)
@@ -304,7 +302,7 @@ func ExampleFromBool() {
 
 func ExampleFromBytes() {
 	var v string
-	if err := safecast.FromBytes([]byte("abc"), &v); err != nil {
+	if err := FromBytes([]byte("abc"), &v); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	} else {
 		fmt.Printf("%v\n", v)
