@@ -137,7 +137,7 @@ func TestCompare_Symmetric(t *testing.T) {
 	}
 }
 
-func TestCompare_ErrorCoverage(t *testing.T) {
+func TestCompareErrorCoverage(t *testing.T) {
 	// Test various error conditions to improve coverage
 	tests := []struct {
 		name    string
