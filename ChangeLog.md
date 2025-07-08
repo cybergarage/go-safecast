@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.3.4 (2025-07-08)
+- Added examples for To*() and From*() functions in godoc
+
 ## v1.3.3 (2025-06-18)
 - Added conversion functions
   - Compare() function to compare two values for equality and return a integer result
