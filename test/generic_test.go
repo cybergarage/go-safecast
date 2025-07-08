@@ -21,7 +21,7 @@ import (
 	"github.com/cybergarage/go-safecast/safecast"
 )
 
-func TestFrom_Generic(t *testing.T) {
+func TestFromGeneric(t *testing.T) {
 	// Test From with various types
 	tests := []struct {
 		name     string
@@ -53,7 +53,7 @@ func TestFrom_Generic(t *testing.T) {
 	}
 }
 
-func TestTo_Generic(t *testing.T) {
+func TestToGeneric(t *testing.T) {
 	// Test To with various types
 	tests := []struct {
 		name     string
@@ -109,7 +109,7 @@ func TestTo_Generic(t *testing.T) {
 	}
 }
 
-func TestFrom_Errors(t *testing.T) {
+func TestFromErrors(t *testing.T) {
 	// Test error cases for better coverage
 	var result int64
 
@@ -133,7 +133,7 @@ func TestFrom_Errors(t *testing.T) {
 	}
 }
 
-func TestTo_Errors(t *testing.T) {
+func TestToErrors(t *testing.T) {
 	// Test error cases for better coverage
 
 	// Test with unsupported target type
