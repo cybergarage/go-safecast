@@ -2,6 +2,8 @@
 
 ## v1.3.5 (2025-07-08)
 - Improved
+  - Examples
+    - Added examples for To*() and From*() functions in godoc
   - Testing
     - Added comprehensive tests for From() and To() generic functions
     - Extended test coverage for Compare(), FromFloat64(), FromString(), ToString() functions
