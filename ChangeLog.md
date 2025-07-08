@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.3.5 (2025-07-08)
+## v1.3.4 (2025-07-08)
 - Improved
   - Examples
     - Added examples for To*() and From*() functions in godoc
@@ -9,11 +9,6 @@
     - Extended test coverage for Compare(), FromFloat64(), FromString(), ToString() functions
     - Added edge case testing for special values (NaN, Inf, nil, pointers)
     - Added symmetric comparison tests and error condition coverage
-
-## v1.3.4 (2025-07-08)
-- Added 
-  - Examples for To*() and From*() functions in godoc
-  - Test cases for To*() and From*() functions in test package
 
 ## v1.3.3 (2025-06-18)
 - Added conversion functions
