@@ -175,7 +175,7 @@ func TestToStringExtended(t *testing.T) {
 	}
 }
 
-func TestToString_ErrorCases(t *testing.T) {
+func TestToStringErrorCases(t *testing.T) {
 	// Test error cases for newErrorCast coverage
 	var result string
 
