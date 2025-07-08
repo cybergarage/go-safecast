@@ -106,7 +106,7 @@ func TestCompareExtended(t *testing.T) {
 	}
 }
 
-func TestCompare_Symmetric(t *testing.T) {
+func TestCompareSymmetric(t *testing.T) {
 	// Test that Compare(a, b) == -Compare(b, a) for valid comparisons
 	tests := []struct {
 		name string
