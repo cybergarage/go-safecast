@@ -28,7 +28,7 @@ jobs:
       run: make
 
     - name: Upload results to Codecov
-      uses: codecov/codecov-action@v4
+      uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.out
