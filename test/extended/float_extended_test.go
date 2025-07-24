@@ -182,3 +182,79 @@ func TestToFloat32Extended(t *testing.T) {
 		})
 	}
 }
+
+// Additional comprehensive tests to improve ToFloat32 coverage
+func TestToFloat32_AllTypes(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    interface{}
+		expected float32
+		wantErr  bool
+	}{
+		// All integer types
+		{"int8 to float32", int8(42), 42.0, false},
+		{"int16 to float32", int16(1000), 1000.0, false},
+		{"int32 to float32", int32(100000), 100000.0, false},
+		{"int64 to float32", int64(1000000), 1000000.0, false},
+		{"uint8 to float32", uint8(200), 200.0, false},
+		{"uint16 to float32", uint16(50000), 50000.0, false},
+		{"uint32 to float32", uint32(1000000), 1000000.0, false},
+		{"uint64 to float32", uint64(1000000), 1000000.0, false},
+
+		// All pointer integer types
+		{"*int8 to float32", func() interface{} { i := int8(42); return &i }(), 42.0, false},
+		{"*int16 to float32", func() interface{} { i := int16(1000); return &i }(), 1000.0, false},
+		{"*int32 to float32", func() interface{} { i := int32(100000); return &i }(), 100000.0, false},
+		{"*int64 to float32", func() interface{} { i := int64(1000000); return &i }(), 1000000.0, false},
+		{"*uint to float32", func() interface{} { i := uint(42); return &i }(), 42.0, false},
+		{"*uint8 to float32", func() interface{} { i := uint8(200); return &i }(), 200.0, false},
+		{"*uint16 to float32", func() interface{} { i := uint16(50000); return &i }(), 50000.0, false},
+		{"*uint32 to float32", func() interface{} { i := uint32(1000000); return &i }(), 1000000.0, false},
+		{"*uint64 to float32", func() interface{} { i := uint64(1000000); return &i }(), 1000000.0, false},
+
+		// Float types
+		{"float32 to float32", float32(3.14), 3.14, false},
+		{"*float32 to float32", func() interface{} { f := float32(3.14); return &f }(), 3.14, false},
+		{"float64 to float32", 2.71828, 2.71828, false},
+		{"*float64 to float32", func() interface{} { f := 2.71828; return &f }(), 2.71828, false},
+
+		// String types
+		{"string scientific notation", "1.23e4", 12300.0, false},
+		{"string negative", "-3.14", -3.14, false},
+		{"string zero", "0", 0.0, false},
+		{"string very small", "0.000001", 0.000001, false},
+		{"*string valid", func() interface{} { s := "2.5"; return &s }(), 2.5, false},
+		{"*string invalid", func() interface{} { s := "not_a_number"; return &s }(), 0, true},
+
+		// []byte types
+		{"[]byte valid", []byte("1.5"), 1.5, false},
+		{"[]byte scientific", []byte("2.5e2"), 250.0, false},
+		{"[]byte invalid", []byte("invalid"), 0, true},
+		{"[]byte empty", []byte(""), 0, true},
+
+		// Unsupported types - should error
+		{"bool to float32", true, 0, true},
+		{"map to float32", map[string]int{"a": 1}, 0, true},
+		{"slice to float32", []int{1, 2, 3}, 0, true},
+		{"struct to float32", struct{ A int }{42}, 0, true},
+		{"func to float32", func() {}, 0, true},
+		{"chan to float32", make(chan int), 0, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var result float32
+			err := safecast.ToFloat32(tt.input, &result)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("ToFloat32(%v) error = %v, wantErr %v", tt.input, err, tt.wantErr)
+			}
+			if !tt.wantErr {
+				// Use a small tolerance for float comparison
+				tolerance := float32(0.000001)
+				if (result-tt.expected) > tolerance || (tt.expected-result) > tolerance {
+					t.Errorf("ToFloat32(%v) = %v, want %v", tt.input, result, tt.expected)
+				}
+			}
+		})
+	}
+}
