@@ -46,7 +46,7 @@ test: lint
 	go tool cover -html=${COVER_PROF}.out -o ${COVER_PROF}.html
 
 cover: test
-	go tool cover -html=${COVER_PROF}.out -o ${COVER_PROF}.html
+	open ${COVER_PROF}.html || xdg-open ${COVER_PROF}.html || gnome-open ${COVER_PROF}.html
 
 fuzz: test
 	pushd ${TEST_PKG_DIR} && ./fuzz && popd
