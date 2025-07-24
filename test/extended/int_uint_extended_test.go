@@ -15,6 +15,7 @@
 package test
 
 import (
+	"math"
 	"testing"
 
 	"github.com/cybergarage/go-safecast/safecast"
@@ -537,5 +538,61 @@ func TestToUint16_ComprehensiveTypes(t *testing.T) {
 				t.Errorf("ToUint16(%v) = %v, want %v", tt.input, result, tt.expected)
 			}
 		})
+	}
+}
+
+func TestFromInt8_OverflowUnderflow(t *testing.T) {
+	var v int8
+	// Overflow
+	err := safecast.FromInt(math.MaxInt16, &v)
+	if err == nil {
+		t.Errorf("Expected overflow error for FromInt(math.MaxInt16, &int8), got nil")
+	}
+	// Underflow
+	err = safecast.FromInt(math.MinInt16, &v)
+	if err == nil {
+		t.Errorf("Expected underflow error for FromInt(math.MinInt16, &int8), got nil")
+	}
+}
+
+func TestFromUint8_Overflow(t *testing.T) {
+	var v uint8
+	// Overflow
+	err := safecast.FromInt(math.MaxInt16, &v)
+	if err == nil {
+		t.Errorf("Expected overflow error for FromInt(math.MaxInt16, &uint8), got nil")
+	}
+	// Underflow (negative value)
+	err = safecast.FromInt(-1, &v)
+	if err == nil {
+		t.Errorf("Expected underflow error for FromInt(-1, &uint8), got nil")
+	}
+}
+
+func TestToInt8_OverflowUnderflow(t *testing.T) {
+	var v int8
+	// Overflow
+	err := safecast.ToInt8(math.MaxInt16, &v)
+	if err == nil {
+		t.Errorf("Expected overflow error for ToInt8(math.MaxInt16, &int8), got nil")
+	}
+	// Underflow
+	err = safecast.ToInt8(math.MinInt16, &v)
+	if err == nil {
+		t.Errorf("Expected underflow error for ToInt8(math.MinInt16, &int8), got nil")
+	}
+}
+
+func TestToUint8_OverflowUnderflow(t *testing.T) {
+	var v uint8
+	// Overflow
+	err := safecast.ToUint8(math.MaxInt16, &v)
+	if err == nil {
+		t.Errorf("Expected overflow error for ToUint8(math.MaxInt16, &uint8), got nil")
+	}
+	// Underflow (negative value)
+	err = safecast.ToUint8(-1, &v)
+	if err == nil {
+		t.Errorf("Expected underflow error for ToUint8(-1, &uint8), got nil")
 	}
 }
