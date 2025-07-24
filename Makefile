@@ -25,7 +25,7 @@ TEST_PKG_NAME=test
 TEST_PKG=${MODULE_ROOT}/${TEST_PKG_NAME}
 TEST_PKG_DIR=${TEST_PKG_NAME}
 
-COVER_PROF=coverage.out
+COVER_PROF=coverage
 
 .PHONY: format vet lint cover clean
 .IGNORE: lint
@@ -42,10 +42,11 @@ lint: vet
 	golangci-lint run ${PKG_DIR}/... ${TEST_PKG_DIR}/...
 
 test: lint
-	go test -v -cover -coverpkg=${PKG} -coverprofile=${COVER_PROF} -timeout 60s ${PKG}/... ${TEST_PKG}/...
+	go test -v -cover -coverpkg=${PKG} -coverprofile=${COVER_PROF}.out -timeout 60s ${PKG}/... ${TEST_PKG}/...
+	go tool cover -html=${COVER_PROF}.out -o ${COVER_PROF}.html
 
 cover: test
-	go tool cover -html=${COVER_PROF} -o coverage.html
+	go tool cover -html=${COVER_PROF}.out -o ${COVER_PROF}.html
 
 fuzz: test
 	pushd ${TEST_PKG_DIR} && ./fuzz && popd
