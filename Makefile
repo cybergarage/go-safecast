@@ -36,13 +36,13 @@ format:
 	gofmt -s -w ${PKG_DIR} ${TEST_PKG_DIR}
 
 vet: format
-	go vet ${PKG} ${TEST_PKG}
+	go vet ${PKG} ./${TEST_PKG_NAME}/...
 
 lint: vet
 	golangci-lint run ${PKG_DIR}/... ${TEST_PKG_DIR}/...
 
 test: lint
-	go test -v -cover -coverpkg=${PKG} -coverprofile=${COVER_PROF}.out -timeout 60s ${PKG}/... ${TEST_PKG}/...
+	go test -v -cover -coverpkg=${PKG} -coverprofile=${COVER_PROF}.out -timeout 60s ${PKG}/... ./${TEST_PKG_NAME}/...
 	go tool cover -html=${COVER_PROF}.out -o ${COVER_PROF}.html
 
 cover: test
