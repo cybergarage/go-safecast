@@ -21,6 +21,5 @@
 cbortest/testdata/
 
 # Coverage
-coverage.*
 *.out
 *.html
