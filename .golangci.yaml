@@ -78,6 +78,7 @@ linters:
           - exhaustruct
           - goconst
           - gosec
+          - forcetypeassert
         path: _test\.go
     paths:
       - third_party$
