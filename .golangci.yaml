@@ -40,6 +40,7 @@ linters:
     - varnamelen
     - wrapcheck
     - wsl
+    - maintidx
   settings:
     gocritic:
       disabled-checks:
