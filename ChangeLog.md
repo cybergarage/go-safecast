@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.3.5 (2025-XX-XX)
+- Fix golangci-lint warnings
+
 ## v1.3.4 (2025-07-08)
 - Improved
   - Examples
