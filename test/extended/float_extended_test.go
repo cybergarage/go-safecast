@@ -183,7 +183,7 @@ func TestToFloat32Extended(t *testing.T) {
 	}
 }
 
-// Additional comprehensive tests to improve ToFloat32 coverage.
+// Additional comprehensive tests to improve ToFloat32 coverage
 func TestToFloat32_AllTypes(t *testing.T) {
 	tests := []struct {
 		name     string

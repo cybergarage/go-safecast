@@ -192,6 +192,7 @@ func ToUint8(from any, to *uint8) error {
 			return *to, ToUint8(fv, to)
 		}
 		return 0, newErrorCast(from, to)
+
 	}
 
 	var err error

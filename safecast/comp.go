@@ -21,9 +21,9 @@ import (
 )
 
 // Compare checks if two values are equal.
-// It returns 0 if they are equal, -1 if v1 < v2, and 1 if v1 > v2.
 func Compare(v1 any, v2 any) (int, error) {
 	cmp := func(v1, v2 any) (int, error) {
+
 		cmpInt := func(v1 *int, v2 any) (int, error) {
 			if v1 == nil {
 				if v2 == nil {
@@ -407,7 +407,7 @@ func Compare(v1 any, v2 any) (int, error) {
 
 	r, err := cmp(v1, v2)
 	if err == nil {
-		return r, nil
+		return r, err
 	}
 
 	return cmp(v2, v1)
