@@ -26,9 +26,7 @@ import (
 	"github.com/cybergarage/go-safecast/safecast"
 )
 
-// TestTo_ComprehensiveTypeHandling provides comprehensive test coverage for To function
-// This test covers all type cases in the To function switch statement to achieve maximum coverage
-// Focus: to.go generic To function with complete type branch coverage
+// Focus: to.go generic To function with complete type branch coverage.
 func TestTo_ComprehensiveTypeHandling(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -255,8 +253,7 @@ func TestTo_ComprehensiveTypeHandling(t *testing.T) {
 	}
 }
 
-// TestTo_EdgeCases provides additional coverage for edge cases in To function
-// Ensures all error paths and boundary conditions are tested
+// Ensures all error paths and boundary conditions are tested.
 func TestTo_EdgeCases(t *testing.T) {
 	tests := []struct {
 		name    string

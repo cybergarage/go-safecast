@@ -25,9 +25,7 @@ import (
 	"github.com/cybergarage/go-safecast/safecast"
 )
 
-// TestFrom_ComprehensiveTypeHandling provides comprehensive test coverage for From function
-// This test covers all type cases in the From function switch statement to achieve maximum coverage
-// Focus: from.go generic From function with complete type branch coverage
+// Focus: from.go generic From function with complete type branch coverage.
 func TestFrom_ComprehensiveTypeHandling(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -176,8 +174,7 @@ func TestFrom_ComprehensiveTypeHandling(t *testing.T) {
 	}
 }
 
-// TestFromBool_EdgeCases provides additional coverage for FromBool function
-// Ensures all boolean conversion paths are tested to improve from.go coverage
+// Ensures all boolean conversion paths are tested to improve from.go coverage.
 func TestFromBool_EdgeCases(t *testing.T) {
 	tests := []struct {
 		name    string
