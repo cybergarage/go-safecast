@@ -41,7 +41,7 @@ import (
 
 // TestToInt8_Extended provides basic test coverage for ToInt8 function
 // Coverage improvement: Contributes to overall 78.8% coverage
-// Tests basic type conversions and overflow/underflow boundary conditions
+// Tests basic type conversions and overflow/underflow boundary conditions.
 func TestToInt8_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -353,7 +353,7 @@ func TestToUint_Extended(t *testing.T) {
 
 // TestToInt8_ComprehensiveTypes provides extensive type conversion testing for ToInt8
 // Coverage improvement: Enhances ToInt8 coverage from 79.1% baseline
-// Tests all primitive types, pointer types, boundary conditions, and unsupported type errors
+// Tests all primitive types, pointer types, boundary conditions, and unsupported type errors.
 func TestToInt8_ComprehensiveTypes(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -567,7 +567,7 @@ func TestToUint16_ComprehensiveTypes(t *testing.T) {
 // TestToInt32_Comprehensive provides comprehensive test coverage for ToInt32 function
 // Coverage improvement: 36.6% → 92.7% (+56.1 points)
 // Tests all primitive types, pointer types, boundary conditions, and error cases
-// Validates overflow/underflow behavior, special float values (NaN, Inf), and type conversion logic
+// Validates overflow/underflow behavior, special float values (NaN, Inf), and type conversion logic.
 func TestToInt32_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -682,7 +682,7 @@ func TestToInt32_Comprehensive(t *testing.T) {
 // TestToInt64_Comprehensive provides comprehensive test coverage for ToInt64 function
 // Coverage improvement: 36.7% → 98.3% (+61.6 points)
 // Tests all primitive types, pointer types, boundary conditions, and special float values
-// Validates that large values are clamped to int64 limits instead of causing errors
+// Validates that large values are clamped to int64 limits instead of causing errors.
 func TestToInt64_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -785,7 +785,7 @@ func TestToInt64_Comprehensive(t *testing.T) {
 // TestToUint32_Comprehensive provides comprehensive test coverage for ToUint32 function
 // Coverage improvement: 41.5% → 94.7% (+53.2 points)
 // Tests all primitive types, pointer types, negative value handling, and overflow conditions
-// Validates that negative values properly return errors for unsigned types
+// Validates that negative values properly return errors for unsigned types.
 func TestToUint32_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -898,7 +898,7 @@ func TestToUint32_Comprehensive(t *testing.T) {
 // TestToUint64_Comprehensive provides comprehensive test coverage for ToUint64 function
 // Coverage improvement: 33.3% → 100.0% (+66.7 points) - COMPLETE COVERAGE ACHIEVED
 // Tests all primitive types, pointer types, negative value rejection, and boundary conditions
-// Validates clamping behavior for large values and proper error handling for negative inputs
+// Validates clamping behavior for large values and proper error handling for negative inputs.
 func TestToUint64_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -1015,7 +1015,7 @@ func TestToUint64_Comprehensive(t *testing.T) {
 // TestToUint_Comprehensive provides comprehensive test coverage for ToUint function
 // Coverage improvement: 39.2% → 100.0% (+60.8 points) - COMPLETE COVERAGE ACHIEVED
 // Tests all primitive types, pointer types, negative value rejection, and special cases
-// Validates that large values are clamped to practical limits (int64 max in implementation)
+// Validates that large values are clamped to practical limits (int64 max in implementation).
 func TestToUint_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
