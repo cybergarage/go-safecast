@@ -1,3 +1,7 @@
 module github.com/cybergarage/go-safecast
 
-go 1.25
+<<<<<<< HEAD
+go 1.22
+=======
+go 1.22
+>>>>>>> 0d5c220 (Update go.mod)
