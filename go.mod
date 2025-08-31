@@ -1,3 +1,3 @@
 module github.com/cybergarage/go-safecast
 
-go 1.25
+go 1.22
