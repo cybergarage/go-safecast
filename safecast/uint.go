@@ -710,9 +710,9 @@ func ToUint64(from any, to *uint64) error {
 	}
 
 	fromString := func(v string) (uint64, error) {
-		iv, err := strconv.Atoi(v)
+		uv, err := strconv.ParseUint(v, 10, 64)
 		if err == nil {
-			return *to, ToUint64(iv, to)
+			return uv, nil
 		}
 		fv, err := strconv.ParseFloat(v, 64)
 		if err == nil {
@@ -858,9 +858,9 @@ func ToUint(from any, to *uint) error {
 	}
 
 	fromString := func(v string) (uint, error) {
-		iv, err := strconv.Atoi(v)
+		uv, err := strconv.ParseUint(v, 10, 64)
 		if err == nil {
-			return *to, ToUint(iv, to)
+			return uint(uv), nil
 		}
 		fv, err := strconv.ParseFloat(v, 64)
 		if err == nil {

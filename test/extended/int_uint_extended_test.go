@@ -926,6 +926,7 @@ func TestToUint64_Comprehensive(t *testing.T) {
 
 		// String types
 		{"string to uint64", "9000000000000000000", 9000000000000000000, false}, // large uint64
+		{"string max uint64", "18446744073709551615", 18446744073709551615, false},
 		{"string zero to uint64", "0", 0, false},
 
 		// Bool types
@@ -1043,6 +1044,7 @@ func TestToUint_Comprehensive(t *testing.T) {
 
 		// String types
 		{"string to uint", "9000000000000000000", 9000000000000000000, false},
+		{"string max uint64", "18446744073709551615", 18446744073709551615, false},
 		{"string zero to uint", "0", 0, false},
 
 		// Bool types
