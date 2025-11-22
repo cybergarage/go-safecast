@@ -1,8 +1,11 @@
 # Changelog
 
-## v1.3.5 (2025-XX-XX)
-- Fix golangci-lint warnings
-
+## v1.3.5 (2025-11-23)
+- Fixed `ToUint` and `ToUint64` string conversion to support uint64 maximum value (18446744073709551615)
+  - Replaced `strconv.Atoi` with `strconv.ParseUint` in `fromString` helper functions
+  - `strconv.Atoi` was limited to int32 range, preventing conversion of large uint64 values
+- Fixed golangci-lint warnings
+  
 ## v1.3.4 (2025-07-08)
 - Improved
   - Examples
