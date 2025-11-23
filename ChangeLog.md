@@ -2,7 +2,7 @@
 
 ## v1.3.5 (2025-11-23)
 - Improved
-  - Equal() with early DeepEqual check for better performance
+  - Equal() supports slice ([]any) and map (map[string]any, map[any]any) comparisons
 - Fixed 
   - ToUint() and ToUint64() string conversion to support uint64 maximum value (18446744073709551615)
     - Replaced strconv.Atoi with strconv.ParseUint in fromString helper functions
