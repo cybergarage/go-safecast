@@ -24,6 +24,24 @@ func Equal(v1 any, v2 any) bool {
 	if reflect.DeepEqual(v1, v2) {
 		return true
 	}
+	switch v1 := v1.(type) {
+	case []any:
+		switch v2.(type) {
+		case []any:
+			if len(v1) != len(v2.([]any)) {
+				return false
+			}
+			for i := range v1 {
+				if !Equal(v1[i], v2.([]any)[i]) {
+					return false
+				}
+			}
+			return true
+		default:
+			return false
+		}
+	}
+
 	cmp, err := Compare(v1, v2)
 	if err == nil {
 		switch cmp {
@@ -31,5 +49,6 @@ func Equal(v1 any, v2 any) bool {
 			return true
 		}
 	}
+
 	return false
 }
