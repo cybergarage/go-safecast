@@ -2,11 +2,11 @@
 
 ## v1.3.5 (2025-11-23)
 - Improved
-  - Optimize Equal() with early DeepEqual check
+  - Equal() with early DeepEqual check for better performance
 - Fixed 
-  - `ToUint` and `ToUint64` string conversion to support uint64 maximum value (18446744073709551615)
-    - Replaced `strconv.Atoi` with `strconv.ParseUint` in `fromString` helper functions
-- golangci-lint warnings
+  - ToUint() and ToUint64() string conversion to support uint64 maximum value (18446744073709551615)
+    - Replaced strconv.Atoi with strconv.ParseUint in fromString helper functions
+  - golangci-lint warnings
   
 ## v1.3.4 (2025-07-08)
 - Improved
