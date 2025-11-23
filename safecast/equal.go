@@ -21,14 +21,15 @@ import (
 // Equal checks if two values are equal.
 // It returns true if both values are equal, otherwise false.
 func Equal(v1 any, v2 any) bool {
+	if reflect.DeepEqual(v1, v2) {
+		return true
+	}
 	cmp, err := Compare(v1, v2)
 	if err == nil {
 		switch cmp {
 		case 0:
 			return true
-		case 1:
-			return false
 		}
 	}
-	return reflect.DeepEqual(v1, v2)
+	return false
 }
