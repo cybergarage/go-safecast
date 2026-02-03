@@ -25,12 +25,12 @@ func TestToTime_Extended(t *testing.T) {
 	// Test with various supported time formats
 	tests := []struct {
 		name    string
-		input   interface{}
+		input   any
 		wantErr bool
 	}{
 		// time.Time and *time.Time - supported
 		{"time.Time to time", time.Now(), false},
-		{"*time.Time to time", func() interface{} { now := time.Now(); return &now }(), false},
+		{"*time.Time to time", func() any { now := time.Now(); return &now }(), false},
 
 		// String formats that should work with supported layouts
 		{"RFC3339 format", "2022-01-01T15:04:05Z", false},
@@ -39,7 +39,7 @@ func TestToTime_Extended(t *testing.T) {
 		{"RFC1123Z format", "Sat, 01 Jan 2022 15:04:05 +0000", false},
 
 		// String pointers
-		{"*string RFC3339", func() interface{} { s := "2022-01-01T15:04:05Z"; return &s }(), false},
+		{"*string RFC3339", func() any { s := "2022-01-01T15:04:05Z"; return &s }(), false},
 
 		// []byte format
 		{"[]byte RFC3339", []byte("2022-01-01T15:04:05Z"), false},
@@ -72,7 +72,7 @@ func TestToTime_Extended(t *testing.T) {
 		{"uint64 Unix timestamp", uint64(1640995200), true},
 		{"float32 Unix timestamp", float32(1.6409952e+09), true},
 		{"float64 Unix timestamp", float64(1.640995200123456e+09), true},
-		{"*int to time", func() interface{} { i := 1640995200; return &i }(), true},
+		{"*int to time", func() any { i := 1640995200; return &i }(), true},
 		{"bool true to time", true, true},
 		{"bool false to time", false, true},
 		{"zero Unix timestamp", 0, true},
@@ -98,7 +98,7 @@ func TestToTime_Extended(t *testing.T) {
 func TestToTime_ErrorCases(t *testing.T) {
 	tests := []struct {
 		name  string
-		input interface{}
+		input any
 	}{
 		{"unsupported type", []int{1, 2, 3}},
 		{"map type", map[string]int{"a": 1}},

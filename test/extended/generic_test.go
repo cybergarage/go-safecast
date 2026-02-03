@@ -25,8 +25,8 @@ func TestFromGeneric(t *testing.T) {
 	// Test From with various types
 	tests := []struct {
 		name     string
-		input    interface{}
-		expected interface{}
+		input    any
+		expected any
 		wantErr  bool
 	}{
 		{"int to int64", 42, int64(42), false},
@@ -57,7 +57,7 @@ func TestToGeneric(t *testing.T) {
 	// Test To with various types
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		wantErr  bool
 		testFunc func() error
 	}{
@@ -153,39 +153,39 @@ func TestToErrors(t *testing.T) {
 func TestFromGeneric_ExtensiveTypes(t *testing.T) {
 	tests := []struct {
 		name     string
-		from     interface{}
-		to       interface{}
+		from     any
+		to       any
 		wantErr  bool
-		validate func(interface{}) bool
+		validate func(any) bool
 	}{
 		// Test all integer pointer conversions to improve From() coverage
-		{"*int to int8", func() interface{} { i := 42; return &i }(), new(int8), false, func(v interface{}) bool { return *(v.(*int8)) == 42 }},
-		{"*int8 to int", func() interface{} { i := int8(42); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 42 }},
-		{"*int16 to int", func() interface{} { i := int16(1000); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 1000 }},
-		{"*int32 to int", func() interface{} { i := int32(100000); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 100000 }},
-		{"*int64 to int", func() interface{} { i := int64(1000000); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 1000000 }},
+		{"*int to int8", func() any { i := 42; return &i }(), new(int8), false, func(v any) bool { return *(v.(*int8)) == 42 }},
+		{"*int8 to int", func() any { i := int8(42); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 42 }},
+		{"*int16 to int", func() any { i := int16(1000); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 1000 }},
+		{"*int32 to int", func() any { i := int32(100000); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 100000 }},
+		{"*int64 to int", func() any { i := int64(1000000); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 1000000 }},
 
 		// Test all unsigned integer pointer conversions
-		{"*uint to int", func() interface{} { i := uint(42); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 42 }},
-		{"*uint8 to int", func() interface{} { i := uint8(200); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 200 }},
-		{"*uint16 to int", func() interface{} { i := uint16(50000); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 50000 }},
-		{"*uint32 to int", func() interface{} { i := uint32(1000000); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 1000000 }},
-		{"*uint64 to int", func() interface{} { i := uint64(1000000); return &i }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 1000000 }},
+		{"*uint to int", func() any { i := uint(42); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 42 }},
+		{"*uint8 to int", func() any { i := uint8(200); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 200 }},
+		{"*uint16 to int", func() any { i := uint16(50000); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 50000 }},
+		{"*uint32 to int", func() any { i := uint32(1000000); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 1000000 }},
+		{"*uint64 to int", func() any { i := uint64(1000000); return &i }(), new(int), false, func(v any) bool { return *(v.(*int)) == 1000000 }},
 
 		// Test float pointer conversions
-		{"*float32 to int", func() interface{} { f := float32(42.0); return &f }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 42 }},
-		{"*float64 to int", func() interface{} { f := 42.0; return &f }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 42 }},
+		{"*float32 to int", func() any { f := float32(42.0); return &f }(), new(int), false, func(v any) bool { return *(v.(*int)) == 42 }},
+		{"*float64 to int", func() any { f := 42.0; return &f }(), new(int), false, func(v any) bool { return *(v.(*int)) == 42 }},
 
 		// Test string pointer conversions
-		{"*string to int", func() interface{} { s := "42"; return &s }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 42 }},
+		{"*string to int", func() any { s := "42"; return &s }(), new(int), false, func(v any) bool { return *(v.(*int)) == 42 }},
 
 		// Test bool pointer conversions
-		{"*bool true to int", func() interface{} { b := true; return &b }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 1 }},
-		{"*bool false to int", func() interface{} { b := false; return &b }(), new(int), false, func(v interface{}) bool { return *(v.(*int)) == 0 }},
+		{"*bool true to int", func() any { b := true; return &b }(), new(int), false, func(v any) bool { return *(v.(*int)) == 1 }},
+		{"*bool false to int", func() any { b := false; return &b }(), new(int), false, func(v any) bool { return *(v.(*int)) == 0 }},
 
 		// Test []byte conversions
-		{"[]byte to string", []byte("hello world"), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "hello world" }},
-		{"[]byte to []byte", []byte("test"), new([]byte), false, func(v interface{}) bool {
+		{"[]byte to string", []byte("hello world"), new(string), false, func(v any) bool { return *(v.(*string)) == "hello world" }},
+		{"[]byte to []byte", []byte("test"), new([]byte), false, func(v any) bool {
 			result := *(v.(*[]byte))
 			return string(result) == "test"
 		}},
@@ -213,77 +213,77 @@ func TestFromGeneric_ExtensiveTypes(t *testing.T) {
 func TestToGeneric_ExtensiveTypes(t *testing.T) {
 	tests := []struct {
 		name     string
-		from     interface{}
-		to       interface{}
+		from     any
+		to       any
 		wantErr  bool
-		validate func(interface{}) bool
+		validate func(any) bool
 	}{
 		// Test comprehensive To conversions for each integer type
-		{"multiple types to int8", "100", new(int8), false, func(v interface{}) bool { return *(v.(*int8)) == 100 }},
-		{"multiple types to int16", "30000", new(int16), false, func(v interface{}) bool { return *(v.(*int16)) == 30000 }},
-		{"multiple types to int32", "2000000", new(int32), false, func(v interface{}) bool { return *(v.(*int32)) == 2000000 }},
-		{"multiple types to int64", "9000000000", new(int64), false, func(v interface{}) bool { return *(v.(*int64)) == 9000000000 }},
+		{"multiple types to int8", "100", new(int8), false, func(v any) bool { return *(v.(*int8)) == 100 }},
+		{"multiple types to int16", "30000", new(int16), false, func(v any) bool { return *(v.(*int16)) == 30000 }},
+		{"multiple types to int32", "2000000", new(int32), false, func(v any) bool { return *(v.(*int32)) == 2000000 }},
+		{"multiple types to int64", "9000000000", new(int64), false, func(v any) bool { return *(v.(*int64)) == 9000000000 }},
 
-		{"bool to int8", true, new(int8), false, func(v interface{}) bool { return *(v.(*int8)) == 1 }},
-		{"float to int8", 50.0, new(int8), false, func(v interface{}) bool { return *(v.(*int8)) == 50 }},
+		{"bool to int8", true, new(int8), false, func(v any) bool { return *(v.(*int8)) == 1 }},
+		{"float to int8", 50.0, new(int8), false, func(v any) bool { return *(v.(*int8)) == 50 }},
 
 		// Test comprehensive uint conversions
-		{"string to uint8", "200", new(uint8), false, func(v interface{}) bool { return *(v.(*uint8)) == 200 }},
-		{"string to uint16", "60000", new(uint16), false, func(v interface{}) bool { return *(v.(*uint16)) == 60000 }},
-		{"string to uint32", "4000000000", new(uint32), false, func(v interface{}) bool { return *(v.(*uint32)) == 4000000000 }},
-		{"string to uint64", "9000000000000000000", new(uint64), false, func(v interface{}) bool { return *(v.(*uint64)) == 9000000000000000000 }},
+		{"string to uint8", "200", new(uint8), false, func(v any) bool { return *(v.(*uint8)) == 200 }},
+		{"string to uint16", "60000", new(uint16), false, func(v any) bool { return *(v.(*uint16)) == 60000 }},
+		{"string to uint32", "4000000000", new(uint32), false, func(v any) bool { return *(v.(*uint32)) == 4000000000 }},
+		{"string to uint64", "9000000000000000000", new(uint64), false, func(v any) bool { return *(v.(*uint64)) == 9000000000000000000 }},
 
-		{"bool to uint", true, new(uint), false, func(v interface{}) bool { return *(v.(*uint)) == 1 }},
-		{"float to uint", 100.0, new(uint), false, func(v interface{}) bool { return *(v.(*uint)) == 100 }},
+		{"bool to uint", true, new(uint), false, func(v any) bool { return *(v.(*uint)) == 1 }},
+		{"float to uint", 100.0, new(uint), false, func(v any) bool { return *(v.(*uint)) == 100 }},
 
 		// Test comprehensive float conversions
-		{"int to float32", 42, new(float32), false, func(v interface{}) bool { return *(v.(*float32)) == 42.0 }},
-		{"string to float32", "3.14159", new(float32), false, func(v interface{}) bool {
+		{"int to float32", 42, new(float32), false, func(v any) bool { return *(v.(*float32)) == 42.0 }},
+		{"string to float32", "3.14159", new(float32), false, func(v any) bool {
 			result := *(v.(*float32))
 			return result > 3.14 && result < 3.15
 		}},
 
-		{"int to float64", 123, new(float64), false, func(v interface{}) bool { return *(v.(*float64)) == 123.0 }},
+		{"int to float64", 123, new(float64), false, func(v any) bool { return *(v.(*float64)) == 123.0 }},
 
 		// Test comprehensive string conversions
-		{"int8 to string", int8(42), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "42" }},
-		{"int16 to string", int16(1000), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "1000" }},
-		{"int32 to string", int32(100000), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "100000" }},
-		{"int64 to string", int64(1000000), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "1000000" }},
-		{"uint8 to string", uint8(200), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "200" }},
-		{"uint16 to string", uint16(50000), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "50000" }},
-		{"uint32 to string", uint32(1000000), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "1000000" }},
-		{"uint64 to string", uint64(1000000), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "1000000" }},
-		{"float32 to string", float32(3.14), new(string), false, func(v interface{}) bool { return *(v.(*string)) == "3.14" }},
-		{"float64 to string", 2.71828, new(string), false, func(v interface{}) bool { return *(v.(*string)) == "2.71828" }},
+		{"int8 to string", int8(42), new(string), false, func(v any) bool { return *(v.(*string)) == "42" }},
+		{"int16 to string", int16(1000), new(string), false, func(v any) bool { return *(v.(*string)) == "1000" }},
+		{"int32 to string", int32(100000), new(string), false, func(v any) bool { return *(v.(*string)) == "100000" }},
+		{"int64 to string", int64(1000000), new(string), false, func(v any) bool { return *(v.(*string)) == "1000000" }},
+		{"uint8 to string", uint8(200), new(string), false, func(v any) bool { return *(v.(*string)) == "200" }},
+		{"uint16 to string", uint16(50000), new(string), false, func(v any) bool { return *(v.(*string)) == "50000" }},
+		{"uint32 to string", uint32(1000000), new(string), false, func(v any) bool { return *(v.(*string)) == "1000000" }},
+		{"uint64 to string", uint64(1000000), new(string), false, func(v any) bool { return *(v.(*string)) == "1000000" }},
+		{"float32 to string", float32(3.14), new(string), false, func(v any) bool { return *(v.(*string)) == "3.14" }},
+		{"float64 to string", 2.71828, new(string), false, func(v any) bool { return *(v.(*string)) == "2.71828" }},
 
 		// Test comprehensive bool conversions
-		{"int negative to bool", -5, new(bool), false, func(v interface{}) bool { return *(v.(*bool)) == false }},
-		{"int positive to bool", 100, new(bool), false, func(v interface{}) bool { return *(v.(*bool)) == true }},
-		{"uint zero to bool", uint(0), new(bool), false, func(v interface{}) bool { return *(v.(*bool)) == false }},
-		{"uint positive to bool", uint(50), new(bool), false, func(v interface{}) bool { return *(v.(*bool)) == true }},
-		{"string false to bool", "false", new(bool), false, func(v interface{}) bool { return *(v.(*bool)) == false }},
-		{"string 0 to bool", "0", new(bool), false, func(v interface{}) bool { return *(v.(*bool)) == false }},
-		{"string 1 to bool", "1", new(bool), false, func(v interface{}) bool { return *(v.(*bool)) == true }},
+		{"int negative to bool", -5, new(bool), false, func(v any) bool { return *(v.(*bool)) == false }},
+		{"int positive to bool", 100, new(bool), false, func(v any) bool { return *(v.(*bool)) == true }},
+		{"uint zero to bool", uint(0), new(bool), false, func(v any) bool { return *(v.(*bool)) == false }},
+		{"uint positive to bool", uint(50), new(bool), false, func(v any) bool { return *(v.(*bool)) == true }},
+		{"string false to bool", "false", new(bool), false, func(v any) bool { return *(v.(*bool)) == false }},
+		{"string 0 to bool", "0", new(bool), false, func(v any) bool { return *(v.(*bool)) == false }},
+		{"string 1 to bool", "1", new(bool), false, func(v any) bool { return *(v.(*bool)) == true }},
 
 		// Test []byte conversions
-		{"string to []byte", "hello", new([]byte), false, func(v interface{}) bool {
+		{"string to []byte", "hello", new([]byte), false, func(v any) bool {
 			result := *(v.(*[]byte))
 			return string(result) == "hello"
 		}},
 
 		// Test time conversions
-		{"RFC3339 to time", "2022-12-25T10:30:00Z", new(time.Time), false, func(v interface{}) bool {
+		{"RFC3339 to time", "2022-12-25T10:30:00Z", new(time.Time), false, func(v any) bool {
 			result := *(v.(*time.Time))
 			return result.Year() == 2022 && result.Month() == 12 && result.Day() == 25
 		}},
-		{"RFC1123 to time", "Sun, 25 Dec 2022 10:30:00 GMT", new(time.Time), false, func(v interface{}) bool {
+		{"RFC1123 to time", "Sun, 25 Dec 2022 10:30:00 GMT", new(time.Time), false, func(v any) bool {
 			result := *(v.(*time.Time))
 			return result.Year() == 2022
 		}},
 
 		// Error cases - unsupported target types
-		{"int to interface{}", 42, new(interface{}), true, nil},
+		{"int to interface{}", 42, new(any), true, nil},
 		{"string to chan", "test", new(chan int), true, nil},
 	}
 

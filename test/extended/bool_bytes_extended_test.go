@@ -24,7 +24,7 @@ import (
 func TestToBool_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected bool
 		wantErr  bool
 	}{
@@ -82,11 +82,11 @@ func TestToBool_Extended(t *testing.T) {
 		{"[]byte '0' to bool", []byte("0"), false, false},
 
 		// Pointer types
-		{"*int 0 to bool", func() interface{} { i := 0; return &i }(), false, false},
-		{"*int 1 to bool", func() interface{} { i := 1; return &i }(), true, false},
-		{"*bool true to bool", func() interface{} { b := true; return &b }(), true, false},
-		{"*bool false to bool", func() interface{} { b := false; return &b }(), false, false},
-		{"*string 'true' to bool", func() interface{} { s := "true"; return &s }(), true, false},
+		{"*int 0 to bool", func() any { i := 0; return &i }(), false, false},
+		{"*int 1 to bool", func() any { i := 1; return &i }(), true, false},
+		{"*bool true to bool", func() any { b := true; return &b }(), true, false},
+		{"*bool false to bool", func() any { b := false; return &b }(), false, false},
+		{"*string 'true' to bool", func() any { s := "true"; return &s }(), true, false},
 
 		// Error cases
 		{"unsupported type", []int{1, 2, 3}, false, true},
@@ -112,7 +112,7 @@ func TestToBool_Extended(t *testing.T) {
 func TestToBytes_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected []byte
 		wantErr  bool
 	}{
@@ -122,8 +122,8 @@ func TestToBytes_Extended(t *testing.T) {
 		{"unicode string to bytes", "こんにちは", []byte("こんにちは"), false},
 
 		// *string types - supported
-		{"*string to bytes", func() interface{} { s := "hello"; return &s }(), []byte("hello"), false},
-		{"*empty string to bytes", func() interface{} { s := ""; return &s }(), []byte(""), false},
+		{"*string to bytes", func() any { s := "hello"; return &s }(), []byte("hello"), false},
+		{"*empty string to bytes", func() any { s := ""; return &s }(), []byte(""), false},
 
 		// []byte types - supported
 		{"bytes to bytes", []byte("hello"), []byte("hello"), false},
@@ -145,8 +145,8 @@ func TestToBytes_Extended(t *testing.T) {
 		{"float64 to bytes", 3.14159, nil, true},
 		{"bool true to bytes", true, nil, true},
 		{"bool false to bytes", false, nil, true},
-		{"*int to bytes", func() interface{} { i := 42; return &i }(), nil, true},
-		{"*bool to bytes", func() interface{} { b := true; return &b }(), nil, true},
+		{"*int to bytes", func() any { i := 42; return &i }(), nil, true},
+		{"*bool to bytes", func() any { b := true; return &b }(), nil, true},
 		{"unsupported type", []int{1, 2, 3}, nil, true},
 		{"map type", map[string]int{"a": 1}, nil, true},
 		{"struct type", struct{ A int }{42}, nil, true},

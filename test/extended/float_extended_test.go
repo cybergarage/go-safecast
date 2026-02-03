@@ -25,7 +25,7 @@ func TestFromFloat64Extended(t *testing.T) {
 	tests := []struct {
 		name    string
 		input   float64
-		target  interface{}
+		target  any
 		wantErr bool
 	}{
 		// Integer conversions
@@ -111,7 +111,7 @@ func TestFromFloat64Extended(t *testing.T) {
 func TestToFloat64Extended(t *testing.T) {
 	tests := []struct {
 		name    string
-		input   interface{}
+		input   any
 		wantErr bool
 	}{
 		// Various input types
@@ -135,9 +135,9 @@ func TestToFloat64Extended(t *testing.T) {
 		{"unsupported type", []int{1, 2, 3}, true},
 
 		// Pointer types
-		{"*int to float64", func() interface{} { i := 42; return &i }(), false},
-		{"*string to float64", func() interface{} { s := "3.14"; return &s }(), false},
-		{"*string invalid to float64", func() interface{} { s := "invalid"; return &s }(), true},
+		{"*int to float64", func() any { i := 42; return &i }(), false},
+		{"*string to float64", func() any { s := "3.14"; return &s }(), false},
+		{"*string invalid to float64", func() any { s := "invalid"; return &s }(), true},
 	}
 
 	for _, tt := range tests {
@@ -154,7 +154,7 @@ func TestToFloat64Extended(t *testing.T) {
 func TestToFloat32Extended(t *testing.T) {
 	tests := []struct {
 		name    string
-		input   interface{}
+		input   any
 		wantErr bool
 	}{
 		// Various input types
@@ -168,8 +168,8 @@ func TestToFloat32Extended(t *testing.T) {
 		{"unsupported type", []int{1, 2, 3}, true},
 
 		// Pointer types
-		{"*int to float32", func() interface{} { i := 42; return &i }(), false},
-		{"*string to float32", func() interface{} { s := "3.14"; return &s }(), false},
+		{"*int to float32", func() any { i := 42; return &i }(), false},
+		{"*string to float32", func() any { s := "3.14"; return &s }(), false},
 	}
 
 	for _, tt := range tests {
@@ -187,7 +187,7 @@ func TestToFloat32Extended(t *testing.T) {
 func TestToFloat32_AllTypes(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected float32
 		wantErr  bool
 	}{
@@ -202,29 +202,29 @@ func TestToFloat32_AllTypes(t *testing.T) {
 		{"uint64 to float32", uint64(1000000), 1000000.0, false},
 
 		// All pointer integer types
-		{"*int8 to float32", func() interface{} { i := int8(42); return &i }(), 42.0, false},
-		{"*int16 to float32", func() interface{} { i := int16(1000); return &i }(), 1000.0, false},
-		{"*int32 to float32", func() interface{} { i := int32(100000); return &i }(), 100000.0, false},
-		{"*int64 to float32", func() interface{} { i := int64(1000000); return &i }(), 1000000.0, false},
-		{"*uint to float32", func() interface{} { i := uint(42); return &i }(), 42.0, false},
-		{"*uint8 to float32", func() interface{} { i := uint8(200); return &i }(), 200.0, false},
-		{"*uint16 to float32", func() interface{} { i := uint16(50000); return &i }(), 50000.0, false},
-		{"*uint32 to float32", func() interface{} { i := uint32(1000000); return &i }(), 1000000.0, false},
-		{"*uint64 to float32", func() interface{} { i := uint64(1000000); return &i }(), 1000000.0, false},
+		{"*int8 to float32", func() any { i := int8(42); return &i }(), 42.0, false},
+		{"*int16 to float32", func() any { i := int16(1000); return &i }(), 1000.0, false},
+		{"*int32 to float32", func() any { i := int32(100000); return &i }(), 100000.0, false},
+		{"*int64 to float32", func() any { i := int64(1000000); return &i }(), 1000000.0, false},
+		{"*uint to float32", func() any { i := uint(42); return &i }(), 42.0, false},
+		{"*uint8 to float32", func() any { i := uint8(200); return &i }(), 200.0, false},
+		{"*uint16 to float32", func() any { i := uint16(50000); return &i }(), 50000.0, false},
+		{"*uint32 to float32", func() any { i := uint32(1000000); return &i }(), 1000000.0, false},
+		{"*uint64 to float32", func() any { i := uint64(1000000); return &i }(), 1000000.0, false},
 
 		// Float types
 		{"float32 to float32", float32(3.14), 3.14, false},
-		{"*float32 to float32", func() interface{} { f := float32(3.14); return &f }(), 3.14, false},
+		{"*float32 to float32", func() any { f := float32(3.14); return &f }(), 3.14, false},
 		{"float64 to float32", 2.71828, 2.71828, false},
-		{"*float64 to float32", func() interface{} { f := 2.71828; return &f }(), 2.71828, false},
+		{"*float64 to float32", func() any { f := 2.71828; return &f }(), 2.71828, false},
 
 		// String types
 		{"string scientific notation", "1.23e4", 12300.0, false},
 		{"string negative", "-3.14", -3.14, false},
 		{"string zero", "0", 0.0, false},
 		{"string very small", "0.000001", 0.000001, false},
-		{"*string valid", func() interface{} { s := "2.5"; return &s }(), 2.5, false},
-		{"*string invalid", func() interface{} { s := "not_a_number"; return &s }(), 0, true},
+		{"*string valid", func() any { s := "2.5"; return &s }(), 2.5, false},
+		{"*string invalid", func() any { s := "not_a_number"; return &s }(), 0, true},
 
 		// []byte types
 		{"[]byte valid", []byte("1.5"), 1.5, false},

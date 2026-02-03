@@ -31,9 +31,9 @@ import (
 func TestFrom_ComprehensiveTypeHandling(t *testing.T) {
 	tests := []struct {
 		name     string
-		from     interface{}
-		to       interface{}
-		expected interface{}
+		from     any
+		to       any
+		expected any
 		wantErr  bool
 	}{
 		// int and *int - comprehensive coverage
@@ -136,7 +136,7 @@ func TestFrom_ComprehensiveTypeHandling(t *testing.T) {
 
 			if !tt.wantErr {
 				// Get the actual result by dereferencing the pointer
-				var actualResult interface{}
+				var actualResult any
 				switch ptr := tt.to.(type) {
 				case *int:
 					actualResult = *ptr
@@ -182,7 +182,7 @@ func TestFromBool_EdgeCases(t *testing.T) {
 	tests := []struct {
 		name    string
 		input   bool
-		target  interface{}
+		target  any
 		wantErr bool
 	}{
 		// Basic conversions for true

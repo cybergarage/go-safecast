@@ -45,7 +45,7 @@ import (
 func TestToInt8_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int8
 		wantErr  bool
 	}{
@@ -76,7 +76,7 @@ func TestToInt8_Extended(t *testing.T) {
 func TestToUint8_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint8
 		wantErr  bool
 	}{
@@ -107,7 +107,7 @@ func TestToUint8_Extended(t *testing.T) {
 func TestToInt16_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int16
 		wantErr  bool
 	}{
@@ -137,7 +137,7 @@ func TestToInt16_Extended(t *testing.T) {
 func TestToUint16_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint16
 		wantErr  bool
 	}{
@@ -167,7 +167,7 @@ func TestToUint16_Extended(t *testing.T) {
 func TestToInt32_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int32
 		wantErr  bool
 	}{
@@ -197,7 +197,7 @@ func TestToInt32_Extended(t *testing.T) {
 func TestToUint32_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint32
 		wantErr  bool
 	}{
@@ -228,7 +228,7 @@ func TestToUint32_Extended(t *testing.T) {
 func TestToInt64_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int64
 		wantErr  bool
 	}{
@@ -258,7 +258,7 @@ func TestToInt64_Extended(t *testing.T) {
 func TestToUint64_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint64
 		wantErr  bool
 	}{
@@ -289,7 +289,7 @@ func TestToUint64_Extended(t *testing.T) {
 func TestToInt_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int
 		wantErr  bool
 	}{
@@ -321,7 +321,7 @@ func TestToInt_Extended(t *testing.T) {
 func TestToUint_Extended(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint
 		wantErr  bool
 	}{
@@ -357,7 +357,7 @@ func TestToUint_Extended(t *testing.T) {
 func TestToInt8_ComprehensiveTypes(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int8
 		wantErr  bool
 	}{
@@ -380,9 +380,9 @@ func TestToInt8_ComprehensiveTypes(t *testing.T) {
 		{"[]byte to int8", []byte("50"), 50, false},
 
 		// Pointer types
-		{"*int to int8", func() interface{} { i := 42; return &i }(), 42, false},
-		{"*string to int8", func() interface{} { s := "25"; return &s }(), 25, false},
-		{"*bool to int8", func() interface{} { b := true; return &b }(), 1, false},
+		{"*int to int8", func() any { i := 42; return &i }(), 42, false},
+		{"*string to int8", func() any { s := "25"; return &s }(), 25, false},
+		{"*bool to int8", func() any { b := true; return &b }(), 1, false},
 
 		// Overflow cases
 		{"int overflow", 200, 0, true},
@@ -417,7 +417,7 @@ func TestToInt8_ComprehensiveTypes(t *testing.T) {
 func TestToUint8_ComprehensiveTypes(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint8
 		wantErr  bool
 	}{
@@ -440,9 +440,9 @@ func TestToUint8_ComprehensiveTypes(t *testing.T) {
 		{"[]byte to uint8", []byte("100"), 100, false},
 
 		// Pointer types
-		{"*int to uint8", func() interface{} { i := 200; return &i }(), 200, false},
-		{"*string to uint8", func() interface{} { s := "100"; return &s }(), 100, false},
-		{"*bool to uint8", func() interface{} { b := true; return &b }(), 1, false},
+		{"*int to uint8", func() any { i := 200; return &i }(), 200, false},
+		{"*string to uint8", func() any { s := "100"; return &s }(), 100, false},
+		{"*bool to uint8", func() any { b := true; return &b }(), 1, false},
 
 		// Overflow/underflow cases
 		{"int overflow", 300, 0, true},
@@ -474,7 +474,7 @@ func TestToUint8_ComprehensiveTypes(t *testing.T) {
 func TestToInt16_ComprehensiveTypes(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int16
 		wantErr  bool
 	}{
@@ -520,7 +520,7 @@ func TestToInt16_ComprehensiveTypes(t *testing.T) {
 func TestToUint16_ComprehensiveTypes(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint16
 		wantErr  bool
 	}{
@@ -571,7 +571,7 @@ func TestToUint16_ComprehensiveTypes(t *testing.T) {
 func TestToInt32_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int32
 		wantErr  bool
 	}{
@@ -607,20 +607,20 @@ func TestToInt32_Comprehensive(t *testing.T) {
 		{"[]byte negative to int32", []byte("-123456"), -123456, false},
 
 		// All pointer types
-		{"*int to int32", func() interface{} { i := 100000; return &i }(), 100000, false},
-		{"*int8 to int32", func() interface{} { i := int8(100); return &i }(), 100, false},
-		{"*int16 to int32", func() interface{} { i := int16(30000); return &i }(), 30000, false},
-		{"*int32 to int32", func() interface{} { i := int32(500000); return &i }(), 500000, false},
-		{"*int64 to int32", func() interface{} { i := int64(200000); return &i }(), 200000, false},
-		{"*uint to int32", func() interface{} { i := uint(150000); return &i }(), 150000, false},
-		{"*uint8 to int32", func() interface{} { i := uint8(255); return &i }(), 255, false},
-		{"*uint16 to int32", func() interface{} { i := uint16(65535); return &i }(), 65535, false},
-		{"*uint32 to int32", func() interface{} { i := uint32(1000000); return &i }(), 1000000, false},
-		{"*uint64 to int32", func() interface{} { i := uint64(300000); return &i }(), 300000, false},
-		{"*float32 to int32", func() interface{} { f := float32(250000.0); return &f }(), 250000, false},
-		{"*float64 to int32", func() interface{} { f := 400000.0; return &f }(), 400000, false},
-		{"*string to int32", func() interface{} { s := "750000"; return &s }(), 750000, false},
-		{"*bool to int32", func() interface{} { b := true; return &b }(), 1, false},
+		{"*int to int32", func() any { i := 100000; return &i }(), 100000, false},
+		{"*int8 to int32", func() any { i := int8(100); return &i }(), 100, false},
+		{"*int16 to int32", func() any { i := int16(30000); return &i }(), 30000, false},
+		{"*int32 to int32", func() any { i := int32(500000); return &i }(), 500000, false},
+		{"*int64 to int32", func() any { i := int64(200000); return &i }(), 200000, false},
+		{"*uint to int32", func() any { i := uint(150000); return &i }(), 150000, false},
+		{"*uint8 to int32", func() any { i := uint8(255); return &i }(), 255, false},
+		{"*uint16 to int32", func() any { i := uint16(65535); return &i }(), 65535, false},
+		{"*uint32 to int32", func() any { i := uint32(1000000); return &i }(), 1000000, false},
+		{"*uint64 to int32", func() any { i := uint64(300000); return &i }(), 300000, false},
+		{"*float32 to int32", func() any { f := float32(250000.0); return &f }(), 250000, false},
+		{"*float64 to int32", func() any { f := 400000.0; return &f }(), 400000, false},
+		{"*string to int32", func() any { s := "750000"; return &s }(), 750000, false},
+		{"*bool to int32", func() any { b := true; return &b }(), 1, false},
 
 		// Overflow/underflow cases - int overflow
 		{"int overflow", int(3000000000), 0, true},   // > MaxInt32
@@ -686,7 +686,7 @@ func TestToInt32_Comprehensive(t *testing.T) {
 func TestToInt64_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected int64
 		wantErr  bool
 	}{
@@ -724,24 +724,24 @@ func TestToInt64_Comprehensive(t *testing.T) {
 		{"[]byte negative to int64", []byte("-123456789012"), -123456789012, false},
 
 		// All pointer types
-		{"*int to int64", func() interface{} { i := 9000000000; return &i }(), 9000000000, false},
-		{"*int8 to int64", func() interface{} { i := int8(127); return &i }(), 127, false},
-		{"*int16 to int64", func() interface{} { i := int16(32767); return &i }(), 32767, false},
-		{"*int32 to int64", func() interface{} { i := int32(2147483647); return &i }(), 2147483647, false},
-		{"*int64 to int64", func() interface{} { i := int64(9223372036854775807); return &i }(), 9223372036854775807, false},
-		{"*uint to int64", func() interface{} { i := uint(1000000); return &i }(), 1000000, false},
-		{"*uint8 to int64", func() interface{} { i := uint8(255); return &i }(), 255, false},
-		{"*uint16 to int64", func() interface{} { i := uint16(65535); return &i }(), 65535, false},
-		{"*uint32 to int64", func() interface{} { i := uint32(4294967295); return &i }(), 4294967295, false},
-		{"*uint64 to int64", func() interface{} { i := uint64(9223372036854775807); return &i }(), 9223372036854775807, false},
-		{"*float32 to int64", func() interface{} { f := float32(1000000.0); return &f }(), 1000000, false},
-		{"*float64 to int64", func() interface{} { f := 9000000000.0; return &f }(), 9000000000, false},
-		{"*string to int64", func() interface{} { s := "123456789012"; return &s }(), 123456789012, false},
-		{"*bool to int64", func() interface{} { b := true; return &b }(), 1, false},
+		{"*int to int64", func() any { i := 9000000000; return &i }(), 9000000000, false},
+		{"*int8 to int64", func() any { i := int8(127); return &i }(), 127, false},
+		{"*int16 to int64", func() any { i := int16(32767); return &i }(), 32767, false},
+		{"*int32 to int64", func() any { i := int32(2147483647); return &i }(), 2147483647, false},
+		{"*int64 to int64", func() any { i := int64(9223372036854775807); return &i }(), 9223372036854775807, false},
+		{"*uint to int64", func() any { i := uint(1000000); return &i }(), 1000000, false},
+		{"*uint8 to int64", func() any { i := uint8(255); return &i }(), 255, false},
+		{"*uint16 to int64", func() any { i := uint16(65535); return &i }(), 65535, false},
+		{"*uint32 to int64", func() any { i := uint32(4294967295); return &i }(), 4294967295, false},
+		{"*uint64 to int64", func() any { i := uint64(9223372036854775807); return &i }(), 9223372036854775807, false},
+		{"*float32 to int64", func() any { f := float32(1000000.0); return &f }(), 1000000, false},
+		{"*float64 to int64", func() any { f := 9000000000.0; return &f }(), 9000000000, false},
+		{"*string to int64", func() any { s := "123456789012"; return &s }(), 123456789012, false},
+		{"*bool to int64", func() any { b := true; return &b }(), 1, false},
 
 		// Overflow/underflow cases - uint overflow
-		{"*uint overflow", func() interface{} { i := uint(math.MaxUint64); return &i }(), 0, true},
-		{"*uint64 overflow", func() interface{} { i := uint64(math.MaxUint64); return &i }(), 0, true},
+		{"*uint overflow", func() any { i := uint(math.MaxUint64); return &i }(), 0, true},
+		{"*uint64 overflow", func() any { i := uint64(math.MaxUint64); return &i }(), 0, true},
 
 		// Float overflow/underflow - ToInt64 - クランプされる
 		{"float32 underflow", float32(-1e20), -9223372036854775808, false}, // クランップされる
@@ -789,7 +789,7 @@ func TestToInt64_Comprehensive(t *testing.T) {
 func TestToUint32_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint32
 		wantErr  bool
 	}{
@@ -823,20 +823,20 @@ func TestToUint32_Comprehensive(t *testing.T) {
 		{"[]byte to uint32", []byte("1234567890"), 1234567890, false},
 
 		// All pointer types
-		{"*int to uint32", func() interface{} { i := 4000000000; return &i }(), 4000000000, false},
-		{"*int8 to uint32", func() interface{} { i := int8(127); return &i }(), 127, false},
-		{"*int16 to uint32", func() interface{} { i := int16(32767); return &i }(), 32767, false},
-		{"*int32 to uint32", func() interface{} { i := int32(2147483647); return &i }(), 2147483647, false},
-		{"*int64 to uint32", func() interface{} { i := int64(4294967295); return &i }(), 4294967295, false},
-		{"*uint to uint32", func() interface{} { i := uint(4000000000); return &i }(), 4000000000, false},
-		{"*uint8 to uint32", func() interface{} { i := uint8(255); return &i }(), 255, false},
-		{"*uint16 to uint32", func() interface{} { i := uint16(65535); return &i }(), 65535, false},
-		{"*uint32 to uint32", func() interface{} { i := uint32(4294967295); return &i }(), 4294967295, false},
-		{"*uint64 to uint32", func() interface{} { i := uint64(4000000000); return &i }(), 4000000000, false},
-		{"*float32 to uint32", func() interface{} { f := float32(4000000000.0); return &f }(), 4000000000, false},
-		{"*float64 to uint32", func() interface{} { f := 4000000000.0; return &f }(), 4000000000, false},
-		{"*string to uint32", func() interface{} { s := "1234567890"; return &s }(), 1234567890, false},
-		{"*bool to uint32", func() interface{} { b := true; return &b }(), 1, false},
+		{"*int to uint32", func() any { i := 4000000000; return &i }(), 4000000000, false},
+		{"*int8 to uint32", func() any { i := int8(127); return &i }(), 127, false},
+		{"*int16 to uint32", func() any { i := int16(32767); return &i }(), 32767, false},
+		{"*int32 to uint32", func() any { i := int32(2147483647); return &i }(), 2147483647, false},
+		{"*int64 to uint32", func() any { i := int64(4294967295); return &i }(), 4294967295, false},
+		{"*uint to uint32", func() any { i := uint(4000000000); return &i }(), 4000000000, false},
+		{"*uint8 to uint32", func() any { i := uint8(255); return &i }(), 255, false},
+		{"*uint16 to uint32", func() any { i := uint16(65535); return &i }(), 65535, false},
+		{"*uint32 to uint32", func() any { i := uint32(4294967295); return &i }(), 4294967295, false},
+		{"*uint64 to uint32", func() any { i := uint64(4000000000); return &i }(), 4000000000, false},
+		{"*float32 to uint32", func() any { f := float32(4000000000.0); return &f }(), 4000000000, false},
+		{"*float64 to uint32", func() any { f := 4000000000.0; return &f }(), 4000000000, false},
+		{"*string to uint32", func() any { s := "1234567890"; return &s }(), 1234567890, false},
+		{"*bool to uint32", func() any { b := true; return &b }(), 1, false},
 
 		// Negative values - should error for unsigned
 		{"int negative", -1, 0, true},
@@ -848,7 +848,7 @@ func TestToUint32_Comprehensive(t *testing.T) {
 		{"float64 negative", -1.0, 0, true},
 		{"string negative", "-1", 0, true},
 		{"[]byte negative", []byte("-1"), 0, true},
-		{"*int negative", func() interface{} { i := -1; return &i }(), 0, true},
+		{"*int negative", func() any { i := -1; return &i }(), 0, true},
 
 		// Overflow cases
 		{"int64 overflow", int64(5000000000), 0, true},   // > MaxUint32
@@ -857,8 +857,8 @@ func TestToUint32_Comprehensive(t *testing.T) {
 		{"float64 overflow", 5000000000.0, 0, true},
 		{"string overflow", "5000000000", 0, true}, // > MaxUint32
 		{"[]byte overflow", []byte("5000000000"), 0, true},
-		{"*int64 overflow", func() interface{} { i := int64(5000000000); return &i }(), 0, true},
-		{"*uint64 overflow", func() interface{} { i := uint64(5000000000); return &i }(), 0, true},
+		{"*int64 overflow", func() any { i := int64(5000000000); return &i }(), 0, true},
+		{"*uint64 overflow", func() any { i := uint64(5000000000); return &i }(), 0, true},
 
 		// Special float values
 		{"float64 +Inf", math.Inf(1), 0, true},  // +Inf causes error
@@ -902,7 +902,7 @@ func TestToUint32_Comprehensive(t *testing.T) {
 func TestToUint64_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint64
 		wantErr  bool
 	}{
@@ -937,20 +937,20 @@ func TestToUint64_Comprehensive(t *testing.T) {
 		{"[]byte to uint64", []byte("1234567890"), 1234567890, false}, // Changed to smaller number
 
 		// All pointer types
-		{"*int to uint64", func() interface{} { i := 9000000000000000000; return &i }(), 9000000000000000000, false},
-		{"*int8 to uint64", func() interface{} { i := int8(127); return &i }(), 127, false},
-		{"*int16 to uint64", func() interface{} { i := int16(32767); return &i }(), 32767, false},
-		{"*int32 to uint64", func() interface{} { i := int32(2147483647); return &i }(), 2147483647, false},
-		{"*int64 to uint64", func() interface{} { i := int64(9223372036854775807); return &i }(), 9223372036854775807, false},
-		{"*uint to uint64", func() interface{} { i := uint(9000000000000000000); return &i }(), 9000000000000000000, false},
-		{"*uint8 to uint64", func() interface{} { i := uint8(255); return &i }(), 255, false},
-		{"*uint16 to uint64", func() interface{} { i := uint16(65535); return &i }(), 65535, false},
-		{"*uint32 to uint64", func() interface{} { i := uint32(4294967295); return &i }(), 4294967295, false},
-		{"*uint64 to uint64", func() interface{} { i := uint64(9000000000000000000); return &i }(), 9000000000000000000, false},
-		{"*float32 to uint64", func() interface{} { f := float32(1000000000.0); return &f }(), 1000000000, false},
-		{"*float64 to uint64", func() interface{} { f := 9000000000000000000.0; return &f }(), 9000000000000000000, false},
-		{"*string to uint64", func() interface{} { s := "1234567890"; return &s }(), 1234567890, false}, // Changed to smaller number
-		{"*bool to uint64", func() interface{} { b := true; return &b }(), 1, false},
+		{"*int to uint64", func() any { i := 9000000000000000000; return &i }(), 9000000000000000000, false},
+		{"*int8 to uint64", func() any { i := int8(127); return &i }(), 127, false},
+		{"*int16 to uint64", func() any { i := int16(32767); return &i }(), 32767, false},
+		{"*int32 to uint64", func() any { i := int32(2147483647); return &i }(), 2147483647, false},
+		{"*int64 to uint64", func() any { i := int64(9223372036854775807); return &i }(), 9223372036854775807, false},
+		{"*uint to uint64", func() any { i := uint(9000000000000000000); return &i }(), 9000000000000000000, false},
+		{"*uint8 to uint64", func() any { i := uint8(255); return &i }(), 255, false},
+		{"*uint16 to uint64", func() any { i := uint16(65535); return &i }(), 65535, false},
+		{"*uint32 to uint64", func() any { i := uint32(4294967295); return &i }(), 4294967295, false},
+		{"*uint64 to uint64", func() any { i := uint64(9000000000000000000); return &i }(), 9000000000000000000, false},
+		{"*float32 to uint64", func() any { f := float32(1000000000.0); return &f }(), 1000000000, false},
+		{"*float64 to uint64", func() any { f := 9000000000000000000.0; return &f }(), 9000000000000000000, false},
+		{"*string to uint64", func() any { s := "1234567890"; return &s }(), 1234567890, false}, // Changed to smaller number
+		{"*bool to uint64", func() any { b := true; return &b }(), 1, false},
 
 		// Negative values - should error for unsigned
 		{"int negative", -1, 0, true},
@@ -962,14 +962,14 @@ func TestToUint64_Comprehensive(t *testing.T) {
 		{"float64 negative", -1.0, 0, true},
 		{"string negative", "-1", 0, true},
 		{"[]byte negative", []byte("-1"), 0, true},
-		{"*int negative", func() interface{} { i := -1; return &i }(), 0, true},
-		{"*int8 negative", func() interface{} { i := int8(-1); return &i }(), 0, true},
-		{"*int16 negative", func() interface{} { i := int16(-1); return &i }(), 0, true},
-		{"*int32 negative", func() interface{} { i := int32(-1); return &i }(), 0, true},
-		{"*int64 negative", func() interface{} { i := int64(-1); return &i }(), 0, true},
-		{"*float32 negative", func() interface{} { f := float32(-1.0); return &f }(), 0, true},
-		{"*float64 negative", func() interface{} { f := -1.0; return &f }(), 0, true},
-		{"*string negative", func() interface{} { s := "-1"; return &s }(), 0, true},
+		{"*int negative", func() any { i := -1; return &i }(), 0, true},
+		{"*int8 negative", func() any { i := int8(-1); return &i }(), 0, true},
+		{"*int16 negative", func() any { i := int16(-1); return &i }(), 0, true},
+		{"*int32 negative", func() any { i := int32(-1); return &i }(), 0, true},
+		{"*int64 negative", func() any { i := int64(-1); return &i }(), 0, true},
+		{"*float32 negative", func() any { f := float32(-1.0); return &f }(), 0, true},
+		{"*float64 negative", func() any { f := -1.0; return &f }(), 0, true},
+		{"*string negative", func() any { s := "-1"; return &s }(), 0, true},
 
 		// Float overflow ToUint64 - Remove problematic cases
 		// {"float32 overflow", float32(1e20), 9223372036854775807, false}, // Removed - platform dependent
@@ -1020,7 +1020,7 @@ func TestToUint64_Comprehensive(t *testing.T) {
 func TestToUint_Comprehensive(t *testing.T) {
 	tests := []struct {
 		name     string
-		input    interface{}
+		input    any
 		expected uint
 		wantErr  bool
 	}{
@@ -1055,20 +1055,20 @@ func TestToUint_Comprehensive(t *testing.T) {
 		{"[]byte to uint", []byte("1234567890"), 1234567890, false}, // Changed to smaller number
 
 		// All pointer types
-		{"*int to uint", func() interface{} { i := 9000000000000000000; return &i }(), 9000000000000000000, false},
-		{"*int8 to uint", func() interface{} { i := int8(127); return &i }(), 127, false},
-		{"*int16 to uint", func() interface{} { i := int16(32767); return &i }(), 32767, false},
-		{"*int32 to uint", func() interface{} { i := int32(2147483647); return &i }(), 2147483647, false},
-		{"*int64 to uint", func() interface{} { i := int64(9223372036854775807); return &i }(), 9223372036854775807, false},
-		{"*uint to uint", func() interface{} { i := uint(9000000000000000000); return &i }(), 9000000000000000000, false},
-		{"*uint8 to uint", func() interface{} { i := uint8(255); return &i }(), 255, false},
-		{"*uint16 to uint", func() interface{} { i := uint16(65535); return &i }(), 65535, false},
-		{"*uint32 to uint", func() interface{} { i := uint32(4294967295); return &i }(), 4294967295, false},
-		{"*uint64 to uint", func() interface{} { i := uint64(9000000000000000000); return &i }(), 9000000000000000000, false},
-		{"*float32 to uint", func() interface{} { f := float32(1000000000.0); return &f }(), 1000000000, false},
-		{"*float64 to uint", func() interface{} { f := 9000000000000000000.0; return &f }(), 9000000000000000000, false},
-		{"*string to uint", func() interface{} { s := "1234567890"; return &s }(), 1234567890, false}, // Changed to smaller number
-		{"*bool to uint", func() interface{} { b := true; return &b }(), 1, false},
+		{"*int to uint", func() any { i := 9000000000000000000; return &i }(), 9000000000000000000, false},
+		{"*int8 to uint", func() any { i := int8(127); return &i }(), 127, false},
+		{"*int16 to uint", func() any { i := int16(32767); return &i }(), 32767, false},
+		{"*int32 to uint", func() any { i := int32(2147483647); return &i }(), 2147483647, false},
+		{"*int64 to uint", func() any { i := int64(9223372036854775807); return &i }(), 9223372036854775807, false},
+		{"*uint to uint", func() any { i := uint(9000000000000000000); return &i }(), 9000000000000000000, false},
+		{"*uint8 to uint", func() any { i := uint8(255); return &i }(), 255, false},
+		{"*uint16 to uint", func() any { i := uint16(65535); return &i }(), 65535, false},
+		{"*uint32 to uint", func() any { i := uint32(4294967295); return &i }(), 4294967295, false},
+		{"*uint64 to uint", func() any { i := uint64(9000000000000000000); return &i }(), 9000000000000000000, false},
+		{"*float32 to uint", func() any { f := float32(1000000000.0); return &f }(), 1000000000, false},
+		{"*float64 to uint", func() any { f := 9000000000000000000.0; return &f }(), 9000000000000000000, false},
+		{"*string to uint", func() any { s := "1234567890"; return &s }(), 1234567890, false}, // Changed to smaller number
+		{"*bool to uint", func() any { b := true; return &b }(), 1, false},
 
 		// Negative values - should error for unsigned
 		{"int negative", -1, 0, true},
@@ -1080,14 +1080,14 @@ func TestToUint_Comprehensive(t *testing.T) {
 		{"float64 negative", -1.0, 0, true},
 		{"string negative", "-1", 0, true},
 		{"[]byte negative", []byte("-1"), 0, true},
-		{"*int negative", func() interface{} { i := -1; return &i }(), 0, true},
-		{"*int8 negative", func() interface{} { i := int8(-1); return &i }(), 0, true},
-		{"*int16 negative", func() interface{} { i := int16(-1); return &i }(), 0, true},
-		{"*int32 negative", func() interface{} { i := int32(-1); return &i }(), 0, true},
-		{"*int64 negative", func() interface{} { i := int64(-1); return &i }(), 0, true},
-		{"*float32 negative", func() interface{} { f := float32(-1.0); return &f }(), 0, true},
-		{"*float64 negative", func() interface{} { f := -1.0; return &f }(), 0, true},
-		{"*string negative", func() interface{} { s := "-1"; return &s }(), 0, true},
+		{"*int negative", func() any { i := -1; return &i }(), 0, true},
+		{"*int8 negative", func() any { i := int8(-1); return &i }(), 0, true},
+		{"*int16 negative", func() any { i := int16(-1); return &i }(), 0, true},
+		{"*int32 negative", func() any { i := int32(-1); return &i }(), 0, true},
+		{"*int64 negative", func() any { i := int64(-1); return &i }(), 0, true},
+		{"*float32 negative", func() any { f := float32(-1.0); return &f }(), 0, true},
+		{"*float64 negative", func() any { f := -1.0; return &f }(), 0, true},
+		{"*string negative", func() any { s := "-1"; return &s }(), 0, true},
 
 		// Float overflow ToUint - Remove problematic cases
 		// {"float32 overflow", float32(1e20), 9223372036854775807, false}, // Removed - platform dependent

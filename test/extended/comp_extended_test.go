@@ -25,7 +25,7 @@ import (
 func TestCompareExtended(t *testing.T) {
 	tests := []struct {
 		name     string
-		a, b     interface{}
+		a, b     any
 		expected int
 		wantErr  bool
 	}{
@@ -65,11 +65,11 @@ func TestCompareExtended(t *testing.T) {
 		{"empty bytes", []byte{}, []byte{}, 0, false},
 
 		// Pointer comparisons
-		{"pointer int equal", func() interface{} { i := 42; return &i }(), 42, 0, false},
-		{"pointer int different", func() interface{} { i := 42; return &i }(), 43, -1, false},
-		{"pointer string equal", func() interface{} { s := "hello"; return &s }(), "hello", 0, false},
-		{"pointer bool equal", func() interface{} { b := true; return &b }(), true, 0, false},
-		{"pointer time equal", func() interface{} { t := time.Date(2022, 1, 1, 0, 0, 0, 0, time.UTC); return &t }(), time.Date(2022, 1, 1, 0, 0, 0, 0, time.UTC), 0, false},
+		{"pointer int equal", func() any { i := 42; return &i }(), 42, 0, false},
+		{"pointer int different", func() any { i := 42; return &i }(), 43, -1, false},
+		{"pointer string equal", func() any { s := "hello"; return &s }(), "hello", 0, false},
+		{"pointer bool equal", func() any { b := true; return &b }(), true, 0, false},
+		{"pointer time equal", func() any { t := time.Date(2022, 1, 1, 0, 0, 0, 0, time.UTC); return &t }(), time.Date(2022, 1, 1, 0, 0, 0, 0, time.UTC), 0, false},
 
 		// Special float values
 		{"NaN comparison", math.NaN(), math.NaN(), 1, false}, // Fixed: NaN comparison returns 1
@@ -110,7 +110,7 @@ func TestCompareSymmetric(t *testing.T) {
 	// Test that Compare(a, b) == -Compare(b, a) for valid comparisons
 	tests := []struct {
 		name string
-		a, b interface{}
+		a, b any
 	}{
 		{"int values", 42, 43},
 		{"float values", 3.14, 2.71},
@@ -141,14 +141,14 @@ func TestCompareErrorCoverage(t *testing.T) {
 	// Test various error conditions to improve coverage
 	tests := []struct {
 		name    string
-		a, b    interface{}
+		a, b    any
 		wantErr bool
 	}{
 		{"map types", map[string]int{"a": 1}, map[string]int{"a": 1}, true},
 		{"slice types", []int{1, 2, 3}, []int{1, 2, 3}, true},
 		{"function types", func() {}, func() {}, true},
 		{"channel types", make(chan int), make(chan int), true},
-		{"interface types", interface{}(42), interface{}("hello"), false}, // Fixed: doesn't cause error
+		{"interface types", any(42), any("hello"), false}, // Fixed: doesn't cause error
 		{"complex types", complex(1, 2), complex(1, 2), true},
 	}
 

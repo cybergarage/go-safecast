@@ -26,7 +26,7 @@ func TestFromStringExtended(t *testing.T) {
 	tests := []struct {
 		name    string
 		input   string
-		target  interface{}
+		target  any
 		wantErr bool
 	}{
 		// Integer conversions
@@ -129,7 +129,7 @@ func TestFromStringExtended(t *testing.T) {
 func TestToStringExtended(t *testing.T) {
 	tests := []struct {
 		name    string
-		input   interface{}
+		input   any
 		wantErr bool
 	}{
 		// Various input types
@@ -153,10 +153,10 @@ func TestToStringExtended(t *testing.T) {
 		{"unsupported type", []int{1, 2, 3}, false}, // Fixed: slice to string works
 
 		// Pointer types
-		{"*int to string", func() interface{} { i := 42; return &i }(), false},
-		{"*string to string", func() interface{} { s := "hello"; return &s }(), false},
-		{"*bool to string", func() interface{} { b := true; return &b }(), false},
-		{"*time to string", func() interface{} { t := time.Now(); return &t }(), false},
+		{"*int to string", func() any { i := 42; return &i }(), false},
+		{"*string to string", func() any { s := "hello"; return &s }(), false},
+		{"*bool to string", func() any { b := true; return &b }(), false},
+		{"*time to string", func() any { t := time.Now(); return &t }(), false},
 
 		// Special float values
 		{"NaN to string", math.NaN(), false},
