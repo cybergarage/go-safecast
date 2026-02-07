@@ -444,3 +444,105 @@ func TestFromErrorCast(t *testing.T) {
 		}
 	})
 }
+
+// TestGenericFrom tests the generic From() function
+func TestGenericFrom(t *testing.T) {
+	t.Run("int types", func(t *testing.T) {
+		var result int64
+		err := safecast.From(int(42), &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+
+		var result2 int
+		err = safecast.From(int64(42), &result2)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("uint types", func(t *testing.T) {
+		var result int
+		err := safecast.From(uint(42), &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("float types", func(t *testing.T) {
+		var result float64
+		err := safecast.From(float32(42.5), &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("string types", func(t *testing.T) {
+		var result int
+		err := safecast.From("42", &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("bool types", func(t *testing.T) {
+		var result int
+		err := safecast.From(true, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("bytes types", func(t *testing.T) {
+		var result string
+		err := safecast.From([]byte("hello"), &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("unsupported type", func(t *testing.T) {
+		type CustomType struct{}
+		custom := CustomType{}
+		var result int
+		err := safecast.From(custom, &result)
+		if err == nil {
+			t.Error("expected error for unsupported type")
+		}
+	})
+}
+
+// TestFromBytes tests FromBytes function
+func TestFromBytes(t *testing.T) {
+	t.Run("bytes to string", func(t *testing.T) {
+		input := []byte("hello world")
+		var result string
+		err := safecast.FromBytes(input, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+			return
+		}
+		if result != "hello world" {
+			t.Errorf("expected 'hello world', got '%s'", result)
+		}
+	})
+
+	t.Run("bytes to bytes", func(t *testing.T) {
+		input := []byte("test data")
+		var result []byte
+		err := safecast.FromBytes(input, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+			return
+		}
+	})
+
+	t.Run("unsupported type", func(t *testing.T) {
+		input := []byte("test")
+		var result int
+		err := safecast.FromBytes(input, &result)
+		if err == nil {
+			t.Error("expected error for unsupported type")
+		}
+	})
+}

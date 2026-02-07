@@ -49,3 +49,111 @@ func TestToCast(t *testing.T) {
 		}
 	})
 }
+
+// TestGenericTo tests the generic To() function
+func TestGenericTo(t *testing.T) {
+	t.Run("to int types", func(t *testing.T) {
+		var result int
+		err := safecast.To(42, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+
+		var result64 int64
+		err = safecast.To(42, &result64)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("to uint types", func(t *testing.T) {
+		var result uint
+		err := safecast.To(42, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("to float types", func(t *testing.T) {
+		var result float64
+		err := safecast.To(42.5, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("to string", func(t *testing.T) {
+		var result string
+		err := safecast.To(42, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("to bool", func(t *testing.T) {
+		var result bool
+		err := safecast.To(1, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("to bytes", func(t *testing.T) {
+		var result []byte
+		err := safecast.To("hello", &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+	})
+
+	t.Run("unsupported type", func(t *testing.T) {
+		type CustomType struct{}
+		var custom CustomType
+		err := safecast.To(42, &custom)
+		if err == nil {
+			t.Error("expected error for unsupported type")
+		}
+	})
+}
+
+// TestToBytes tests ToBytes function
+func TestToBytes(t *testing.T) {
+	t.Run("string to bytes", func(t *testing.T) {
+		input := "hello world"
+		var result []byte
+		err := safecast.ToBytes(input, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+			return
+		}
+	})
+
+	t.Run("string pointer to bytes", func(t *testing.T) {
+		input := "test data"
+		var result []byte
+		err := safecast.ToBytes(&input, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+			return
+		}
+	})
+
+	t.Run("bytes to bytes", func(t *testing.T) {
+		input := []byte("test")
+		var result []byte
+		err := safecast.ToBytes(input, &result)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+			return
+		}
+	})
+
+	t.Run("unsupported type", func(t *testing.T) {
+		input := 42
+		var result []byte
+		err := safecast.ToBytes(input, &result)
+		if err == nil {
+			t.Error("expected error for unsupported type")
+		}
+	})
+}

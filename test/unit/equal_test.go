@@ -195,3 +195,51 @@ func TestEqual(t *testing.T) {
 		}
 	})
 }
+
+// TestEqualMoreTypes tests additional equal scenarios
+func TestEqualMoreTypes(t *testing.T) {
+	t.Run("equal values", func(t *testing.T) {
+		if !safecast.Equal(42, 42) {
+			t.Error("expected true for equal values")
+		}
+
+		if !safecast.Equal(42.5, 42.5) {
+			t.Error("expected true for equal floats")
+		}
+
+		if !safecast.Equal("hello", "hello") {
+			t.Error("expected true for equal strings")
+		}
+
+		if !safecast.Equal(true, true) {
+			t.Error("expected true for equal bools")
+		}
+
+		if !safecast.Equal(42, int64(42)) {
+			t.Error("expected true for int vs int64")
+		}
+	})
+
+	t.Run("not equal values", func(t *testing.T) {
+		if safecast.Equal(42, 43) {
+			t.Error("expected false for different values")
+		}
+
+		if safecast.Equal(42.5, 42.6) {
+			t.Error("expected false for different floats")
+		}
+
+		if safecast.Equal("hello", "world") {
+			t.Error("expected false for different strings")
+		}
+	})
+
+	t.Run("custom types with DeepEqual", func(t *testing.T) {
+		type CustomType struct{}
+		custom1 := CustomType{}
+		custom2 := CustomType{}
+		if !safecast.Equal(custom1, custom2) {
+			t.Error("expected DeepEqual to handle custom types")
+		}
+	})
+}

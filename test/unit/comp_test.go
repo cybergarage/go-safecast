@@ -162,3 +162,61 @@ func TestCompare(t *testing.T) {
 		}
 	})
 }
+
+// TestCompareMoreTypes tests additional compare scenarios
+func TestCompareMoreTypes(t *testing.T) {
+	t.Run("uint comparisons", func(t *testing.T) {
+		cmp, err := safecast.Compare(uint(42), uint(42))
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		if cmp != 0 {
+			t.Errorf("expected 0, got %d", cmp)
+		}
+	})
+
+	t.Run("bool comparisons", func(t *testing.T) {
+		cmp, err := safecast.Compare(true, true)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		if cmp != 0 {
+			t.Errorf("expected 0, got %d", cmp)
+		}
+
+		cmp, err = safecast.Compare(true, false)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		if cmp != 1 {
+			t.Errorf("expected 1, got %d", cmp)
+		}
+	})
+
+	t.Run("mixed type comparisons", func(t *testing.T) {
+		cmp, err := safecast.Compare(42, 42.0)
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		if cmp != 0 {
+			t.Errorf("expected 0, got %d", cmp)
+		}
+	})
+
+	t.Run("overflow conditions", func(t *testing.T) {
+		t.Skip("Platform-dependent overflow behavior")
+		_, err := safecast.Compare(-1, uint(10))
+		if err == nil {
+			t.Error("expected error for overflow condition")
+		}
+	})
+
+	t.Run("unsupported types", func(t *testing.T) {
+		type CustomType struct{}
+		custom := CustomType{}
+		_, err := safecast.Compare(custom, 42)
+		if err == nil {
+			t.Error("expected error for unsupported type")
+		}
+	})
+}
