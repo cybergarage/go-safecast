@@ -125,6 +125,9 @@ func ToUint8(from any, to *uint8) error {
 	}
 
 	fromInt16 := func(v int16) (uint8, error) {
+		if math.MaxUint8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
 		if v < 0 {
 			return 0, newErrorUnderRange(v, to)
 		}
@@ -132,6 +135,9 @@ func ToUint8(from any, to *uint8) error {
 	}
 
 	fromInt32 := func(v int32) (uint8, error) {
+		if math.MaxUint8 < v {
+			return 0, newErrorOverRange(v, to)
+		}
 		if v < 0 {
 			return 0, newErrorUnderRange(v, to)
 		}
@@ -329,6 +335,9 @@ func ToUint16(from any, to *uint16) error {
 	}
 
 	fromInt32 := func(v int32) (uint16, error) {
+		if math.MaxUint16 < v {
+			return 0, newErrorOverRange(v, to)
+		}
 		if v < 0 {
 			return 0, newErrorUnderRange(v, to)
 		}

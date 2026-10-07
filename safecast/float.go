@@ -24,7 +24,8 @@ import (
 func FromFloat64(from float64, to any) error {
 	switch to := to.(type) {
 	case *int:
-		if float64(math.MaxInt) < from {
+		// On 64-bit targets, float64(MaxInt) rounds up to 2^63.
+		if float64(math.MaxInt) < from || (strconv.IntSize == 64 && from >= 0x1p63) {
 			return newErrorOverRange(from, to)
 		}
 		if from < float64(math.MinInt) {
@@ -56,7 +57,8 @@ func FromFloat64(from float64, to any) error {
 		}
 		*to = int32(from)
 	case *int64:
-		if float64(math.MaxInt64) < from {
+		// Use the exact exclusive bound; float64(MaxInt64) rounds up.
+		if from >= 0x1p63 {
 			return newErrorOverRange(from, to)
 		}
 		if from < float64(math.MinInt64) {
@@ -64,7 +66,8 @@ func FromFloat64(from float64, to any) error {
 		}
 		*to = int64(from)
 	case *uint:
-		if float64(math.MaxUint) < from {
+		// On 64-bit targets, float64(MaxUint) rounds up to 2^64.
+		if float64(math.MaxUint) < from || (strconv.IntSize == 64 && from >= 0x1p64) {
 			return newErrorOverRange(from, to)
 		}
 		if from < 0 {
@@ -96,7 +99,7 @@ func FromFloat64(from float64, to any) error {
 		}
 		*to = uint32(from)
 	case *uint64:
-		if float64(math.MaxUint64) < from {
+		if from >= 0x1p64 {
 			return newErrorOverRange(from, to)
 		}
 		if from < 0 {

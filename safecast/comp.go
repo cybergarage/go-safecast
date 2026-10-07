@@ -409,5 +409,9 @@ func Compare(v1 any, v2 any) (int, error) {
 		return r, nil
 	}
 
-	return cmp(v2, v1)
+	r, err = cmp(v2, v1)
+	if err != nil {
+		return r, err
+	}
+	return -r, nil
 }
