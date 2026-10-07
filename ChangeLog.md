@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.3.6 (Unreleased)
+- Fixed
+  - `ToUint8()` now rejects overflowing `int16` and `int32` inputs, and `ToUint16()` rejects overflowing `int32` inputs, including pointer inputs and generic `To()` calls.
+  - `FromFloat64()` rejects the exact exclusive upper bounds of 64-bit integer destinations (`2^63` for signed integers and `2^64` for unsigned integers), which previously passed rounded maximum checks. The fix also applies to `FromFloat32()` and generic `From()` calls.
+  - `Compare()` preserves the original operand order when retrying a failed conversion with reversed operands.
+- Improved
+  - Added regression tests for unsigned narrowing, floating-point integer boundaries, and mixed-width comparison ordering.
+  - Expanded tests for generic conversion, comparison, equality, and byte conversion functions.
+  - Updated GitHub Actions and golangci-lint configuration.
+- Compatibility
+  - Public function signatures are unchanged. Previously accepted overflowing inputs now return errors, and affected fallback comparisons return the corrected ordering.
+
 ## v1.3.5 (2025-11-23)
 - Improved
   - Equal() supports slice ([]any) and map (map[string]any, map[any]any) comparisons
