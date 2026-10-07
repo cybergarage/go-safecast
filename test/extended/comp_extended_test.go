@@ -78,7 +78,7 @@ func TestCompareExtended(t *testing.T) {
 		{"finite vs Inf", 100.0, math.Inf(1), -1, false},
 
 		// Error cases
-		{"incompatible types", 42, "hello", 1, false}, // Fixed: returns 1
+		{"numeric string fallback", 42, "hello", -1, false}, // "42" sorts before "hello".
 		{"unsupported type", []int{1, 2, 3}, []int{1, 2, 3}, 0, true},
 		{"struct comparison", struct{ A int }{42}, struct{ A int }{42}, 0, true},
 		{"nil comparison", nil, nil, 0, false}, // Fixed: nil comparison works
